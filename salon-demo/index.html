@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelle Beauty Studio - Hair, Braids, Nails & Spa</title>
+<meta name="description" content="Aurelle Beauty Studio - premium hair, braids, nails and spa services. Book your appointment online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120d12; --panel:#1d151d; --panel2:#241a24;
+  --gold:#d9b06c; --gold-soft:#e8cf9e; --text:#f3ece4; --muted:#b7a8b2;
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+img{max-width:100%}
+.wrap{width:min(1120px,92%);margin:0 auto}
+section{padding:84px 0}
+.label{letter-spacing:.32em;text-transform:uppercase;font-size:.72rem;color:var(--gold);margin-bottom:14px;display:block}
+h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;line-height:1.15;margin-bottom:18px}
+.sub{color:var(--muted);max-width:560px}
+
+/* Nav */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);background:rgba(18,13,18,.72);border-bottom:1px solid rgba(217,176,108,.14)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Playfair Display',serif;font-size:1.35rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;letter-spacing:.05em;transition:color .25s}
+.nav-links a:hover{color:var(--gold-soft)}
+.btn{display:inline-block;background:var(--gold);color:#1a1216;font-weight:600;padding:13px 30px;border-radius:999px;text-decoration:none;letter-spacing:.06em;font-size:.9rem;transition:transform .25s,box-shadow .25s;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(217,176,108,.35)}
+.btn.ghost{background:transparent;border:1px solid rgba(217,176,108,.5);color:var(--gold-soft)}
+.btn.sm{padding:9px 22px;font-size:.82rem}
+
+/* Hero */
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;padding:120px 0 60px}
+.hero-glow{position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,176,108,.16),transparent 65%);top:-120px;right:-120px;pointer-events:none}
+.hero-glow.two{top:auto;bottom:-160px;left:-160px;right:auto;background:radial-gradient(circle,rgba(140,80,140,.14),transparent 65%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.2rem);line-height:1.08;font-weight:700}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{color:var(--muted);margin:22px 0 34px;max-width:460px;font-size:1.05rem}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.hero-card{background:linear-gradient(150deg,var(--panel2),var(--panel));border:1px solid rgba(217,176,108,.2);border-radius:26px;padding:38px;position:relative;overflow:hidden}
+.hero-card::after{content:"";position:absolute;inset:auto -30% -45% -30%;height:70%;background:radial-gradient(ellipse at center,rgba(217,176,108,.22),transparent 70%)}
+.hero-card .big{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:6px}
+.hero-card .hrs{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(217,176,108,.2);padding:10px 0;font-size:.92rem;color:var(--muted)}
+.hero-card .hrs b{color:var(--text);font-weight:500}
+.badge{display:inline-block;background:rgba(217,176,108,.12);border:1px solid rgba(217,176,108,.35);color:var(--gold-soft);padding:5px 14px;border-radius:999px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px}
+
+/* Services */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:48px}
+.card{background:var(--panel);border:1px solid rgba(217,176,108,.14);border-radius:var(--radius);padding:30px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(217,176,108,.45)}
+.card .ic{font-size:1.9rem;margin-bottom:16px;display:block}
+.card h3{font-size:1.2rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.92rem}
+.card .price{margin-top:14px;color:var(--gold);font-weight:600;letter-spacing:.04em}
+
+/* Price list */
+.plist{max-width:720px;margin:44px auto 0}
+.prow{display:flex;align-items:baseline;gap:14px;padding:15px 4px;border-bottom:1px solid rgba(217,176,108,.14)}
+.prow .nm{font-weight:500}
+.prow .dt{flex:1;border-bottom:2px dotted rgba(217,176,108,.35);transform:translateY(-4px)}
+.prow .pr{color:var(--gold);font-weight:600;white-space:nowrap}
+
+/* Gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:14px;margin-top:48px}
+.gal div{border-radius:14px;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid rgba(217,176,108,.12);display:flex;align-items:flex-end;padding:16px;color:var(--muted);font-size:.8rem;letter-spacing:.08em;position:relative;overflow:hidden;transition:transform .3s}
+.gal div:hover{transform:scale(1.03)}
+.gal div::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(217,176,108,.25),transparent 60%)}
+.gal .tall{grid-row:span 2}
+.gal div span{position:relative}
+
+/* Booking */
+.book{background:linear-gradient(180deg,var(--panel),var(--bg));}
+.bform{background:var(--panel2);border:1px solid rgba(217,176,108,.22);border-radius:24px;padding:44px;max-width:680px;margin:44px auto 0}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.field input,.field select{width:100%;background:#150f15;border:1px solid rgba(217,176,108,.25);border-radius:12px;padding:13px 15px;color:var(--text);font-family:inherit;font-size:.95rem;outline:none;transition:border-color .25s}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+#wa-preview{display:none;margin-top:20px;background:#150f15;border:1px dashed rgba(217,176,108,.4);border-radius:14px;padding:20px;font-size:.92rem}
+#wa-preview b{color:var(--gold-soft)}
+#wa-preview .msg{white-space:pre-line;color:var(--muted);margin:10px 0 14px}
+
+/* Contact / footer */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:44px}
+.ctile{background:var(--panel);border:1px solid rgba(217,176,108,.14);border-radius:var(--radius);padding:26px}
+.ctile h3{font-size:1.05rem;margin-bottom:8px;color:var(--gold-soft)}
+.ctile p{color:var(--muted);font-size:.92rem}
+footer{border-top:1px solid rgba(217,176,108,.14);padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--gold-soft);text-decoration:none}
+.demo-strip{background:var(--gold);color:#1a1216;text-align:center;font-size:.8rem;letter-spacing:.1em;padding:8px 12px;font-weight:600}
+
+/* Reveal */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.on{opacity:1;transform:none}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .nav-links a:not(.btn){display:none}
+  .frow{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr)}
+  .bform{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top">Aurelle<span>.</span></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#prices">Prices</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a class="btn sm" href="#book">Book now</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-glow two"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge rv">Now taking bookings</span>
+      <h1 class="rv">Look stunning.<br>Feel <em>unforgettable.</em></h1>
+      <p class="rv">Braids, weaves, nails, lashes and spa treatments by stylists who treat your look like their signature. Walk out glowing.</p>
+      <div class="hero-cta rv">
+        <a class="btn" href="#book">Book an appointment</a>
+        <a class="btn ghost" href="#services">See services</a>
+      </div>
+    </div>
+    <div class="hero-card rv">
+      <div class="big">Opening hours</div>
+      <div class="hrs"><b>Mon - Fri</b><span>8:00 AM - 8:00 PM</span></div>
+      <div class="hrs"><b>Saturday</b><span>7:00 AM - 9:00 PM</span></div>
+      <div class="hrs" style="border:none"><b>Sunday</b><span>12:00 PM - 6:00 PM</span></div>
+      <p style="margin-top:22px;font-size:.88rem;color:var(--muted)">Same-day slots available most days. Book below and we confirm on WhatsApp within minutes.</p>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <span class="label rv">What we do</span>
+    <h2 class="rv">Services made to pamper you</h2>
+    <p class="sub rv">Every appointment comes with a free consultation, so you leave with a look that fits your face, your style and your day.</p>
+    <div class="cards">
+      <div class="card rv"><span class="ic">✂</span><h3>Braids & Weaves</h3><p>Knotless, box braids, cornrows, sew-ins and wig installs that sit flat and last.</p><div class="price">from ₦8,000</div></div>
+      <div class="card rv"><span class="ic">✦</span><h3>Nails & Lashes</h3><p>Gel, acrylics, pedicures and classic or volume lash sets, neat and gentle.</p><div class="price">from ₦5,000</div></div>
+      <div class="card rv"><span class="ic">❀</span><h3>Facials & Spa</h3><p>Deep-cleanse facials, body scrubs and massages that melt the week away.</p><div class="price">from ₦10,000</div></div>
+      <div class="card rv"><span class="ic">✧</span><h3>Makeup & Gele</h3><p>Soft glam to full bridal beats, with perfectly tied gele for your owambe.</p><div class="price">from ₦15,000</div></div>
+        </div>
+  </div>
+</section>
+
+<section id="prices" style="background:var(--panel)">
+  <div class="wrap" style="text-align:center">
+    <span class="label rv">Price list</span>
+    <h2 class="rv">Clear prices, no surprises</h2>
+    <div class="plist" style="text-align:left">
+      <div class="prow rv"><span class="nm">Knotless braids (medium)</span><span class="dt"></span><span class="pr">₦15,000</span></div>
+      <div class="prow rv"><span class="nm">Wig install & styling</span><span class="dt"></span><span class="pr">₦12,000</span></div>
+      <div class="prow rv"><span class="nm">Gel nails (full set)</span><span class="dt"></span><span class="pr">₦8,000</span></div>
+      <div class="prow rv"><span class="nm">Classic lashes</span><span class="dt"></span><span class="pr">₦7,000</span></div>
+      <div class="prow rv"><span class="nm">Deep-cleanse facial</span><span class="dt"></span><span class="pr">₦10,000</span></div>
+      <div class="prow rv"><span class="nm">Bridal makeup + gele</span><span class="dt"></span><span class="pr">₦35,000</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <span class="label rv">Our work</span>
+    <h2 class="rv">Recent looks from the studio</h2>
+    <div class="gal">
+      <div class="tall rv"><span>BRAIDS</span></div>
+      <div class="rv"><span>NAILS</span></div>
+      <div class="rv"><span>LASHES</span></div>
+      <div class="tall rv"><span>BRIDAL</span></div>
+      <div class="rv"><span>SPA</span></div>
+      <div class="rv"><span>GELE</span></div>
+    </div>
+    <p class="sub rv" style="margin-top:18px;font-size:.85rem">On your real site, this gallery shows your actual work photos.</p>
+  </div>
+</section>
+
+<section id="book" class="book">
+  <div class="wrap" style="text-align:center">
+    <span class="label rv">Book online</span>
+    <h2 class="rv">Reserve your slot in 30 seconds</h2>
+    <p class="sub rv" style="margin:0 auto">Pick your service and time. Your booking goes straight to our WhatsApp - no phone calls, no waiting.</p>
+    <form class="bform rv" id="bookform" style="text-align:left">
+      <div class="frow">
+        <div class="field"><label>Your name</label><input required name="name" placeholder="e.g. Idara Etim"></div>
+        <div class="field"><label>Phone / WhatsApp</label><input required name="phone" placeholder="e.g. 0803 000 0000"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Service</label>
+          <select name="service">
+            <option>Knotless braids (medium) - ₦15,000</option>
+            <option>Wig install & styling - ₦12,000</option>
+            <option>Gel nails (full set) - ₦8,000</option>
+            <option>Classic lashes - ₦7,000</option>
+            <option>Deep-cleanse facial - ₦10,000</option>
+            <option>Bridal makeup + gele - ₦35,000</option>
+          </select>
+        </div>
+        <div class="field"><label>Preferred date</label><input required name="date" type="date"></div>
+      </div>
+      <button class="btn" type="submit" style="width:100%">Send booking to WhatsApp</button>
+      <div id="wa-preview">
+        <b>How it works on a real site:</b>
+        <div class="msg" id="wa-msg"></div>
+        <span style="font-size:.82rem;color:var(--muted)">This message would open in the customer's WhatsApp, addressed to <b>your</b> business line. One tap and it reaches you.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="label rv">Find us</span>
+    <h2 class="rv">Visit the studio</h2>
+    <div class="contact-grid">
+      <div class="ctile rv"><h3>Address</h3><p>24 Oron Road, Uyo,<br>Akwa Ibom State</p></div>
+      <div class="ctile rv"><h3>WhatsApp</h3><p>Tap the booking form above and your message lands on our phone instantly.</p></div>
+      <div class="ctile rv"><h3>Walk-ins</h3><p>Welcome when chairs are free - but booked clients always go first.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="demo-strip">DEMO WEBSITE - designed as a sample for local businesses</div>
+<footer>
+  <div class="wrap">
+    Aurelle Beauty Studio is a fictional demo. Website designed by
+    <a href="https://excellus-solutionz.netlify.app/" target="_blank" rel="noopener">Excellus Tech Solutionz</a>, Uyo ·
+    WhatsApp <a href="https://wa.me/2347073921609" target="_blank" rel="noopener">0707 392 1609</a>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('.rv').forEach(el=>el.classList.add('on')),1200);
+
+// booking -> WhatsApp message preview
+document.getElementById('bookform').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  const f=new FormData(this);
+  const msg="Hello Aurelle Beauty Studio! I would like to book an appointment.\n\nName: "+f.get('name')+"\nPhone: "+f.get('phone')+"\nService: "+f.get('service')+"\nPreferred date: "+f.get('date');
+  document.getElementById('wa-msg').textContent=msg;
+  const p=document.getElementById('wa-preview');
+  p.style.display='block';
+  p.scrollIntoView({behavior:'smooth',block:'center'});
+});
+</script>
+</body>
+</html>
