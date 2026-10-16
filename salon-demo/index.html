@@ -2,251 +2,285 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aurelle Beauty Studio - Hair, Braids, Nails & Spa</title>
-<meta name="description" content="Aurelle Beauty Studio - premium hair, braids, nails and spa services. Book your appointment online.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurelle Beauty Studio - Braids, Nails, Lashes & Spa in Uyo</title>
+<meta name="description" content="Aurelle Beauty Studio is a fictional demo salon website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#120d12; --panel:#1d151d; --panel2:#241a24;
-  --gold:#d9b06c; --gold-soft:#e8cf9e; --text:#f3ece4; --muted:#b7a8b2;
-  --radius:18px;
+  --ink:#16131a;
+  --muted:#5f5a68;
+  --accent:#7c3aed;
+  --accent-dark:#6d28d9;
+  --paper:#ffffff;
+  --tint:#f6f4fa;
+  --line:#e8e5ef;
+  --radius:22px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-h1,h2,h3,.serif{font-family:'Playfair Display',serif}
-img{max-width:100%}
-.wrap{width:min(1120px,92%);margin:0 auto}
-section{padding:84px 0}
-.label{letter-spacing:.32em;text-transform:uppercase;font-size:.72rem;color:var(--gold);margin-bottom:14px;display:block}
-h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;line-height:1.15;margin-bottom:18px}
-.sub{color:var(--muted);max-width:560px}
+body{font-family:'Archivo',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1160px,92%);margin:0 auto}
+.kicker{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+h1,h2{font-stretch:125%;font-weight:850;letter-spacing:-.01em;line-height:1.02}
+h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:.9rem 0 1.1rem}
+h2{font-size:clamp(1.9rem,4.4vw,3rem);margin:.7rem 0 .8rem}
+.sub{color:var(--muted);font-size:1.06rem;max-width:34rem}
 
-/* Nav */
-nav{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);background:rgba(18,13,18,.72);border-bottom:1px solid rgba(217,176,108,.14)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font-family:'Playfair Display',serif;font-size:1.35rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
-.logo span{color:var(--gold)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;letter-spacing:.05em;transition:color .25s}
-.nav-links a:hover{color:var(--gold-soft)}
-.nav-links .btn{color:#1a1216;font-weight:700}
-.btn{display:inline-block;background:var(--gold);color:#1a1216;font-weight:600;padding:13px 30px;border-radius:999px;text-decoration:none;letter-spacing:.06em;font-size:.9rem;transition:transform .25s,box-shadow .25s;border:none;cursor:pointer}
-.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(217,176,108,.35)}
-.btn.ghost{background:transparent;border:1px solid rgba(217,176,108,.5);color:var(--gold-soft)}
-.btn.sm{padding:9px 22px;font-size:.82rem}
+/* demo strip */
+.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
 
-/* Hero */
-.hero{min-height:100svh;display:flex;align-items:center;position:relative;padding:120px 0 60px}
-.hero-glow{position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,176,108,.16),transparent 65%);top:-120px;right:-120px;pointer-events:none}
-.hero-glow.two{top:auto;bottom:-160px;left:-160px;right:auto;background:radial-gradient(circle,rgba(140,80,140,.14),transparent 65%)}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
-.hero h1{font-size:clamp(2.6rem,5.6vw,4.2rem);line-height:1.08;font-weight:700}
-.hero h1 em{color:var(--gold);font-style:italic}
-.hero p{color:var(--muted);margin:22px 0 34px;max-width:460px;font-size:1.05rem}
-.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-.hero-card{background:linear-gradient(150deg,var(--panel2),var(--panel));border:1px solid rgba(217,176,108,.2);border-radius:26px;padding:38px;position:relative;overflow:hidden}
-.hero-card::after{content:"";position:absolute;inset:auto -30% -45% -30%;height:70%;background:radial-gradient(ellipse at center,rgba(217,176,108,.22),transparent 70%)}
-.hero-card .big{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:6px}
-.hero-card .hrs{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(217,176,108,.2);padding:10px 0;font-size:.92rem;color:var(--muted)}
-.hero-card .hrs b{color:var(--text);font-weight:500}
-.badge{display:inline-block;background:rgba(217,176,108,.12);border:1px solid rgba(217,176,108,.35);color:var(--gold-soft);padding:5px 14px;border-radius:999px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{font-stretch:125%;font-weight:900;font-size:1.35rem;letter-spacing:-.02em;text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;position:relative;transition:color .25s}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--accent);transition:width .3s}
+.nav-links a:not(.btn):hover{color:var(--ink)}
+.nav-links a:not(.btn):hover::after{width:100%}
+.nav-links .btn{color:#fff;font-weight:700}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;letter-spacing:.02em;font-size:.92rem;border:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(124,58,237,.28)}
+.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(22,19,26,.18)}
+.btn.sm{padding:9px 20px;font-size:.82rem}
 
-/* Services */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:48px}
-.card{background:var(--panel);border:1px solid rgba(217,176,108,.14);border-radius:var(--radius);padding:30px;transition:transform .3s,border-color .3s}
-.card:hover{transform:translateY(-6px);border-color:rgba(217,176,108,.45)}
-.card .ic{font-size:1.9rem;margin-bottom:16px;display:block}
-.card h3{font-size:1.2rem;margin-bottom:8px}
-.card p{color:var(--muted);font-size:.92rem}
-.card .price{margin-top:14px;color:var(--gold);font-weight:600;letter-spacing:.04em}
+/* hero */
+.hero{padding:clamp(2.6rem,6vw,4.8rem) 0 clamp(3rem,6vw,4.6rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:center}
+.chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;color:var(--ink)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-actions{display:flex;gap:.9rem;margin-top:1.7rem;flex-wrap:wrap}
+.hero-meta{display:flex;gap:1.4rem;margin-top:1.9rem;color:var(--muted);font-size:.9rem;flex-wrap:wrap}
+.hero-meta b{color:var(--ink)}
+.hero-visual{position:relative}
+.hero-visual .ph{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(22,19,26,.25)}
+.hero-visual img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.hero-visual img.loaded{transform:scale(1)}
+.badge-card{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.85rem 1.15rem;box-shadow:0 16px 40px -12px rgba(22,19,26,.22);font-size:.85rem}
+.badge-card b{display:block;font-size:.95rem}
+.badge-card .dot{color:var(--accent);font-weight:800}
 
-/* Price list */
-.plist{max-width:720px;margin:44px auto 0}
-.prow{display:flex;align-items:baseline;gap:14px;padding:15px 4px;border-bottom:1px solid rgba(217,176,108,.14)}
-.prow .nm{font-weight:500}
-.prow .dt{flex:1;border-bottom:2px dotted rgba(217,176,108,.35);transform:translateY(-4px)}
-.prow .pr{color:var(--gold);font-weight:600;white-space:nowrap}
+/* marquee */
+.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:.95rem 0;white-space:nowrap}
+.marquee-track{display:inline-block;animation:scroll 24s linear infinite;font-stretch:125%;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.92rem}
+.marquee-track span{margin:0 1.6rem}
+.marquee-track .a{color:var(--accent);filter:brightness(1.6)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* Gallery */
-.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:14px;margin-top:48px}
-.gal div{border-radius:14px;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid rgba(217,176,108,.12);display:flex;align-items:flex-end;padding:16px;color:var(--muted);font-size:.8rem;letter-spacing:.08em;position:relative;overflow:hidden;transition:transform .3s}
-.gal div:hover{transform:scale(1.03)}
-.gal div::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(217,176,108,.25),transparent 60%)}
-.gal .tall{grid-row:span 2}
-.gal div span{position:relative}
+/* sections */
+section{padding:clamp(3.2rem,7vw,5.5rem) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;flex-wrap:wrap}
+.tint{background:var(--tint)}
 
-/* Booking */
-.book{background:linear-gradient(180deg,var(--panel),var(--bg));}
-.bform{background:var(--panel2);border:1px solid rgba(217,176,108,.22);border-radius:24px;padding:44px;max-width:680px;margin:44px auto 0}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.field input,.field select{width:100%;background:#150f15;border:1px solid rgba(217,176,108,.25);border-radius:12px;padding:13px 15px;color:var(--text);font-family:inherit;font-size:.95rem;outline:none;transition:border-color .25s}
-.field input:focus,.field select:focus{border-color:var(--gold)}
-#wa-preview{display:none;margin-top:20px;background:#150f15;border:1px dashed rgba(217,176,108,.4);border-radius:14px;padding:20px;font-size:.92rem}
-#wa-preview b{color:var(--gold-soft)}
-#wa-preview .msg{white-space:pre-line;color:var(--muted);margin:10px 0 14px}
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .3s,box-shadow .3s,border-color .3s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 22px 44px -18px rgba(22,19,26,.18);border-color:var(--accent)}
+.svc .num{font-stretch:125%;font-weight:900;color:var(--accent);font-size:.95rem;letter-spacing:.08em}
+.svc h3{font-stretch:125%;font-weight:800;font-size:1.18rem}
+.svc p{color:var(--muted);font-size:.92rem;flex:1}
+.svc .row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:.85rem;margin-top:.6rem}
+.svc .price{font-stretch:125%;font-weight:850;font-size:1.15rem}
+.svc .time{color:var(--muted);font-size:.82rem;font-weight:600}
 
-/* Contact / footer */
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:44px}
-.ctile{background:var(--panel);border:1px solid rgba(217,176,108,.14);border-radius:var(--radius);padding:26px}
-.ctile h3{font-size:1.05rem;margin-bottom:8px;color:var(--gold-soft)}
-.ctile p{color:var(--muted);font-size:.92rem}
-footer{border-top:1px solid rgba(217,176,108,.14);padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem}
-footer a{color:var(--gold-soft);text-decoration:none}
-.demo-strip{background:var(--gold);color:#1a1216;text-align:center;font-size:.8rem;letter-spacing:.1em;padding:8px 12px;font-weight:600}
+/* gallery */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.gal{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/5}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.gal:hover img{transform:scale(1.07)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;background:linear-gradient(transparent,rgba(22,19,26,.75));color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
+.gal:hover figcaption{opacity:1;transform:translateY(0)}
 
-/* Reveal */
-.js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-.js .rv.on{opacity:1;transform:none}
+/* booking */
+.book-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.4rem)}
+.book-points{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
+.book-points li{list-style:none;display:flex;gap:.7rem;color:var(--muted);font-size:.95rem}
+.book-points li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:.45rem}
+form{display:flex;flex-direction:column;gap:.9rem}
+label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+input,select{font:inherit;font-size:.98rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s;width:100%}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,58,237,.14)}
+.form-note{font-size:.8rem;color:var(--muted)}
 
-@media(max-width:560px){
-  .logo{font-size:1.2rem}
-  .nav-in{height:60px}
-  .nav-links{gap:14px}
-  .nav .btn.sm{padding:9px 16px;font-size:.8rem}
+/* visit */
+.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}
+.vcard h3{font-stretch:125%;font-weight:800;font-size:1.05rem;margin-bottom:.5rem;color:var(--accent)}
+.vcard p{color:var(--muted);font-size:.93rem}
+.vcard a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:2.2rem 0;background:var(--tint);color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+
+/* reveal animation */
+.rv.armed{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.armed.on{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:repeat(2,1fr)}
+  .book-card{grid-template-columns:1fr}
+  .badge-card{left:10px}
 }
-@media(max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
+@media(max-width:600px){
   .nav-links a:not(.btn){display:none}
-  .frow{grid-template-columns:1fr}
-  .gal{grid-template-columns:repeat(2,1fr)}
-  .bform{padding:28px}
+  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:1fr}
+  .gal{aspect-ratio:4/3}
+  .sec-head{margin-bottom:1.6rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
 
-<nav>
+<div class="demo-strip">Demo website · designed as a sample for local businesses</div>
+
+<header class="nav">
   <div class="wrap nav-in">
     <a class="logo" href="#top">Aurelle<span>.</span></a>
-    <div class="nav-links">
+    <nav class="nav-links">
       <a href="#services">Services</a>
-      <a href="#prices">Prices</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
+      <a href="#work">Recent work</a>
+      <a href="#visit">Visit</a>
       <a class="btn sm" href="#book">Book now</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="hero-glow"></div>
-  <div class="hero-glow two"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <span class="badge rv">Now taking bookings</span>
-      <h1 class="rv">Look stunning.<br>Feel <em>unforgettable.</em></h1>
-      <p class="rv">Braids, weaves, nails, lashes and spa treatments by stylists who treat your look like their signature. Walk out glowing.</p>
-      <div class="hero-cta rv">
-        <a class="btn" href="#book">Book an appointment</a>
-        <a class="btn ghost" href="#services">See services</a>
-      </div>
-    </div>
-    <div class="hero-card rv">
-      <div class="big">Opening hours</div>
-      <div class="hrs"><b>Mon - Fri</b><span>8:00 AM - 8:00 PM</span></div>
-      <div class="hrs"><b>Saturday</b><span>7:00 AM - 9:00 PM</span></div>
-      <div class="hrs" style="border:none"><b>Sunday</b><span>12:00 PM - 6:00 PM</span></div>
-      <p style="margin-top:22px;font-size:.88rem;color:var(--muted)">Same-day slots available most days. Book below and we confirm on WhatsApp within minutes.</p>
-    </div>
+    </nav>
   </div>
 </header>
 
-<section id="services">
-  <div class="wrap">
-    <span class="label rv">What we do</span>
-    <h2 class="rv">Services made to pamper you</h2>
-    <p class="sub rv">Every appointment comes with a free consultation, so you leave with a look that fits your face, your style and your day.</p>
-    <div class="cards">
-      <div class="card rv"><span class="ic">✂</span><h3>Braids & Weaves</h3><p>Knotless, box braids, cornrows, sew-ins and wig installs that sit flat and last.</p><div class="price">from ₦8,000</div></div>
-      <div class="card rv"><span class="ic">✦</span><h3>Nails & Lashes</h3><p>Gel, acrylics, pedicures and classic or volume lash sets, neat and gentle.</p><div class="price">from ₦5,000</div></div>
-      <div class="card rv"><span class="ic">❀</span><h3>Facials & Spa</h3><p>Deep-cleanse facials, body scrubs and massages that melt the week away.</p><div class="price">from ₦10,000</div></div>
-      <div class="card rv"><span class="ic">✧</span><h3>Makeup & Gele</h3><p>Soft glam to full bridal beats, with perfectly tied gele for your owambe.</p><div class="price">from ₦15,000</div></div>
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="chip rv"><i></i> Uyo · Braids, nails, lashes &amp; spa</span>
+        <h1 class="rv" style="transition-delay:.08s">Braids, nails and lashes. Done properly, <em>booked in minutes.</em></h1>
+        <p class="sub rv" style="transition-delay:.16s">Aurelle is a walk-in friendly beauty studio in Uyo. Pick a service, pick a time, and we confirm your chair on WhatsApp the same day.</p>
+        <div class="hero-actions rv" style="transition-delay:.24s">
+          <a class="btn" href="#book">Book on WhatsApp</a>
+          <a class="btn ghost" href="#services">Services &amp; prices</a>
         </div>
-  </div>
-</section>
-
-<section id="prices" style="background:var(--panel)">
-  <div class="wrap" style="text-align:center">
-    <span class="label rv">Price list</span>
-    <h2 class="rv">Clear prices, no surprises</h2>
-    <div class="plist" style="text-align:left">
-      <div class="prow rv"><span class="nm">Knotless braids (medium)</span><span class="dt"></span><span class="pr">₦15,000</span></div>
-      <div class="prow rv"><span class="nm">Wig install & styling</span><span class="dt"></span><span class="pr">₦12,000</span></div>
-      <div class="prow rv"><span class="nm">Gel nails (full set)</span><span class="dt"></span><span class="pr">₦8,000</span></div>
-      <div class="prow rv"><span class="nm">Classic lashes</span><span class="dt"></span><span class="pr">₦7,000</span></div>
-      <div class="prow rv"><span class="nm">Deep-cleanse facial</span><span class="dt"></span><span class="pr">₦10,000</span></div>
-      <div class="prow rv"><span class="nm">Bridal makeup + gele</span><span class="dt"></span><span class="pr">₦35,000</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="gallery">
-  <div class="wrap">
-    <span class="label rv">Our work</span>
-    <h2 class="rv">Recent looks from the studio</h2>
-    <div class="gal">
-      <div class="tall rv"><span>BRAIDS</span></div>
-      <div class="rv"><span>NAILS</span></div>
-      <div class="rv"><span>LASHES</span></div>
-      <div class="tall rv"><span>BRIDAL</span></div>
-      <div class="rv"><span>SPA</span></div>
-      <div class="rv"><span>GELE</span></div>
-    </div>
-    <p class="sub rv" style="margin-top:18px;font-size:.85rem">On your real site, this gallery shows your actual work photos.</p>
-  </div>
-</section>
-
-<section id="book" class="book">
-  <div class="wrap" style="text-align:center">
-    <span class="label rv">Book online</span>
-    <h2 class="rv">Reserve your slot in 30 seconds</h2>
-    <p class="sub rv" style="margin:0 auto">Pick your service and time. Your booking goes straight to our WhatsApp - no phone calls, no waiting.</p>
-    <form class="bform rv" id="bookform" style="text-align:left">
-      <div class="frow">
-        <div class="field"><label>Your name</label><input required name="name" placeholder="e.g. Idara Etim"></div>
-        <div class="field"><label>Phone / WhatsApp</label><input required name="phone" placeholder="e.g. 0803 000 0000"></div>
-      </div>
-      <div class="frow">
-        <div class="field"><label>Service</label>
-          <select name="service">
-            <option>Knotless braids (medium) - ₦15,000</option>
-            <option>Wig install & styling - ₦12,000</option>
-            <option>Gel nails (full set) - ₦8,000</option>
-            <option>Classic lashes - ₦7,000</option>
-            <option>Deep-cleanse facial - ₦10,000</option>
-            <option>Bridal makeup + gele - ₦35,000</option>
-          </select>
+        <div class="hero-meta rv" style="transition-delay:.32s">
+          <span><b>Mon - Sat</b> 8:00 - 20:00</span>
+          <span><b>Sun</b> 12:00 - 18:00</span>
+          <span><b>24 Oron Road</b>, Uyo</span>
         </div>
-        <div class="field"><label>Preferred date</label><input required name="date" type="date"></div>
       </div>
-      <button class="btn" type="submit" style="width:100%">Send booking to WhatsApp</button>
-      <div id="wa-preview">
-        <b>How it works on a real site:</b>
-        <div class="msg" id="wa-msg"></div>
-        <span style="font-size:.82rem;color:var(--muted)">This message would open in the customer's WhatsApp, addressed to <b>your</b> business line. One tap and it reaches you.</span>
+      <div class="hero-visual rv" style="transition-delay:.2s">
+        <div class="ph"><img id="heroImg" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80" alt="Stylist finishing a client's blow-dry at a bright salon station" width="1200" height="900" fetchpriority="high"></div>
+        <div class="badge-card"><span class="dot">●</span> Open today<b>8:00 AM - 8:00 PM</b></div>
       </div>
-    </form>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <span class="label rv">Find us</span>
-    <h2 class="rv">Visit the studio</h2>
-    <div class="contact-grid">
-      <div class="ctile rv"><h3>Address</h3><p>24 Oron Road, Uyo,<br>Akwa Ibom State</p></div>
-      <div class="ctile rv"><h3>WhatsApp</h3><p>Tap the booking form above and your message lands on our phone instantly.</p></div>
-      <div class="ctile rv"><h3>Walk-ins</h3><p>Welcome when chairs are free - but booked clients always go first.</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="demo-strip">DEMO WEBSITE - designed as a sample for local businesses</div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="mq"></div>
+  </div>
+
+  <section class="tint" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Services &amp; prices</span>
+          <h2 class="rv">Straightforward pricing,<br>confirmed before we start.</h2>
+        </div>
+        <p class="sub rv">Every appointment starts with a quick consultation. The price we quote is the price you pay.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc rv"><span class="num">01</span><h3>Knotless braids</h3><p>Lightweight, tension-free braids in any length. Hair included in the price.</p><div class="row"><span class="price">₦20,000</span><span class="time">3 - 4 hrs</span></div></article>
+        <article class="svc rv" style="transition-delay:.07s"><span class="num">02</span><h3>Box braids</h3><p>Classic neat sections, small to jumbo. Edge finish included.</p><div class="row"><span class="price">₦15,000</span><span class="time">3 - 4 hrs</span></div></article>
+        <article class="svc rv" style="transition-delay:.14s"><span class="num">03</span><h3>Gel nails</h3><p>Gel overlay or full set with tips, shaped and sealed to last three weeks.</p><div class="row"><span class="price">₦8,000</span><span class="time">60 - 90 min</span></div></article>
+        <article class="svc rv"><span class="num">04</span><h3>Lash extensions</h3><p>Classic or volume sets, mapped to your eye shape. Refills within two weeks.</p><div class="row"><span class="price">₦12,000</span><span class="time">90 min</span></div></article>
+        <article class="svc rv" style="transition-delay:.07s"><span class="num">05</span><h3>Wig install</h3><p>Lace melt, styling and cut. Bring your unit or choose from the shelf.</p><div class="row"><span class="price">₦10,000</span><span class="time">60 min</span></div></article>
+        <article class="svc rv" style="transition-delay:.14s"><span class="num">06</span><h3>Spa facial</h3><p>Deep cleanse, steam, extraction and mask. Leaves skin calm, not stripped.</p><div class="row"><span class="price">₦9,000</span><span class="time">50 min</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Recent work</span>
+          <h2 class="rv">Straight out of the chair.</h2>
+        </div>
+        <p class="sub rv">A sample of what clients walk out with. New sets and styles every week.</p>
+      </div>
+      <div class="gal-grid">
+        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&q=80" alt="Finished pastel colour transformation on long wavy hair" loading="lazy" width="800" height="1000"><figcaption>Colour &amp; style</figcaption></figure>
+        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80" alt="Fresh pink manicure being applied" loading="lazy" width="800" height="1000"><figcaption>Gel nails</figcaption></figure>
+        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80" alt="Makeup artist applying a finished look" loading="lazy" width="800" height="1000"><figcaption>Makeup</figcaption></figure>
+        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Clean black and white salon interior with styling chairs" loading="lazy" width="800" height="1000"><figcaption>The studio</figcaption></figure>
+        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="Professional makeup and brushes laid out ready for a client" loading="lazy" width="800" height="1000"><figcaption>Pro kit</figcaption></figure>
+        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80" alt="Detailed nail art on a finished manicure" loading="lazy" width="800" height="1000"><figcaption>Nail art</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="tint" id="book">
+    <div class="wrap">
+      <div class="book-card rv">
+        <div>
+          <span class="kicker">Book a chair</span>
+          <h2>Send your booking. We confirm on WhatsApp.</h2>
+          <ul class="book-points">
+            <li>Same-day slots available most days - message before 4 PM.</li>
+            <li>No deposit for standard services. Braids over ₦15,000 take a ₦3,000 holding deposit.</li>
+            <li>Running late? Your chair is held for 20 minutes.</li>
+          </ul>
+        </div>
+        <form id="bookForm">
+          <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" placeholder="e.g. Idara" required></div>
+          <div><label for="f-service">Service</label>
+            <select id="f-service" name="service" required>
+              <option value="">Choose a service</option>
+              <option>Knotless braids - ₦20,000</option>
+              <option>Box braids - ₦15,000</option>
+              <option>Gel nails - ₦8,000</option>
+              <option>Lash extensions - ₦12,000</option>
+              <option>Wig install - ₦10,000</option>
+              <option>Spa facial - ₦9,000</option>
+            </select>
+          </div>
+          <div><label for="f-when">Preferred day &amp; time</label><input id="f-when" name="when" type="text" placeholder="e.g. Saturday, 10 AM" required></div>
+          <div><label for="f-phone">Your phone</label><input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required></div>
+          <button class="btn" type="submit">Send booking on WhatsApp</button>
+          <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">Find us</span>
+          <h2 class="rv">Visit the studio.</h2>
+        </div>
+      </div>
+      <div class="visit-grid">
+        <div class="vcard rv"><h3>Address</h3><p>24 Oron Road, Uyo,<br>Akwa Ibom State</p></div>
+        <div class="vcard rv" style="transition-delay:.07s"><h3>WhatsApp</h3><p>Fastest way to reach us - bookings, questions, price checks.<br><br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></p></div>
+        <div class="vcard rv" style="transition-delay:.14s"><h3>Walk-ins</h3><p>Welcome when chairs are free - but booked clients always go first.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
 <footer>
   <div class="wrap">
     Aurelle Beauty Studio is a fictional demo. Website designed by
@@ -256,22 +290,42 @@ footer a{color:var(--gold-soft);text-decoration:none}
 </footer>
 
 <script>
-document.documentElement.classList.add('js');
-// reveal on scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-setTimeout(()=>document.querySelectorAll('.rv').forEach(el=>el.classList.add('on')),1200);
+// marquee content (duplicated for seamless loop)
+(function(){
+  var items = ['Box braids','Knotless','Gel nails','Lash extensions','Wig installs','Spa facials','Makeup','Same-day slots'];
+  var html = items.map(function(t,i){ return '<span class="'+(i%2?'a':'')+'">'+t+'</span><span>·</span>'; }).join('');
+  document.getElementById('mq').innerHTML = html + html;
+})();
 
-// booking -> WhatsApp message preview
-document.getElementById('bookform').addEventListener('submit',function(ev){
+// hero image settle-in
+(function(){
+  var img = document.getElementById('heroImg');
+  var done = function(){ img.classList.add('loaded'); };
+  if (img.complete) done(); else img.addEventListener('load', done);
+})();
+
+// scroll reveal with stagger
+(function(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
+  }, {threshold:.12});
+  els.forEach(function(e){ e.classList.add('armed'); io.observe(e); });
+})();
+
+// booking -> WhatsApp prefill
+document.getElementById('bookForm').addEventListener('submit', function(ev){
   ev.preventDefault();
-  const f=new FormData(this);
-  const msg="Hello Aurelle Beauty Studio! I would like to book an appointment.\n\nName: "+f.get('name')+"\nPhone: "+f.get('phone')+"\nService: "+f.get('service')+"\nPreferred date: "+f.get('date');
-  document.getElementById('wa-msg').textContent=msg;
-  const p=document.getElementById('wa-preview');
-  p.style.display='block';
-  p.scrollIntoView({behavior:'smooth',block:'center'});
+  var f = ev.target;
+  var msg = 'Hello Aurelle! I would like to book:\n'
+    + 'Name: ' + f.name.value + '\n'
+    + 'Service: ' + f.service.value + '\n'
+    + 'Preferred: ' + f.when.value + '\n'
+    + 'Phone: ' + f.phone.value;
+  window.open('https://wa.me/2347034678518?text=' + encodeURIComponent(msg), '_blank');
 });
 </script>
+
 </body>
-         </html>
+</html>
