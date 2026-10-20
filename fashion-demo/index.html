@@ -3,263 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thread & Press - Tailoring, Alterations & Laundry in Uyo</title>
+<title>Thread &amp; Press - Tailoring, Alterations &amp; Laundry in Uyo</title>
 <meta name="description" content="Thread & Press is a fictional demo tailoring and laundry website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16131a;
-  --muted:#5f5a68;
-  --accent:#db2777;
-  --accent-dark:#be185d;
-  --paper:#ffffff;
+  --ink:#1f1020;
+  --muted:#74606f;
+  --accent:#be185d;
   --tint:#fdf3f7;
-  --line:#f4e2ea;
-  --radius:22px;
+  --line:#f0dde6;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:'Archivo',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:'Sora',system-ui,-apple-system,sans-serif;background:#fff;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
-.wrap{width:min(1160px,92%);margin:0 auto}
-.kicker{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-h1,h2{font-stretch:125%;font-weight:850;letter-spacing:-.01em;line-height:1.02}
-h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:.9rem 0 1.1rem}
-h2{font-size:clamp(1.9rem,4.4vw,3rem);margin:.7rem 0 .8rem}
-.sub{color:var(--muted);font-size:1.06rem;max-width:34rem}
+.wrap{width:min(1080px,92%);margin:0 auto}
 
-/* demo strip */
-.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
+.demo-strip{background:var(--ink);color:#fff;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1rem}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-stretch:125%;font-weight:900;font-size:1.35rem;letter-spacing:-.02em;text-decoration:none}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;position:relative;transition:color .25s}
-.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--accent);transition:width .3s}
-.nav-links a:not(.btn):hover{color:var(--ink)}
-.nav-links a:not(.btn):hover::after{width:100%}
-.nav-links .btn{color:#fff;font-weight:700}
-.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;letter-spacing:.02em;font-size:.92rem;border:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
-.btn:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(219,39,119,.28)}
-.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(22,19,26,.18)}
-.btn.sm{padding:9px 20px;font-size:.82rem}
+/* header */
+.hdr{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.wordmark{font-weight:800;font-size:1.15rem;text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.wordmark i{font-style:normal;color:var(--accent)}
+.hdr nav{display:flex;gap:14px;align-items:center}
+.hdr nav a{font-size:.8rem;font-weight:600;text-decoration:none;white-space:nowrap}
+.hdr nav a:hover{color:var(--accent)}
+.hdr nav .wa{color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:1px}
 
-/* hero */
-.hero{padding:clamp(2.6rem,6vw,4.8rem) 0 clamp(3rem,6vw,4.6rem)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:center}
-.chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;color:var(--ink)}
-.chip i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero-actions{display:flex;gap:.9rem;margin-top:1.7rem;flex-wrap:wrap}
-.hero-meta{display:flex;gap:1.4rem;margin-top:1.9rem;color:var(--muted);font-size:.9rem;flex-wrap:wrap}
-.hero-meta b{color:var(--ink)}
-.hero-visual{position:relative}
-.hero-visual .ph{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(22,19,26,.25)}
-.hero-visual img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.hero-visual img.loaded{transform:scale(1)}
-.badge-card{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.85rem 1.15rem;box-shadow:0 16px 40px -12px rgba(22,19,26,.22);font-size:.85rem}
-.badge-card b{display:block;font-size:.95rem}
-.badge-card .dot{color:var(--accent);font-weight:800}
+/* intro */
+.intro{padding:2.4rem 0 2rem;max-width:46rem}
+.intro h1{font-weight:800;font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.12;letter-spacing:-.02em;margin-bottom:.7rem}
+.intro p{color:var(--muted)}
 
-/* marquee */
-.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:.95rem 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:scroll 24s linear infinite;font-stretch:125%;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.92rem}
-.marquee-track span{margin:0 1.6rem}
-.marquee-track .a{color:var(--accent);filter:brightness(1.6)}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* two trades */
+.trades{display:grid;gap:14px;padding-bottom:2.4rem}
+@media(min-width:760px){.trades{grid-template-columns:1fr 1fr}}
+.trade{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.trade img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.trade .pad{padding:1.2rem 1.2rem 1.4rem}
+.trade h2{font-size:1.15rem;font-weight:800;margin-bottom:.2rem}
+.trade h2 span{color:var(--accent)}
+.trade .sub2{font-size:.84rem;color:var(--muted);margin-bottom:1rem}
+.trow{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;padding:.6rem 0;border-top:1px dashed var(--line)}
+.trow .t{font-size:.92rem;font-weight:600}
+.trow .t small{display:block;font-weight:400;color:var(--muted);font-size:.78rem}
+.trow .p{font-weight:800;font-size:.92rem;white-space:nowrap;text-align:right}
+.trow .p small{display:block;font-weight:400;color:var(--muted);font-size:.72rem}
 
-/* sections */
-section{padding:clamp(3.2rem,7vw,5.5rem) 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;flex-wrap:wrap}
-.tint{background:var(--tint)}
+/* how it works */
+.how{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.4rem 0}
+.how h2{font-size:1.3rem;font-weight:800;margin-bottom:1.2rem}
+.steps{display:grid;gap:1.2rem}
+@media(min-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step .n{font-weight:800;font-size:2rem;color:var(--accent);line-height:1}
+.step b{display:block;margin:.3rem 0 .2rem}
+.step p{font-size:.86rem;color:var(--muted)}
 
-/* services */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .3s,box-shadow .3s,border-color .3s}
-.svc:hover{transform:translateY(-5px);box-shadow:0 22px 44px -18px rgba(22,19,26,.18);border-color:var(--accent)}
-.svc .num{font-stretch:125%;font-weight:900;color:var(--accent);font-size:.95rem;letter-spacing:.08em}
-.svc h3{font-stretch:125%;font-weight:800;font-size:1.18rem}
-.svc p{color:var(--muted);font-size:.92rem;flex:1}
-.svc .row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:.85rem;margin-top:.6rem}
-.svc .price{font-stretch:125%;font-weight:850;font-size:1.15rem}
-.svc .time{color:var(--muted);font-size:.82rem;font-weight:600}
+/* recent makes */
+.makes{padding:2.4rem 0}
+.makes h2{font-size:1.3rem;font-weight:800;margin-bottom:.2rem}
+.makes .sub2{font-size:.86rem;color:var(--muted);margin-bottom:1.2rem}
+.mk{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mk img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px}
 
-/* gallery */
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-.gal{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/5}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.gal:hover img{transform:scale(1.07)}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;background:linear-gradient(transparent,rgba(22,19,26,.75));color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
-.gal:hover figcaption{opacity:1;transform:translateY(0)}
+/* order */
+.order{padding:0 0 2.6rem}
+.order-grid{display:grid;gap:1.6rem}
+@media(min-width:760px){.order-grid{grid-template-columns:1fr 1fr}}
+.order form{border:1px solid var(--line);border-radius:14px;padding:1.4rem;background:#fff}
+.order h2{font-size:1.3rem;font-weight:800;margin-bottom:.4rem}
+.order .lead{font-size:.9rem;color:var(--muted);margin-bottom:.9rem}
+.order ul{list-style:none;margin-bottom:.4rem}
+.order li{font-size:.86rem;color:#4a3a48;padding:.4rem 0 .4rem 1.3rem;position:relative}
+.order li::before{content:"";position:absolute;left:0;top:.95rem;width:7px;height:7px;background:var(--accent);border-radius:2px}
+label{display:block;font-size:.78rem;font-weight:600;margin:0 0 .3rem}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff;margin-bottom:.9rem}
+input:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:.9rem;padding:13px 26px;border-radius:8px;border:none;cursor:pointer;width:100%}
+.btn:hover{background:#9d174d}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:.7rem}
 
-/* booking */
-.book-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.4rem)}
-.book-points{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
-.book-points li{list-style:none;display:flex;gap:.7rem;color:var(--muted);font-size:.95rem}
-.book-points li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:.45rem}
-form{display:flex;flex-direction:column;gap:.9rem}
-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-input,select{font:inherit;font-size:.98rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s;width:100%}
-input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(219,39,119,.14)}
-.form-note{font-size:.8rem;color:var(--muted)}
+/* info */
+.info{border-top:1px solid var(--line);padding:2rem 0 2.4rem}
+.info dl{display:grid;gap:1rem}
+@media(min-width:700px){.info dl{grid-template-columns:repeat(3,1fr)}}
+.info dt{font-weight:800;font-size:.92rem}
+.info dd{font-size:.86rem;color:var(--muted)}
+.info a{color:var(--accent);font-weight:600}
 
-/* visit */
-.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.vcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}
-.vcard h3{font-stretch:125%;font-weight:800;font-size:1.05rem;margin-bottom:.5rem;color:var(--accent)}
-.vcard p{color:var(--muted);font-size:.93rem}
-.vcard a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
-
-/* footer */
-footer{border-top:1px solid var(--line);padding:2.2rem 0;background:var(--tint);color:var(--muted);font-size:.85rem;text-align:center}
-footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
-
-/* reveal animation */
-.rv.armed{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.armed.on{opacity:1;transform:none}
-
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:repeat(2,1fr)}
-  .book-card{grid-template-columns:1fr}
-  .badge-card{left:10px}
-}
-@media(max-width:600px){
-  .nav-links a:not(.btn){display:none}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:1fr}
-  .gal{aspect-ratio:4/3}
-  .sec-head{margin-bottom:1.6rem}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;font-size:.78rem;color:var(--muted);text-align:center}
+footer a{color:var(--accent)}
 </style>
 </head>
 <body>
 
-<div class="demo-strip">Demo website · designed as a sample for local businesses</div>
+<div class="demo-strip">Demo website - a sample for local businesses</div>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="logo" href="#top">Thread&amp;Press<span>.</span></a>
-    <nav class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#work">Recent work</a>
-      <a href="#visit">Visit</a>
-      <a class="btn sm" href="#book">Book a pickup</a>
+<div class="wrap">
+  <header class="hdr">
+    <a class="wordmark" href="#top">Thread <i>&amp;</i> Press</a>
+    <nav>
+      <a href="#trades">What we do</a>
+      <a href="#order">Book</a>
+      <a class="wa" href="https://wa.me/2347034678518" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
+  </header>
+
+  <section class="intro" id="top">
+    <h1>A tailor shop and a laundry under one roof in Uyo.</h1>
+    <p>Bespoke native wear, sharp alterations and a 48-hour wash-and-press. Pickup and delivery arranged on WhatsApp.</p>
+  </section>
+
+  <section class="trades" id="trades">
+    <div class="trade">
+      <img src="https://images.unsplash.com/photo-1687422808289-e721259c9eb4?auto=format&fit=crop&w=800&q=80" alt="Tailor working on a sewing machine" fetchpriority="high">
+      <div class="pad">
+        <h2>The tailor shop <span>/</span> sewing</h2>
+        <p class="sub2">Bring your fabric or choose from ours. One fitting, about 15 minutes.</p>
+        <div class="trow"><div class="t">Bespoke native wear<small>Senator, agbada and two-piece sets.</small></div><div class="p">from ₦25,000<small>5 - 7 days</small></div></div>
+        <div class="trow"><div class="t">Occasion dresses<small>Aso-ebi, dinner and church dresses, fitted to you.</small></div><div class="p">from ₦30,000<small>7 days</small></div></div>
+        <div class="trow"><div class="t">Alterations<small>Tapering, hemming, zip and button fixes.</small></div><div class="p">from ₦1,500<small>same day</small></div></div>
+      </div>
+    </div>
+    <div class="trade">
+      <img src="https://images.unsplash.com/photo-1714321960831-c8753b534400?auto=format&fit=crop&w=800&q=80" alt="Person ironing a white shirt" loading="lazy">
+      <div class="pad">
+        <h2>The laundry <span>/</span> wash &amp; press</h2>
+        <p class="sub2">Returned hung and bagged. Express same-day pressing available.</p>
+        <div class="trow"><div class="t">Wash &amp; press<small>Wash, starch and press.</small></div><div class="p">from ₦500<small>per item · 48 hrs</small></div></div>
+        <div class="trow"><div class="t">Dry cleaning<small>Suits, delicate fabrics and heavy drapes.</small></div><div class="p">from ₦2,500<small>3 days</small></div></div>
+        <div class="trow"><div class="t">Pickup &amp; delivery<small>We collect and return anywhere in Uyo.</small></div><div class="p">₦1,000<small>same day</small></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><b>Message us</b><p>Send what you need on WhatsApp - sewing, alterations or laundry. We confirm price and timing.</p></div>
+      <div class="step"><div class="n">2</div><b>We collect or you walk in</b><p>Pickup anywhere in Uyo, or come to the shop on Abak Road. Fittings take about 15 minutes.</p></div>
+      <div class="step"><div class="n">3</div><b>Collect or we deliver</b><p>Laundry is back in 48 hours. New sewing is ready in 5 - 7 days with one fitting in between.</p></div>
+    </div>
   </div>
-</header>
+</section>
 
-<main id="top">
+<div class="wrap">
+  <section class="makes">
+    <h2>Recent makes &amp; presses</h2>
+    <p class="sub2">A few pieces off the table this month.</p>
+    <div class="mk">
+      <img src="https://images.unsplash.com/photo-1663044023437-6b3f9be28a90?auto=format&fit=crop&w=500&q=80" alt="Woman in a bright yellow African print dress" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1552710307-537199cd41c0?auto=format&fit=crop&w=500&q=80" alt="Colourful African print textiles folded in a stack" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1790943780822-9918073fe9f1?auto=format&fit=crop&w=500&q=80" alt="Two women sewing patterned dresses" loading="lazy">
+    </div>
+  </section>
 
-  <section class="hero">
-    <div class="wrap hero-grid">
+  <section class="order" id="order">
+    <div class="order-grid">
       <div>
-        <span class="chip rv"><i></i> Uyo · Tailoring, alterations &amp; laundry</span>
-        <h1 class="rv" style="transition-delay:.08s">Clothes that fit. <em>Pressed like new.</em></h1>
-        <p class="sub rv" style="transition-delay:.16s">Thread & Press is a tailoring and laundry shop in Uyo. Bespoke sewing, sharp alterations and 48-hour wash-and-press - pickup and delivery arranged on WhatsApp.</p>
-        <div class="hero-actions rv" style="transition-delay:.24s">
-          <a class="btn" href="#book">Book a pickup</a>
-          <a class="btn ghost" href="#services">Services &amp; prices</a>
-        </div>
-        <div class="hero-meta rv" style="transition-delay:.32s">
-          <span><b>Mon - Sat</b> 8:00 - 19:00</span>
-          <span><b>Express</b> Same-day pressing</span>
-          <span><b>17 Abak Road</b>, Uyo</span>
-        </div>
+        <h2>Book a pickup or fitting</h2>
+        <p class="lead">Tell us what you need and where to collect. We confirm on WhatsApp the same day.</p>
+        <ul>
+          <li>Laundry picked up before noon is back in 48 hours.</li>
+          <li>Bespoke pieces need one fitting - bring your fabric or choose from ours.</li>
+          <li>No deposit for laundry; 50% deposit for new sewing.</li>
+        </ul>
       </div>
-      <div class="hero-visual rv" style="transition-delay:.2s">
-        <div class="ph"><img id="heroImg" src="https://images.unsplash.com/photo-1663044023437-6b3f9be28a90?auto=format&fit=crop&w=1200&q=80" alt="Woman in a bright yellow African print dress" width="1200" height="900" fetchpriority="high"></div>
-        <div class="badge-card"><span class="dot">●</span> Laundry ready in<b>48 hours</b></div>
-      </div>
+      <form id="orderForm">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" placeholder="e.g. Ofonime" required>
+        <label for="f-service">What do you need?</label>
+        <select id="f-service" name="service" required>
+          <option value="">Choose one</option>
+          <option>Bespoke native wear - from ₦25,000</option>
+          <option>Occasion dress - from ₦30,000</option>
+          <option>Alterations - from ₦1,500</option>
+          <option>Wash &amp; press - from ₦500/item</option>
+          <option>Dry cleaning - from ₦2,500</option>
+          <option>Pickup &amp; delivery</option>
+        </select>
+        <label for="f-when">When should we collect / when are you coming?</label>
+        <input id="f-when" name="when" type="text" placeholder="e.g. Tomorrow, 11 AM" required>
+        <label for="f-phone">Your phone</label>
+        <input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required>
+        <button class="btn" type="submit">Send on WhatsApp</button>
+        <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
+      </form>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track" id="mq"></div>
-  </div>
-
-  <section class="tint" id="services">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Services &amp; prices</span>
-          <h2 class="rv">Sewn to fit.<br>Pressed to last.</h2>
-        </div>
-        <p class="sub rv">Every garment is measured, tagged and finished by hand. Prices confirmed before we touch your fabric.</p>
-      </div>
-      <div class="svc-grid"><article class="svc rv"><span class="num">01</span><h3>Bespoke native wear</h3><p>Senator, agbada and two-piece sets sewn from your fabric or ours.</p><div class="row"><span class="price">From ₦25,000</span><span class="time">5 - 7 days</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">02</span><h3>Occasion dresses</h3><p>Aso-ebi, dinner and church dresses, fitted to your measurements.</p><div class="row"><span class="price">From ₦30,000</span><span class="time">7 days</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">03</span><h3>Alterations</h3><p>Tapering, hemming, zip and button fixes - while you wait where possible.</p><div class="row"><span class="price">From ₦1,500</span><span class="time">Same day</span></div></article>
-        <article class="svc rv"><span class="num">04</span><h3>Wash &amp; press</h3><p>Wash, starch and press, returned hung and bagged.</p><div class="row"><span class="price">From ₦500/item</span><span class="time">48 hrs</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">05</span><h3>Dry cleaning</h3><p>Suits, delicate fabrics and heavy drapes handled with care.</p><div class="row"><span class="price">From ₦2,500</span><span class="time">3 days</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">06</span><h3>Pickup &amp; delivery</h3><p>We collect and return anywhere in Uyo, scheduled on WhatsApp.</p><div class="row"><span class="price">₦1,000</span><span class="time">Same day</span></div></article></div>
-    </div>
+  <section class="info">
+    <dl>
+      <div><dt>The shop</dt><dd>17 Abak Road, Uyo,<br>Akwa Ibom State</dd></div>
+      <div><dt>Hours &amp; walk-ins</dt><dd>Mon - Sat, 8:00 - 19:00. Walk in any day - no appointment for fittings.</dd></div>
+      <div><dt>WhatsApp</dt><dd><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a><br>Orders, pickups, price checks.</dd></div>
+    </dl>
   </section>
-
-  <section id="work">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Recent work</span>
-          <h2 class="rv">From the sewing table.</h2>
-        </div>
-        <p class="sub rv">A sample of what leaves the shop - bespoke pieces, alterations and pressed orders.</p>
-      </div>
-      <div class="gal-grid"><figure class="gal rv"><img src="https://images.unsplash.com/photo-1552710307-537199cd41c0?auto=format&fit=crop&w=800&q=80" alt="Colourful African print textiles folded in a stack" loading="lazy" width="800" height="1000"><figcaption>Ankara &amp; lace</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1687422808289-e721259c9eb4?auto=format&fit=crop&w=800&q=80" alt="Tailor working on a sewing machine" loading="lazy" width="800" height="1000"><figcaption>At the machine</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1790943780822-9918073fe9f1?auto=format&fit=crop&w=800&q=80" alt="Two women sewing patterned dresses" loading="lazy" width="800" height="1000"><figcaption>Finishing touches</figcaption></figure>
-        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1714321960831-c8753b534400?auto=format&fit=crop&w=800&q=80" alt="Person ironing a white shirt" loading="lazy" width="800" height="1000"><figcaption>Pressed &amp; bagged</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1518168334734-591c8bfc5445?auto=format&fit=crop&w=800&q=80" alt="Woman steaming clothes on a rail" loading="lazy" width="800" height="1000"><figcaption>Steam finish</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1675345555585-e3448d825b12?auto=format&fit=crop&w=800&q=80" alt="Woman in an African dress in front of a store" loading="lazy" width="800" height="1000"><figcaption>Client pickup</figcaption></figure></div>
-    </div>
-  </section>
-
-  <section class="tint" id="book">
-    <div class="wrap">
-      <div class="book-card rv">
-        <div>
-          <span class="kicker">Book a pickup</span>
-          <h2>Send your order. We confirm on WhatsApp.</h2>
-          <ul class="book-points"><li>Laundry picked up before noon is back in 48 hours.</li><li>Bespoke pieces need one fitting - bring your fabric or choose from ours.</li><li>No deposit for laundry; 50% deposit for new sewing.</li></ul>
-        </div>
-        <form id="bookForm">
-          <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" placeholder="e.g. Idara" required></div>
-          <div><label for="f-service">Service</label>
-            <select id="f-service" name="service" required><option value="">Choose one</option><option>Bespoke native wear - from ₦25,000</option><option>Occasion dress - from ₦30,000</option><option>Alterations - from ₦1,500</option><option>Wash & press - from ₦500/item</option><option>Dry cleaning - from ₦2,500</option><option>Pickup & delivery</option></select>
-          </div>
-          <div><label for="f-when">Pickup day &amp; time</label><input id="f-when" name="when" type="text" placeholder="e.g. Tomorrow, 9 AM" required></div>
-          <div><label for="f-phone">Your phone</label><input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required></div>
-          <button class="btn" type="submit">Send order on WhatsApp</button>
-          <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section id="visit">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Find us</span>
-          <h2 class="rv">Visit the shop.</h2>
-        </div>
-      </div>
-      <div class="visit-grid"><div class="vcard rv"><h3>Address</h3><p>17 Abak Road, Uyo,<br>Akwa Ibom State</p></div><div class="vcard rv" style="transition-delay:.07s"><h3>WhatsApp</h3><p>Fastest way to reach us - orders, pickups, price checks.<br><br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></p></div><div class="vcard rv" style="transition-delay:.14s"><h3>Walk-ins</h3><p>Walk in any day Mon - Sat. Fittings take about 15 minutes - no appointment needed.</p></div></div>
-    </div>
-  </section>
-
-</main>
+</div>
 
 <footer>
   <div class="wrap">
@@ -270,42 +216,16 @@ footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px
 </footer>
 
 <script>
-// marquee content (duplicated for seamless loop)
-(function(){
-  var items = ['Bespoke sewing','Alterations','Wash & press','Dry cleaning','Same-day pressing','Pickup & delivery','Aso-ebi','48-hour laundry'];
-  var html = items.map(function(t,i){ return '<span class="'+(i%2?'a':'')+'">'+t+'</span><span>·</span>'; }).join('');
-  document.getElementById('mq').innerHTML = html + html;
-})();
-
-// hero image settle-in
-(function(){
-  var img = document.getElementById('heroImg');
-  var done = function(){ img.classList.add('loaded'); };
-  if (img.complete) done(); else img.addEventListener('load', done);
-})();
-
-// scroll reveal with stagger
-(function(){
-  var els = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window)) { return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
-  }, {threshold:.12});
-  els.forEach(function(e){ e.classList.add('armed'); io.observe(e); });
-})();
-
-// booking -> WhatsApp prefill
-document.getElementById('bookForm').addEventListener('submit', function(ev){
+document.getElementById('orderForm').addEventListener('submit', function(ev){
   ev.preventDefault();
   var f = ev.target;
-  var msg = 'Hello Thread & Press! I would like to place an order:\n'
+  var msg = 'Hello Thread & Press!\n'
     + 'Name: ' + f.name.value + '\n'
-    + 'Service: ' + f.service.value + '\n'
-    + 'Preferred: ' + f.when.value + '\n'
+    + 'I need: ' + f.service.value + '\n'
+    + 'When: ' + f.when.value + '\n'
     + 'Phone: ' + f.phone.value;
   window.open('https://wa.me/2347034678518?text=' + encodeURIComponent(msg), '_blank');
 });
 </script>
-
 </body>
 </html>
