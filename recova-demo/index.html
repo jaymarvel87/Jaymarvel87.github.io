@@ -172,16 +172,48 @@ function go(stage) {
     (r[stage] || renderWelcome)();
     window.scrollTo(0, 0);
 }
+let installPrompt = null;
+let installedThisSession = false;
+const standaloneQuery = window.matchMedia('(display-mode: standalone)');
+function isInstalled() { return installedThisSession || standaloneQuery.matches || navigator.standalone === true; }
+function refreshInstall() {
+    const slot = document.getElementById('install-slot');
+    if (slot) slot.hidden = isInstalled();
+}
+window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault(); installPrompt = e; refreshInstall();
+});
+window.addEventListener('appinstalled', () => {
+    installedThisSession = true; installPrompt = null; refreshInstall();
+});
+if (standaloneQuery.addEventListener) standaloneQuery.addEventListener('change', refreshInstall);
+async function installRecova() {
+    const help = document.getElementById('install-help');
+    if (installPrompt) {
+        const prompt = installPrompt; installPrompt = null;
+        try {
+            await prompt.prompt();
+            const choice = await prompt.userChoice;
+            if (choice.outcome === 'accepted') {
+                if (help) { help.hidden = false; help.textContent = 'Finish the installation in Chrome. Then open Recova from your home screen.'; }
+                return;
+            }
+        } catch (e) { /* manual steps remain available */ }
+    }
+    if (help) { help.hidden = false; help.innerHTML = 'In Chrome, tap the three-dot menu &rsaquo; Install app or Add to Home screen, then confirm. If neither appears, open this page directly in Chrome and try again after it finishes loading.'; }
+}
 function renderWelcome() {
     app.innerHTML = '<div class="stage">'
         + '<div class="hero">' + MARK(56) + '<div class="brand">Recova</div><div class="tagline">Media rescue for banned WhatsApp Business lines</div></div>'
         + '<div class="body">'
         + '<h1 class="h1">Banned out of WhatsApp? The media is not gone.</h1>'
         + '<p class="p">A ban locks the chats, but every photo, video and document WhatsApp downloaded stays on that phone. Recova gathers them, organises them and zips them for safekeeping.</p>'
+        + '<div id="install-slot"' + (isInstalled() ? ' hidden' : '') + '><button class="btn btn-ghost" id="b-install">Install Recova</button><p class="fine" id="install-help" hidden>In Chrome, tap the three-dot menu &rsaquo; Install app or Add to Home screen, then confirm. If neither appears, open this page directly in Chrome and try again after it finishes loading.</p></div>'
         + '<div class="mode-pick"><button class="btn" id="b-real">Run a real rescue</button><button class="btn btn-ghost" id="b-demo">Class demo (simulated)</button></div>'
         + '<button class="quiet" id="b-truth">What Recova can and can&rsquo;t do</button>'
         + '<p class="fine">Real rescue runs on the affected phone and touches only the files its owner selects. The class demo is fully simulated, including its $7 paywall.</p>'
         + '</div>' + FOOT + '</div>';
+    document.getElementById('b-install').onclick = installRecova;
     document.getElementById('b-real').onclick = () => go('real');
     document.getElementById('b-demo').onclick = () => go('paywall');
     document.getElementById('b-truth').onclick = () => go('truth');

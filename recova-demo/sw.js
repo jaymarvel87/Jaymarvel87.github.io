@@ -1,4 +1,4 @@
-const CACHE = 'recova-v3';
+const CACHE = 'recova-v4';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './icon-192.png', './icon-512.png',
