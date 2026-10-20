@@ -4,159 +4,105 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ember &amp; Crust - Grill, Bakery &amp; Catering in Uyo</title>
-<meta name="description" content="Ember & Crust is a fictional demo food business website designed as a sample for restaurants, bakeries and caterers in Uyo.">
+<meta name="description" content="Ember & Crust is a fictional demo restaurant website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#1c1410;
-  --muted:#6b5f55;
-  --accent:#ea580c;
-  --accent-dark:#c2410c;
-  --paper:#ffffff;
-  --tint:#fbf6f1;
-  --line:#f0e6dd;
-  --radius:22px;
+  --ink:#241a12;
+  --muted:#7a6a58;
+  --accent:#c2410c;
+  --accent-hot:#ea580c;
+  --cream:#fdf6ee;
+  --line:#ecdfd0;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:'Archivo',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
-.wrap{width:min(1160px,92%);margin:0 auto}
-.kicker{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-h1,h2{font-stretch:125%;font-weight:850;letter-spacing:-.01em;line-height:1.02}
-h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:.9rem 0 1.1rem}
-h2{font-size:clamp(1.9rem,4.4vw,3rem);margin:.7rem 0 .8rem}
-.sub{color:var(--muted);font-size:1.06rem;max-width:34rem}
+h1,h2,h3,.slab{font-family:'Zilla Slab',Georgia,serif}
 
-/* demo strip */
-.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
+.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1rem}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-stretch:125%;font-weight:900;font-size:1.35rem;letter-spacing:-.02em;text-decoration:none}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;position:relative;transition:color .25s}
-.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--accent);transition:width .3s}
-.nav-links a:not(.btn):hover{color:var(--ink)}
-.nav-links a:not(.btn):hover::after{width:100%}
-.nav-links .btn{color:#fff;font-weight:700}
-.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;letter-spacing:.02em;font-size:.92rem;border:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
-.btn:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(234,88,12,.28)}
-.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(28,20,16,.18)}
-.btn.sm{padding:9px 20px;font-size:.82rem}
+.wrap{width:min(1080px,92%);margin:0 auto}
 
-/* hero */
-.hero{padding:clamp(2.6rem,6vw,4.8rem) 0 clamp(3rem,6vw,4.6rem)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:center}
-.chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;color:var(--ink)}
-.chip i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero-actions{display:flex;gap:.9rem;margin-top:1.7rem;flex-wrap:wrap}
-.hero-meta{display:flex;gap:1.4rem;margin-top:1.9rem;color:var(--muted);font-size:.9rem;flex-wrap:wrap}
-.hero-meta b{color:var(--ink)}
-.hero-visual{position:relative}
-.hero-visual .ph{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(28,20,16,.25)}
-.hero-visual img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.hero-visual img.loaded{transform:scale(1)}
-.badge-card{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.85rem 1.15rem;box-shadow:0 16px 40px -12px rgba(28,20,16,.22);font-size:.85rem}
-.badge-card b{display:block;font-size:.95rem}
-.badge-card .dot{color:var(--accent);font-weight:800}
+/* top bar */
+.topbar{background:var(--cream);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0}
+.brand{font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+.brand em{font-style:normal;color:var(--accent-hot)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:11px 22px;border-radius:8px;border:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:#9a3412}
 
-/* marquee */
-.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:.95rem 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:scroll 24s linear infinite;font-stretch:125%;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.92rem}
-.marquee-track span{margin:0 1.6rem}
-.marquee-track .a{color:var(--accent);filter:brightness(1.6)}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* short hero */
+.hero{background:var(--cream);padding:1.6rem 0 2rem;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;gap:1.4rem;align-items:center}
+@media(min-width:760px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hero h1{font-size:2rem;font-weight:700;line-height:1.15;margin-bottom:.5rem}
+.hero p{color:var(--muted);margin-bottom:.9rem}
+.hero .open{font-size:.88rem;font-weight:600}
+.hero .open b{color:var(--accent)}
+.hero img{border-radius:12px;width:100%;aspect-ratio:16/10;object-fit:cover}
 
-/* sections */
-section{padding:clamp(3.2rem,7vw,5.5rem) 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;flex-wrap:wrap}
-.tint{background:var(--tint)}
+/* the menu */
+.menu{padding:2.6rem 0}
+.menu-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.menu h2{font-size:1.7rem}
+.menu-head span{font-size:.85rem;color:var(--muted)}
+.mcat{margin-top:1.8rem}
+.mcat h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:.15rem;margin-bottom:.4rem}
+.mitem{padding:.85rem 0;border-bottom:1px dashed var(--line)}
+.mitem .row{display:flex;align-items:baseline;gap:.6rem}
+.mitem .name{font-family:'Zilla Slab',Georgia,serif;font-weight:600;font-size:1.12rem}
+.mitem .fill{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.mitem .price{font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1.12rem;white-space:nowrap}
+.mitem .price small{display:block;text-align:right;font-size:.72rem;color:var(--muted);font-family:system-ui,sans-serif;font-weight:500}
+.mitem .desc{color:var(--muted);font-size:.88rem;margin-top:.15rem;max-width:34rem}
 
-/* menu */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .3s,box-shadow .3s,border-color .3s}
-.svc:hover{transform:translateY(-5px);box-shadow:0 22px 44px -18px rgba(28,20,16,.18);border-color:var(--accent)}
-.svc .num{font-stretch:125%;font-weight:900;color:var(--accent);font-size:.95rem;letter-spacing:.08em}
-.svc h3{font-stretch:125%;font-weight:800;font-size:1.18rem}
-.svc p{color:var(--muted);font-size:.92rem;flex:1}
-.svc .row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:.85rem;margin-top:.6rem}
-.svc .price{font-stretch:125%;font-weight:850;font-size:1.15rem}
-.svc .time{color:var(--muted);font-size:.82rem;font-weight:600}
-
-/* gallery */
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-.gal{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/5}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.gal:hover img{transform:scale(1.07)}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;background:linear-gradient(transparent,rgba(28,20,16,.75));color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
-.gal:hover figcaption{opacity:1;transform:translateY(0)}
+/* kitchen photo strip */
+.strip{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2rem 0}
+.strip h2{font-size:1.3rem;margin-bottom:1rem}
+.scroller{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;-webkit-overflow-scrolling:touch}
+.scroller img{flex:0 0 72%;max-width:340px;aspect-ratio:4/3;object-fit:cover;border-radius:12px;scroll-snap-align:start}
+.scroller::-webkit-scrollbar{height:6px}
+.scroller::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
 
 /* order */
-.book-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.4rem)}
-.book-points{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
-.book-points li{list-style:none;display:flex;gap:.7rem;color:var(--muted);font-size:.95rem}
-.book-points li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:.45rem}
-form{display:flex;flex-direction:column;gap:.9rem}
-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-input,select{font:inherit;font-size:.98rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s;width:100%}
-input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(234,88,12,.14)}
-.form-note{font-size:.8rem;color:var(--muted)}
+.order{padding:2.6rem 0}
+.order-grid{display:grid;gap:1.8rem}
+@media(min-width:760px){.order-grid{grid-template-columns:1fr 1fr}}
+.order h2{font-size:1.7rem;margin-bottom:.5rem}
+.order .how{list-style:none;margin-top:1rem}
+.order .how li{padding:.6rem 0 .6rem 1.6rem;position:relative;font-size:.92rem;color:#4d3f30;border-bottom:1px solid var(--line)}
+.order .how li::before{content:"";position:absolute;left:0;top:1.05rem;width:8px;height:8px;background:var(--accent-hot);border-radius:2px}
+.order form{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:1.4rem}
+label{display:block;font-size:.8rem;font-weight:700;margin:0 0 .3rem}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff;margin-bottom:.9rem}
+input:focus,select:focus{outline:2px solid var(--accent-hot);border-color:transparent}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:.7rem}
 
-/* visit */
-.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.vcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}
-.vcard h3{font-stretch:125%;font-weight:800;font-size:1.05rem;margin-bottom:.5rem;color:var(--accent)}
-.vcard p{color:var(--muted);font-size:.93rem}
-.vcard a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+/* info */
+.info{border-top:1px solid var(--line);padding:2rem 0 2.4rem}
+.info dl{display:grid;gap:.9rem}
+@media(min-width:700px){.info dl{grid-template-columns:1fr 1fr 1fr}}
+.info dt{font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1rem}
+.info dd{color:var(--muted);font-size:.9rem}
+.info a{color:var(--accent);font-weight:600}
 
-/* footer */
-footer{border-top:1px solid var(--line);padding:2.2rem 0;background:var(--tint);color:var(--muted);font-size:.85rem;text-align:center}
-footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
-
-/* reveal animation */
-.rv.armed{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.armed.on{opacity:1;transform:none}
-
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:repeat(2,1fr)}
-  .book-card{grid-template-columns:1fr}
-  .badge-card{left:10px}
-}
-@media(max-width:600px){
-  .nav-links a:not(.btn){display:none}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:1fr}
-  .gal{aspect-ratio:4/3}
-  .sec-head{margin-bottom:1.6rem}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-}
+footer{background:var(--cream);border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;font-size:.8rem;color:var(--muted);text-align:center}
+footer a{color:var(--accent)}
 </style>
 </head>
 <body>
 
-<div class="demo-strip">Demo website · designed as a sample for local businesses</div>
+<div class="demo-strip">Demo website - a sample for local businesses</div>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="logo" href="#top">Ember<span>&amp;</span>Crust<span>.</span></a>
-    <nav class="nav-links">
-      <a href="#menu">Menu</a>
-      <a href="#kitchen">From the kitchen</a>
-      <a href="#visit">Visit</a>
-      <a class="btn sm" href="#order">Order now</a>
-    </nav>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top">Ember <em>&amp;</em> Crust</a>
+    <a class="btn" href="#order">Order on WhatsApp</a>
   </div>
 </header>
 
@@ -165,118 +111,120 @@ footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="chip rv"><i></i> Uyo · Grill, bakery &amp; catering</span>
-        <h1 class="rv" style="transition-delay:.08s">Grilled, baked, catered. Cooked properly, <em>ordered in minutes.</em></h1>
-        <p class="sub rv" style="transition-delay:.16s">Ember &amp; Crust is a grill house and bakery in Uyo. Pick from the menu, send your order on WhatsApp, and we confirm pickup or delivery the same hour.</p>
-        <div class="hero-actions rv" style="transition-delay:.24s">
-          <a class="btn" href="#order">Order on WhatsApp</a>
-          <a class="btn ghost" href="#menu">Menu &amp; prices</a>
+        <h1>Grill house &amp; bakery on Brook Street.</h1>
+        <p>Jollof off the fire, suya off the grill, bread out of the oven every morning. Send your order on WhatsApp and we confirm pickup or delivery within the hour.</p>
+        <p class="open"><b>Open now</b> · Mon - Sat 9:00 - 21:00 · Sun 12:00 - 18:00</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1665332195309-9d75071138f0?auto=format&fit=crop&w=1000&q=80" alt="Jollof rice in a white dish with grilled fish, skewers and fresh vegetables" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="menu-head">
+        <h2>The menu</h2>
+        <span>Prices confirmed on WhatsApp before we start cooking</span>
+      </div>
+
+      <div class="mcat">
+        <h3>Rice &amp; grills</h3>
+        <div class="mitem">
+          <div class="row"><span class="name">Native jollof rice</span><span class="fill"></span><span class="price">₦3,500<small>per plate</small></span></div>
+          <p class="desc">Smoky party-style jollof with fried plantain and a quarter chicken.</p>
         </div>
-        <div class="hero-meta rv" style="transition-delay:.32s">
-          <span><b>Mon - Sat</b> 9:00 - 21:00</span>
-          <span><b>Sun</b> 12:00 - 18:00</span>
-          <span><b>15 Brook Street</b>, Uyo</span>
+        <div class="mitem">
+          <div class="row"><span class="name">Suya platter</span><span class="fill"></span><span class="price">₦5,000<small>serves 2</small></span></div>
+          <p class="desc">Beef suya off the grill, fresh onions, extra yaji on the side.</p>
+        </div>
+        <div class="mitem">
+          <div class="row"><span class="name">Grilled croaker fish</span><span class="fill"></span><span class="price">₦8,000<small>20 - 30 min</small></span></div>
+          <p class="desc">Whole fish over open fire, peppered sauce, choice of side.</p>
         </div>
       </div>
-      <div class="hero-visual rv" style="transition-delay:.2s">
-        <div class="ph"><img id="heroImg" src="https://images.unsplash.com/photo-1665332195309-9d75071138f0?auto=format&fit=crop&w=1200&q=80" alt="Jollof rice in a white dish with grilled fish, skewers and fresh vegetables" width="1200" height="900" fetchpriority="high"></div>
-        <div class="badge-card"><span class="dot">●</span> Kitchen open today<b>9:00 AM - 9:00 PM</b></div>
+
+      <div class="mcat">
+        <h3>From the bakery</h3>
+        <div class="mitem">
+          <div class="row"><span class="name">Meat pie, pack of 6</span><span class="fill"></span><span class="price">₦4,200<small>pack of 6</small></span></div>
+          <p class="desc">Golden and flaky with a rich minced-beef filling. Baked every morning.</p>
+        </div>
+        <div class="mitem">
+          <div class="row"><span class="name">Small chops tray</span><span class="fill"></span><span class="price">₦6,500<small>serves 4 - 6</small></span></div>
+          <p class="desc">Puff-puff, spring rolls, samosa and peppered chicken on one tray.</p>
+        </div>
+        <div class="mitem">
+          <div class="row"><span class="name">Celebration cakes</span><span class="fill"></span><span class="price">₦18,000<small>from · 2 days notice</small></span></div>
+          <p class="desc">Vanilla, chocolate or red velvet, baked to order for your occasion.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track" id="mq"></div>
-  </div>
-
-  <section class="tint" id="menu">
+  <section class="strip">
     <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Menu &amp; prices</span>
-          <h2 class="rv">Clear prices,<br>confirmed before we cook.</h2>
-        </div>
-        <p class="sub rv">Every order is confirmed on WhatsApp before we light the fire. The price we quote is the price you pay.</p>
-      </div>
-      <div class="svc-grid">
-        <article class="svc rv"><span class="num">01</span><h3>Native jollof rice</h3><p>Smoky party-style jollof with fried plantain and a quarter chicken.</p><div class="row"><span class="price">₦3,500</span><span class="time">per plate</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">02</span><h3>Suya platter</h3><p>Beef suya off the grill, fresh onions, extra yaji on the side.</p><div class="row"><span class="price">₦5,000</span><span class="time">serves 2</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">03</span><h3>Grilled croaker fish</h3><p>Whole fish over open fire, peppered sauce, choice of side.</p><div class="row"><span class="price">₦8,000</span><span class="time">20 - 30 min</span></div></article>
-        <article class="svc rv"><span class="num">04</span><h3>Meat pie, pack of 6</h3><p>Golden and flaky with a rich minced-beef filling. Baked every morning.</p><div class="row"><span class="price">₦4,200</span><span class="time">pack of 6</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">05</span><h3>Small chops tray</h3><p>Puff-puff, spring rolls, samosa and peppered chicken on one tray.</p><div class="row"><span class="price">₦6,500</span><span class="time">serves 4 - 6</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">06</span><h3>Celebration cakes</h3><p>Vanilla, chocolate or red velvet, baked to order for your occasion.</p><div class="row"><span class="price">From ₦18,000</span><span class="time">2 days notice</span></div></article>
+      <h2>From the kitchen</h2>
+      <div class="scroller">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80" alt="Grilled suya-style skewers with vegetables and dips" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1763048443535-1243379234e2?auto=format&fit=crop&w=700&q=80" alt="Hands holding a bowl of egusi soup with assorted meats" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1643311927292-46c6478ad4e8?auto=format&fit=crop&w=700&q=80" alt="Cream puffs and pastries in a bakery display case" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1770838127291-170f1dcfe274?auto=format&fit=crop&w=700&q=80" alt="Racks of freshly baked pastries cooling in the bakery" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1773209928058-cfd3314acc7c?auto=format&fit=crop&w=700&q=80" alt="Assorted dishes served in clay pots at a catering buffet" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1769019401093-38f564d6408a?auto=format&fit=crop&w=700&q=80" alt="Cook preparing fresh snacks at a busy food stall" loading="lazy">
       </div>
     </div>
   </section>
 
-  <section id="kitchen">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">From the kitchen</span>
-          <h2 class="rv">Straight out of the fire.</h2>
-        </div>
-        <p class="sub rv">A taste of what leaves our kitchen every day. Everything cooked to order.</p>
+  <section class="order" id="order">
+    <div class="wrap order-grid">
+      <div>
+        <h2>Send your order</h2>
+        <p style="color:var(--muted)">Catering for an event? Tell us the headcount and date and we quote you a menu.</p>
+        <ul class="how">
+          <li>Same-day pickup and delivery within Uyo on menu items.</li>
+          <li>Event catering needs 3 days notice - we confirm headcount and menu with you first.</li>
+          <li>Pay on confirmation - transfer or cash on pickup.</li>
+        </ul>
       </div>
-      <div class="gal-grid">
-        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Grilled suya-style skewers with vegetables and dips" loading="lazy" width="800" height="1000"><figcaption>From the grill</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1763048443535-1243379234e2?auto=format&fit=crop&w=800&q=80" alt="Hands holding a bowl of egusi soup with assorted meats" loading="lazy" width="800" height="1000"><figcaption>Soups &amp; swallows</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1773209928058-cfd3314acc7c?auto=format&fit=crop&w=800&q=80" alt="Assorted dishes served in clay pots at a catering buffet" loading="lazy" width="800" height="1000"><figcaption>Catering trays</figcaption></figure>
-        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1643311927292-46c6478ad4e8?auto=format&fit=crop&w=800&q=80" alt="Cream puffs and pastries in a bakery display case" loading="lazy" width="800" height="1000"><figcaption>From the bakery</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1770838127291-170f1dcfe274?auto=format&fit=crop&w=800&q=80" alt="Racks of freshly baked pastries cooling in the bakery" loading="lazy" width="800" height="1000"><figcaption>Fresh bakes daily</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1769019401093-38f564d6408a?auto=format&fit=crop&w=800&q=80" alt="Cook preparing fresh snacks at a busy food stall" loading="lazy" width="800" height="1000"><figcaption>Made fresh</figcaption></figure>
-      </div>
+      <form id="orderForm">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" placeholder="e.g. Mfon" required>
+        <label for="f-item">What would you like?</label>
+        <select id="f-item" name="item" required>
+          <option value="">Choose from the menu</option>
+          <option>Native jollof rice - ₦3,500</option>
+          <option>Suya platter - ₦5,000</option>
+          <option>Grilled croaker fish - ₦8,000</option>
+          <option>Meat pie, pack of 6 - ₦4,200</option>
+          <option>Small chops tray - ₦6,500</option>
+          <option>Celebration cake - from ₦18,000</option>
+          <option>Event catering - let's talk</option>
+        </select>
+        <label for="f-when">When do you want it?</label>
+        <input id="f-when" name="when" type="text" placeholder="e.g. Today, 6 PM" required>
+        <label for="f-phone">Your phone</label>
+        <input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required>
+        <button class="btn" type="submit" style="width:100%">Send order on WhatsApp</button>
+        <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
+      </form>
     </div>
   </section>
 
-  <section class="tint" id="order">
+  <section class="info">
     <div class="wrap">
-      <div class="book-card rv">
+      <dl>
         <div>
-          <span class="kicker">Place an order</span>
-          <h2>Send your order. We confirm on WhatsApp.</h2>
-          <ul class="book-points">
-            <li>Same-day pickup and delivery within Uyo on menu items.</li>
-            <li>Event catering needs 3 days notice - we confirm headcount and menu with you first.</li>
-            <li>Pay on confirmation - transfer or cash on pickup.</li>
-          </ul>
+          <dt>Find us</dt>
+          <dd>15 Brook Street, Uyo,<br>Akwa Ibom State</dd>
         </div>
-        <form id="bookForm">
-          <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" placeholder="e.g. Idara" required></div>
-          <div><label for="f-service">What would you like?</label>
-            <select id="f-service" name="service" required>
-              <option value="">Choose from the menu</option>
-              <option>Native jollof rice - ₦3,500</option>
-              <option>Suya platter - ₦5,000</option>
-              <option>Grilled croaker fish - ₦8,000</option>
-              <option>Meat pie, pack of 6 - ₦4,200</option>
-              <option>Small chops tray - ₦6,500</option>
-              <option>Celebration cake - from ₦18,000</option>
-              <option>Event catering - let's talk</option>
-            </select>
-          </div>
-          <div><label for="f-when">Pickup or delivery + time</label><input id="f-when" name="when" type="text" placeholder="e.g. Delivery to Ewet Housing, 6 PM" required></div>
-          <div><label for="f-phone">Your phone</label><input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required></div>
-          <button class="btn" type="submit">Send order on WhatsApp</button>
-          <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section id="visit">
-    <div class="wrap">
-      <div class="sec-head">
         <div>
-          <span class="kicker">Find us</span>
-          <h2 class="rv">Visit the kitchen.</h2>
+          <dt>Order &amp; ask</dt>
+          <dd>WhatsApp is fastest - orders, menu questions, catering quotes.<br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></dd>
         </div>
-      </div>
-      <div class="visit-grid">
-        <div class="vcard rv"><h3>Address</h3><p>15 Brook Street, Uyo,<br>Akwa Ibom State</p></div>
-        <div class="vcard rv" style="transition-delay:.07s"><h3>WhatsApp</h3><p>Fastest way to reach us - orders, menu questions, catering quotes.<br><br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></p></div>
-        <div class="vcard rv" style="transition-delay:.14s"><h3>Delivery</h3><p>Anywhere in Uyo, same day. Fee depends on your area - confirmed before dispatch.</p></div>
-      </div>
+        <div>
+          <dt>Delivery</dt>
+          <dd>Anywhere in Uyo, same day. Fee depends on your area - confirmed before dispatch.</dd>
+        </div>
+      </dl>
     </div>
   </section>
 
@@ -291,42 +239,16 @@ footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px
 </footer>
 
 <script>
-// marquee content (duplicated for seamless loop)
-(function(){
-  var items = ['Native jollof','Suya','Grilled fish','Meat pie','Small chops','Puff-puff','Cakes','Event catering'];
-  var html = items.map(function(t,i){ return '<span class="'+(i%2?'a':'')+'">'+t+'</span><span>·</span>'; }).join('');
-  document.getElementById('mq').innerHTML = html + html;
-})();
-
-// hero image settle-in
-(function(){
-  var img = document.getElementById('heroImg');
-  var done = function(){ img.classList.add('loaded'); };
-  if (img.complete) done(); else img.addEventListener('load', done);
-})();
-
-// scroll reveal with stagger
-(function(){
-  var els = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window)) { return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
-  }, {threshold:.12});
-  els.forEach(function(e){ e.classList.add('armed'); io.observe(e); });
-})();
-
-// order -> WhatsApp prefill
-document.getElementById('bookForm').addEventListener('submit', function(ev){
+document.getElementById('orderForm').addEventListener('submit', function(ev){
   ev.preventDefault();
   var f = ev.target;
   var msg = 'Hello Ember & Crust! I would like to order:\n'
     + 'Name: ' + f.name.value + '\n'
-    + 'Order: ' + f.service.value + '\n'
-    + 'Pickup/Delivery: ' + f.when.value + '\n'
+    + 'Order: ' + f.item.value + '\n'
+    + 'When: ' + f.when.value + '\n'
     + 'Phone: ' + f.phone.value;
   window.open('https://wa.me/2347034678518?text=' + encodeURIComponent(msg), '_blank');
 });
 </script>
-
 </body>
 </html>
