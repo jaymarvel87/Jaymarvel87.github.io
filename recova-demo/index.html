@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recova — Media Rescue</title>
+<meta name="description" content="Rescue photos, videos, voice notes and documents from a banned WhatsApp Business line. Media only, never chats. Classroom project.">
+<meta name="theme-color" content="#075e54">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Recova">
+<style>
+:root{--rc-teal:#075e54;--rc-teal-2:#0e7c6c;--rc-mint:#e7f5f1;--rc-ink:#251f21;--rc-ink-2:#585254;--rc-ink-3:#969394;--rc-ink-4:#c0bebf;--rc-hairline:#eae9ea;--rc-raised:#f4efec;--rc-red:#ed313e;--rc-red-border:rgb(245 170 174);--rc-font-display:"Aime",Georgia,"Times New Roman",serif;--rc-font-text:"KMR Melange Grotesk",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#ece7e4;font-family:var(--rc-font-text);color:var(--rc-ink);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;min-height:100vh;min-height:100dvh}
+#app{width:100%;max-width:430px;background:#fff;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+@media (min-width:560px){body{padding:28px 0;align-items:flex-start}#app{min-height:0;border:1px solid var(--rc-hairline);border-radius:28px;overflow:hidden;box-shadow:0 18px 50px rgb(37 31 33 / 0.12)}}
+.stage{display:flex;flex-direction:column;flex:1;animation:rc-in .45s cubic-bezier(.22,1,.36,1)}
+@keyframes rc-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero{background:var(--rc-teal);color:#fff;padding:48px 28px 38px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.mark{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--rc-teal);border-radius:26%;font-family:var(--rc-font-display);font-weight:800;margin-bottom:10px}
+.brand{font-family:var(--rc-font-display);font-size:30px;letter-spacing:-0.025em}
+.tagline{font-size:14px;opacity:.85}
+.body{padding:28px 24px 32px;display:flex;flex-direction:column;gap:16px;flex:1}
+.center{align-items:center;text-align:center;justify-content:center}
+.kicker{margin:0;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rc-teal-2)}
+.h1{margin:0;font-family:var(--rc-font-display);font-size:27px;line-height:1.2;letter-spacing:-0.025em}
+.h2{margin:0;font-family:var(--rc-font-display);font-size:22px;line-height:1.25;letter-spacing:-0.025em}
+.p{margin:0;font-size:14.5px;line-height:1.6;color:var(--rc-ink-2)}
+.fine{margin:4px 0 0;font-size:12px;line-height:1.5;color:var(--rc-ink-3)}
+.btn{appearance:none;border:none;cursor:pointer;background:var(--rc-teal);color:#fff;font:600 15px var(--rc-font-text);padding:15px 20px;border-radius:12px;width:100%;text-align:center;transition:transform .15s ease,background .15s ease;min-height:48px}
+.btn:hover{background:var(--rc-teal-2)}
+.btn:active{transform:scale(.985)}
+.btn:disabled{opacity:.7;cursor:default}
+.btn-ghost{background:#fff;color:var(--rc-teal);border:1.5px solid var(--rc-teal)}
+.btn-ghost:hover{background:var(--rc-mint)}
+.quiet{appearance:none;background:none;border:none;cursor:pointer;color:var(--rc-ink-2);font:500 13.5px var(--rc-font-text);padding:10px;text-decoration:underline;text-underline-offset:3px;min-height:44px}
+.quiet:hover{color:var(--rc-ink)}
+.ban{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--rc-red-border);border-radius:16px;padding:16px;background:#fff}
+.ban.compact{align-items:center}
+.ban-icon{flex:none;width:40px;height:40px;border-radius:50%;background:rgb(237 49 62 / .06);color:var(--rc-red);display:inline-flex;align-items:center;justify-content:center}
+.ban-title{font:600 15px var(--rc-font-text);margin-bottom:4px}
+.ban-sub{font-size:13px;line-height:1.5;color:var(--rc-ink-2)}
+.plan{border:1px solid var(--rc-hairline);border-radius:16px;overflow:hidden}
+.plan-row{display:flex;flex-direction:column;gap:2px;padding:14px 16px}
+.plan-row+.plan-row{border-top:1px solid var(--rc-hairline)}
+.plan-row b{font:600 14.5px var(--rc-font-text)}
+.plan-row span{font-size:13px;color:var(--rc-ink-2)}
+.receipt{position:relative;overflow:hidden;border:1px solid var(--rc-hairline);border-radius:16px;padding:20px;background:#fff;display:flex;flex-direction:column;gap:14px}
+.watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--rc-font-display);font-weight:800;font-size:92px;letter-spacing:.08em;color:rgb(7 94 84 / .07);transform:rotate(-24deg);pointer-events:none;user-select:none}
+.receipt-head{display:flex;gap:12px;align-items:center}
+.receipt-head b{display:block;font:600 14.5px var(--rc-font-text)}
+.receipt-head span{font-size:12px;color:var(--rc-ink-3)}
+.receipt-amount{font-family:var(--rc-font-display);font-size:44px;letter-spacing:-0.03em;text-align:center;padding:6px 0}
+.receipt-rows{display:flex;flex-direction:column;border-top:1px dashed var(--rc-ink-4)}
+.receipt-rows>div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px dashed var(--rc-ink-4);font-size:13px}
+.receipt-rows span{color:var(--rc-ink-3);flex:none}
+.receipt-rows b{font-weight:500;text-align:right}
+.receipt-ok{color:var(--rc-teal-2)!important}
+.receipt-note{font-size:11.5px;line-height:1.5;color:var(--rc-ink-3);text-align:center}
+.pair-status{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--rc-ink-2);min-height:56px}
+.paired{border:1px solid var(--rc-hairline);border-radius:16px;padding:16px}
+.paired b{color:var(--rc-ink)}
+.radar{position:relative;width:22px;height:22px;flex:none}
+.radar::before,.radar::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--rc-teal);animation:rc-radar 1.6s ease-out infinite}
+.radar::after{animation-delay:.8s}
+@keyframes rc-radar{from{transform:scale(.4);opacity:1}to{transform:scale(1.5);opacity:0}}
+.device{appearance:none;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;text-align:left;border:1.5px solid var(--rc-teal);border-radius:16px;background:#fff;padding:14px 16px;min-height:56px;animation:rc-pop .5s cubic-bezier(.34,1.56,.64,1) both}
+.device:hover{background:var(--rc-mint)}
+.device-icon{flex:none;width:40px;height:40px;border-radius:12px;background:var(--rc-mint);color:var(--rc-teal);display:inline-flex;align-items:center;justify-content:center}
+.device-meta{flex:1;display:flex;flex-direction:column;gap:2px}
+.device-meta b{font:600 14.5px var(--rc-font-text)}
+.device-meta span{font-size:12.5px;color:var(--rc-ink-2)}
+.device-go{font:600 13px var(--rc-font-text);color:var(--rc-teal)}
+.scanline{font:500 12.5px var(--rc-font-text);background:var(--rc-raised);border-radius:8px;padding:10px 12px;overflow:hidden;white-space:nowrap}
+.scanline-text{display:inline-block;animation:rc-typing 2.2s steps(60,end) both;overflow:hidden;vertical-align:bottom;max-width:100%}
+@keyframes rc-typing{from{max-width:0}to{max-width:100%}}
+.bar{height:8px;border-radius:99px;background:var(--rc-raised);overflow:hidden;width:100%}
+.bar-fill{display:block;height:100%;background:var(--rc-teal);border-radius:99px;transition:width .12s linear}
+.counters{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--rc-ink-2)}
+.counters b{color:var(--rc-ink);font-weight:600;font-variant-numeric:tabular-nums}
+.counters-flat{padding-bottom:14px;border-bottom:1px solid var(--rc-hairline)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grid-big{grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{margin:0;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--rc-raised);animation:rc-pop .5s cubic-bezier(.34,1.56,.64,1) both;display:flex;flex-direction:column}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile figcaption{font-size:10.5px;color:var(--rc-ink-2);padding:5px 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grid-big .tile{aspect-ratio:auto}
+.grid-big .tile img{aspect-ratio:1}
+@keyframes rc-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.vid{position:absolute;left:6px;bottom:6px;display:inline-flex;align-items:center;gap:4px;background:rgb(0 0 0 / .72);color:#fff;font-size:10.5px;font-weight:600;padding:3px 7px;border-radius:99px}
+.tile-doc{align-items:center;justify-content:center;gap:6px;border:1px solid var(--rc-hairline);background:#fff}
+.doc-ext{font:600 11px var(--rc-font-text);color:var(--rc-teal);border:1.5px solid var(--rc-teal);border-radius:6px;padding:4px 7px}
+.tile-doc figcaption{text-align:center;padding:0 6px 6px}
+.tile-more{align-items:center;justify-content:center;background:var(--rc-mint);border:none}
+.tile-more span{font-family:var(--rc-font-display);font-size:22px;color:var(--rc-teal)}
+.tile-more figcaption{font-size:11px;color:var(--rc-teal-2)}
+.found{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;padding-top:6px;animation:rc-in .5s ease both}
+.found-title{font-family:var(--rc-font-display);font-size:19px;letter-spacing:-0.02em}
+.check{width:44px;height:44px;display:inline-block}
+.check-big{width:72px;height:72px}
+.check svg{width:100%;height:100%}
+.check-circle{stroke:var(--rc-teal);stroke-width:3;stroke-dasharray:151;stroke-dashoffset:151;animation:rc-draw .7s cubic-bezier(.65,0,.45,1) forwards}
+.check-tick{stroke:var(--rc-teal);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:rc-draw .45s .55s cubic-bezier(.65,0,.45,1) forwards}
+@keyframes rc-draw{to{stroke-dashoffset:0}}
+.savenum{font-family:var(--rc-font-display);font-size:52px;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.savenum span{font-size:22px;color:var(--rc-ink-3)}
+.dest{display:flex;flex-direction:column;gap:10px}
+.truth-group{display:flex;flex-direction:column;gap:8px}
+.truth-label{font:600 14.5px var(--rc-font-text)}
+.callout{border:1px solid var(--rc-red-border);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.callout b{font:600 14px var(--rc-font-text);color:var(--rc-red)}
+.callout span{font-size:13px;line-height:1.5;color:var(--rc-ink-2)}
+.textlink{color:var(--rc-teal-2);font-weight:600}
+.demo-foot{padding:14px 24px 22px;border-top:1px solid var(--rc-hairline);font-size:11.5px;line-height:1.5;color:var(--rc-ink-3)}
+.mode-pick{display:flex;flex-direction:column;gap:10px}
+.steps{display:flex;flex-direction:column;border:1px solid var(--rc-hairline);border-radius:16px;overflow:hidden}
+.step{display:flex;gap:14px;padding:14px 16px;align-items:flex-start}
+.step+.step{border-top:1px solid var(--rc-hairline)}
+.step-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--rc-mint);color:var(--rc-teal);font:600 13px var(--rc-font-text);display:inline-flex;align-items:center;justify-content:center}
+.step-t{font-size:13.5px;line-height:1.5;color:var(--rc-ink-2)}
+.step-t b{color:var(--rc-ink);font-weight:600}
+.file-list{display:flex;flex-direction:column;border:1px solid var(--rc-hairline);border-radius:16px;overflow:hidden;max-height:260px;overflow-y:auto}
+.file-row{display:flex;align-items:center;gap:12px;padding:10px 14px;font-size:13px}
+.file-row+.file-row{border-top:1px solid var(--rc-hairline)}
+.file-row .fname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.file-row .fsize{color:var(--rc-ink-3);font-size:12px;flex:none;font-variant-numeric:tabular-nums}
+.file-row .fthumb{flex:none;width:34px;height:34px;border-radius:8px;object-fit:cover;background:var(--rc-raised)}
+.file-row .fdoc{flex:none;width:34px;height:34px;border-radius:8px;background:var(--rc-mint);color:var(--rc-teal);display:inline-flex;align-items:center;justify-content:center;font:600 9.5px var(--rc-font-text)}
+.hidden-input{display:none}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<input type="file" id="picker" class="hidden-input" multiple>
+<script>
+'use strict';
+const TOTALS = { photos: 214, videos: 38, documents: 41, voice: 19 };
+const TOTAL = TOTALS.photos + TOTALS.videos + TOTALS.documents + TOTALS.voice;
+const MEDIA_TILES = [
+    { src: 'photos/shop.jpg', label: 'Shop front.jpg', kind: 'photo' },
+    { src: 'photos/rack.jpg', label: 'New arrivals.mp4', kind: 'video', dur: '0:42' },
+    { src: 'photos/shirts.jpg', label: 'T-shirts batch.jpg', kind: 'photo' },
+    { src: null, label: 'Invoice #1042.pdf', kind: 'doc', ext: 'PDF' },
+    { src: 'photos/flatlay.jpg', label: 'Ankara set.jpg', kind: 'photo' },
+    { src: 'photos/sneaker.jpg', label: 'Sneakers red.jpg', kind: 'photo' },
+    { src: null, label: 'Price list.xlsx', kind: 'doc', ext: 'XLS' },
+    { src: 'photos/tailor.jpg', label: 'Customer order.mp4', kind: 'video', dur: '1:05' },
+    { src: 'photos/folded.jpg', label: 'Folded stock.jpg', kind: 'photo' },
+    { src: null, label: 'Receipts - Aba.zip', kind: 'doc', ext: 'ZIP' },
+    { src: 'photos/model1.jpg', label: 'Summer line.jpg', kind: 'photo' },
+    { src: null, label: 'Delivery note.pdf', kind: 'doc', ext: 'PDF' },
+];
+const ease = p => 1 - Math.pow(1 - p, 3);
+const app = document.getElementById('app');
+let timers = [];
+function clearTimers() { timers.forEach(t => { clearInterval(t); clearTimeout(t); }); timers = []; }
+function later(fn, ms) { const t = setTimeout(fn, ms); timers.push(t); return t; }
+function every(fn, ms) { const t = setInterval(fn, ms); timers.push(t); return t; }
+function fmtMB(bytes) { return (bytes / (1024 * 1024)).toFixed(2) + ' MB'; }
+const CHECK = '<span class="check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle class="check-circle" cx="26" cy="26" r="24" fill="none"/><path class="check-tick" fill="none" d="M14 27l8 8 16-17"/></svg></span>';
+const CHECK_BIG = CHECK.replace('class="check"', 'class="check check-big"');
+const MARK = s => '<span class="mark" style="width:' + s + 'px;height:' + s + 'px;font-size:' + Math.round(s * 0.52) + 'px">R</span>';
+const FOOT = '<div class="demo-foot">Recova rescues media files only: photos, videos, voice notes and documents already downloaded to a phone. It cannot recover chats or backups, and it cannot unban an account. Only WhatsApp can do that, through the Request review button in the app.</div>';
+function go(stage) {
+    clearTimers();
+    const r = { welcome: renderWelcome, paywall: renderPaywall, receipt: renderReceipt, pair: renderPair, scan: renderScan, results: renderResults, saving: renderSaving, saved: renderSaved, truth: renderTruth, real: renderReal, zip: renderZip, zdone: renderZipDone };
+    (r[stage] || renderWelcome)();
+    window.scrollTo(0, 0);
+}
+function renderWelcome() {
+    app.innerHTML = '<div class="stage">'
+        + '<div class="hero">' + MARK(56) + '<div class="brand">Recova</div><div class="tagline">Media rescue for banned WhatsApp Business lines</div></div>'
+        + '<div class="body">'
+        + '<h1 class="h1">Banned out of WhatsApp? The media is not gone.</h1>'
+        + '<p class="p">A ban locks the chats, but every photo, video and document WhatsApp downloaded stays on that phone. Recova gathers them, organises them and zips them for safekeeping.</p>'
+        + '<div class="mode-pick"><button class="btn" id="b-real">Run a real rescue</button><button class="btn btn-ghost" id="b-demo">Class demo (simulated)</button></div>'
+        + '<button class="quiet" id="b-truth">What Recova can and can&rsquo;t do</button>'
+        + '<p class="fine">Real rescue runs on the affected phone and touches only the files its owner selects. The class demo is fully simulated, including its $7 paywall.</p>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-real').onclick = () => go('real');
+    document.getElementById('b-demo').onclick = () => go('paywall');
+    document.getElementById('b-truth').onclick = () => go('truth');
+}
+/* ---- real rescue ---- */
+let picked = [];
+function catOf(f) {
+    const t = (f.type || '').toLowerCase();
+    if (t.startsWith('image/')) return 'Images';
+    if (t.startsWith('video/')) return 'Videos';
+    if (t.startsWith('audio/')) return 'Voice notes';
+    return 'Documents';
+}
+function renderReal() {
+    const totalBytes = picked.reduce((a, p) => a + p.file.size, 0);
+    const counts = { Images: 0, Videos: 0, 'Voice notes': 0, Documents: 0 };
+    picked.forEach(p => counts[p.cat]++);
+    const has = picked.length > 0;
+    const previewRows = picked.slice(0, 60).map(p => {
+        const ext = (p.file.name.split('.').pop() || 'file').slice(0, 4).toUpperCase();
+        const thumb = p.cat === 'Images' ? '<img class="fthumb" src="' + p.url + '" alt="">' : '<span class="fdoc">' + ext + '</span>';
+        return '<div class="file-row">' + thumb + '<span class="fname">' + p.file.name + '</span><span class="fsize">' + fmtMB(p.file.size) + '</span></div>';
+    }).join('');
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker">Real rescue &middot; runs on the affected phone</p>'
+        + '<h2 class="h2">Select the media to rescue</h2>'
+        + '<div class="steps">'
+        + '<div class="step"><span class="step-n">1</span><span class="step-t"><b>Open this page on the banned phone</b>, in Chrome. Nothing leaves the phone until its owner chooses to share.</span></div>'
+        + '<div class="step"><span class="step-n">2</span><span class="step-t">Tap <b>Select media</b>. In the picker, browse to <b>Internal storage &rsaquo; Android &rsaquo; media &rsaquo; com.whatsapp.w4b &rsaquo; WhatsApp Business &rsaquo; Media</b> (or <b>com.whatsapp &rsaquo; WhatsApp &rsaquo; Media</b> for the regular app).</span></div>'
+        + '<div class="step"><span class="step-n">3</span><span class="step-t">Open a folder like <b>Images</b>, <b>Video</b>, <b>Voice Notes</b> or <b>Documents</b>, tap <b>Select all</b>, then confirm. Come back and add the next folder the same way.</span></div>'
+        + '</div>'
+        + '<button class="btn" id="b-pick">' + (has ? 'Add more media' : 'Select media') + '</button>'
+        + (has
+            ? '<div class="counters counters-flat"><span><b>' + counts.Images + '</b> photos</span><span><b>' + counts.Videos + '</b> videos</span><span><b>' + counts.Documents + '</b> documents</span><span><b>' + counts['Voice notes'] + '</b> voice notes</span></div>'
+              + '<p class="p"><b>' + picked.length + ' files</b> selected &middot; ' + fmtMB(totalBytes) + ' total</p>'
+              + '<div class="file-list">' + previewRows + (picked.length > 60 ? '<div class="file-row"><span class="fname">and ' + (picked.length - 60) + ' more…</span></div>' : '') + '</div>'
+              + '<button class="btn" id="b-zip">Organise and zip</button>'
+              + '<button class="quiet" id="b-clear">Clear selection</button>'
+            : '<p class="fine">Nothing selected yet. If the picker cannot open the Android/media folder on this device, the same files can be copied free with any file manager &mdash; the path is identical.</p>')
+        + '</div>' + FOOT + '</div>';
+    const picker = document.getElementById('picker');
+    picker.onchange = () => {
+        const seen = new Set(picked.map(p => p.file.name + ':' + p.file.size));
+        Array.from(picker.files).forEach(f => {
+            const k = f.name + ':' + f.size;
+            if (seen.has(k)) return;
+            seen.add(k);
+            picked.push({ file: f, cat: catOf(f), url: f.type && f.type.startsWith('image/') ? URL.createObjectURL(f) : '' });
+        });
+        picker.value = '';
+        go('real');
+    };
+    document.getElementById('b-pick').onclick = () => picker.click();
+    const bz = document.getElementById('b-zip'); if (bz) bz.onclick = () => go('zip');
+    const bc = document.getElementById('b-clear'); if (bc) bc.onclick = () => { picked.forEach(p => p.url && URL.revokeObjectURL(p.url)); picked = []; go('real'); };
+}
+const CRC_TABLE = (() => {
+    const t = new Uint32Array(256);
+    for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); t[n] = c >>> 0; }
+    return t;
+})();
+function crc32(buf) {
+    let c = 0xFFFFFFFF;
+    for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function dosDateTime(d) {
+    return { time: ((d.getHours() << 11) | (d.getMinutes() << 5) | Math.floor(d.getSeconds() / 2)) & 0xFFFF, date: (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF };
+}
+async function buildZip(entries, onProgress) {
+    const enc = new TextEncoder();
+    const parts = [], central = [];
+    let offset = 0;
+    for (let i = 0; i < entries.length; i++) {
+        const e = entries[i];
+        const nameBytes = enc.encode(e.name);
+        const crc = crc32(e.data);
+        const dt = dosDateTime(new Date());
+        const lh = new DataView(new ArrayBuffer(30));
+        lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+        lh.setUint16(10, dt.time, true); lh.setUint16(12, dt.date, true);
+        lh.setUint32(14, crc, true); lh.setUint32(18, e.data.length, true); lh.setUint32(22, e.data.length, true);
+        lh.setUint16(26, nameBytes.length, true); lh.setUint16(28, 0, true);
+        parts.push(new Uint8Array(lh.buffer), nameBytes, e.data);
+        const ch = new DataView(new ArrayBuffer(46));
+        ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true);
+        ch.setUint16(10, 0, true); ch.setUint16(12, dt.time, true); ch.setUint16(14, dt.date, true);
+        ch.setUint32(16, crc, true); ch.setUint32(20, e.data.length, true); ch.setUint32(24, e.data.length, true);
+        ch.setUint16(28, nameBytes.length, true); ch.setUint32(42, offset, true);
+        central.push(new Uint8Array(ch.buffer), nameBytes);
+        offset += 30 + nameBytes.length + e.data.length;
+        if (onProgress) onProgress((i + 1) / entries.length);
+        if (i % 10 === 9) await new Promise(r => setTimeout(r, 0));
+    }
+    const cdStart = offset;
+    let cdSize = 0;
+    central.forEach(c => { parts.push(c); cdSize += c.length; offset += c.length; });
+    const eo = new DataView(new ArrayBuffer(22));
+    eo.setUint32(0, 0x06054b50, true);
+    eo.setUint16(8, entries.length, true); eo.setUint16(10, entries.length, true);
+    eo.setUint32(12, cdSize, true); eo.setUint32(16, cdStart, true);
+    parts.push(new Uint8Array(eo.buffer));
+    return new Blob(parts, { type: 'application/zip' });
+}
+let zipBlob = null, zipName = 'recova-media.zip';
+function renderZip() {
+    app.innerHTML = '<div class="stage"><div class="body center">'
+        + '<p class="kicker">Organising and zipping</p>'
+        + '<div class="savenum" id="zip-num">0<span> / ' + picked.length + '</span></div>'
+        + '<div class="bar"><span class="bar-fill" id="zip-bar" style="width:0%"></span></div>'
+        + '<p class="fine" id="zip-note">Reading files on this phone…</p>'
+        + '</div>' + FOOT + '</div>';
+    const num = document.getElementById('zip-num'), bar = document.getElementById('zip-bar'), note = document.getElementById('zip-note');
+    (async () => {
+        try {
+            const used = new Set();
+            const entries = [];
+            for (const p of picked) {
+                let base = p.file.name.replace(/[\\/:*?"<>|]/g, '_');
+                let name = 'Recova/' + p.cat + '/' + base;
+                let n = 2;
+                while (used.has(name)) { name = 'Recova/' + p.cat + '/' + base.replace(/(\.[^.]+)?$/, ' (' + n + ')$1'); n++; }
+                used.add(name);
+                const data = new Uint8Array(await p.file.arrayBuffer());
+                entries.push({ name, data });
+                note.textContent = 'Reading ' + p.file.name;
+            }
+            zipName = 'recova-media-' + new Date().toISOString().slice(0, 10) + '.zip';
+            zipBlob = await buildZip(entries, pr => {
+                num.innerHTML = Math.round(pr * entries.length) + '<span> / ' + entries.length + '</span>';
+                bar.style.width = Math.round(pr * 100) + '%';
+                note.textContent = 'Packing the zip…';
+            });
+            later(() => go('zdone'), 400);
+        } catch (err) {
+            note.textContent = 'Something went wrong while packing: ' + (err && err.message ? err.message : err);
+        }
+    })();
+}
+function renderZipDone() {
+    const counts = { Images: 0, Videos: 0, 'Voice notes': 0, Documents: 0 };
+    picked.forEach(p => counts[p.cat]++);
+    app.innerHTML = '<div class="stage"><div class="body center">'
+        + CHECK_BIG
+        + '<h2 class="h2">' + picked.length + ' files, zipped and organised.</h2>'
+        + '<p class="p">' + zipName + ' &middot; ' + fmtMB(zipBlob.size) + '. Inside: ' + counts.Images + ' photos, ' + counts.Videos + ' videos, ' + counts.Documents + ' documents and ' + counts['Voice notes'] + ' voice notes, each in its own folder.</p>'
+        + '<button class="btn" id="b-share">Send to the other phone</button>'
+        + '<button class="btn btn-ghost" id="b-dl">Download the zip here</button>'
+        + '<p class="fine">Send uses this phone&rsquo;s share sheet: Nearby Share, Bluetooth, WhatsApp on another line, Gmail or Drive. Nearby Share needs no internet &mdash; just the hotspot both phones are already on.</p>'
+        + '<button class="quiet" id="b-again3">Start another rescue</button>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-share').onclick = async () => {
+        const f = new File([zipBlob], zipName, { type: 'application/zip' });
+        if (navigator.canShare && navigator.canShare({ files: [f] })) {
+            try { await navigator.share({ files: [f], title: 'Rescued media' }); } catch (e) {}
+        } else { document.getElementById('b-dl').click(); }
+    };
+    document.getElementById('b-dl').onclick = () => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(zipBlob);
+        a.download = zipName;
+        a.click();
+    };
+    document.getElementById('b-again3').onclick = () => { picked.forEach(p => p.url && URL.revokeObjectURL(p.url)); picked = []; zipBlob = null; go('real'); };
+}
+/* ---- simulated class demo ---- */
+function tileHTML(t, big) {
+    if (t.kind === 'doc') return '<figure class="tile tile-doc' + (big ? ' big' : '') + '"><span class="doc-ext">' + t.ext + '</span><figcaption>' + t.label + '</figcaption></figure>';
+    return '<figure class="tile' + (big ? ' big' : '') + '"><img src="' + t.src + '" alt="' + t.label + '" loading="lazy">'
+        + (t.kind === 'video' ? '<span class="vid"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' + t.dur + '</span>' : '')
+        + (big ? '<figcaption>' + t.label + '</figcaption>' : '') + '</figure>';
+}
+let dest = 'drive';
+function renderPaywall() {
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker">Demo &middot; Step 1 of 3 &middot; Unlock</p><h2 class="h2">Recova Pro</h2>'
+        + '<p class="p">One payment unlocks a full rescue on one affected phone.</p>'
+        + '<div class="plan">'
+        + '<div class="plan-row"><b>Full media scan</b><span>Photos, videos, documents, voice notes</span></div>'
+        + '<div class="plan-row"><b>Hotspot pairing</b><span>Connects your phone to the affected one</span></div>'
+        + '<div class="plan-row"><b>Safe export</b><span>Copies everything to Google Drive or your storage</span></div></div>'
+        + '<div id="pay-slot"><button class="btn" id="b-pay">Pay $7 &middot; one time</button></div>'
+        + '<p class="fine">Demo payment screen. No real charge, no card details, nothing leaves this page.</p>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-pay').onclick = function () {
+        this.disabled = true; this.textContent = 'Processing…';
+        later(() => {
+            document.getElementById('pay-slot').innerHTML = '<div class="found">' + CHECK + '<div class="found-title">Unlocked. Let&rsquo;s find that phone.</div></div>';
+            later(() => go('receipt'), 1200);
+        }, 1400);
+    };
+}
+function renderReceipt() {
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker">Payment receipt</p>'
+        + '<div class="receipt"><span class="watermark" aria-hidden="true">DEMO</span>'
+        + '<div class="receipt-head">' + MARK(34) + '<div><b>Recova Demo Store</b><span>Fictional merchant &middot; Lagos, NG</span></div></div>'
+        + '<div class="receipt-amount">$7.00</div>'
+        + '<div class="receipt-rows">'
+        + '<div><span>Item</span><b>Recova Pro unlock, one phone</b></div>'
+        + '<div><span>Date</span><b>20 Oct 2026, 10:26 PM</b></div>'
+        + '<div><span>Reference</span><b>RCV-DEMO-000000</b></div>'
+        + '<div><span>Status</span><b class="receipt-ok">Simulated, nothing charged</b></div></div>'
+        + '<div class="receipt-note">Demo receipt for a class. Not a real transaction record, not from any bank or payment provider.</div></div>'
+        + '<button class="btn" id="b-cont">Continue to pairing</button>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-cont').onclick = () => go('pair');
+}
+function renderPair() {
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker">Demo &middot; Step 2 of 3 &middot; Pair</p><h2 class="h2">Connect the affected phone</h2>'
+        + '<p class="p">Ada runs a fashion shop on WhatsApp Business. This morning her line got banned. Her phone is the one holding the files.</p>'
+        + '<div class="ban compact"><span class="ban-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></span>'
+        + '<div class="ban-sub">Her account is banned, so her chats and backups are locked. Her media folder is not.</div></div>'
+        + '<div id="pair-slot"><p class="p">Ask Ada to turn on her phone&rsquo;s hotspot, then search for it here.</p><button class="btn" id="b-search">Search for the phone</button></div>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-search').onclick = () => {
+        document.getElementById('pair-slot').innerHTML = '<div class="pair-status"><span class="radar" aria-hidden="true"></span><span>Searching for nearby hotspots…</span></div>';
+        later(() => {
+            document.getElementById('pair-slot').innerHTML = '<button class="device" id="b-device">'
+                + '<span class="device-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></span>'
+                + '<span class="device-meta"><b>Ada&rsquo;s phone</b><span>Hotspot &middot; tap to connect</span></span><span class="device-go">Connect</span></button>';
+            document.getElementById('b-device').onclick = function () {
+                this.querySelector('.device-meta span').textContent = 'Pairing…';
+                this.querySelector('.device-go').remove();
+                this.disabled = true;
+                later(() => {
+                    document.getElementById('pair-slot').innerHTML = '<div class="pair-status paired">' + CHECK + '<span><b>Paired with Ada&rsquo;s phone.</b> You can now reach its WhatsApp Business media folder from here.</span></div><button class="btn" id="b-rescue" style="margin-top:16px">Run the rescue</button>';
+                    document.getElementById('b-rescue').onclick = () => go('scan');
+                }, 1500);
+            };
+        }, 2400);
+    };
+}
+function renderScan() {
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker" id="scan-kicker">Demo &middot; Step 3 of 3 &middot; Rescuing from Ada&rsquo;s phone</p>'
+        + '<div class="scanline"><span class="scanline-text">Ada&rsquo;s phone &rsaquo; Android &rsaquo; media &rsaquo; com.whatsapp.w4b &rsaquo; Media</span></div>'
+        + '<div class="bar"><span class="bar-fill" id="scan-bar" style="width:0%"></span></div>'
+        + '<div class="counters" id="scan-counters"></div><div class="grid" id="scan-grid"></div>'
+        + '<div id="scan-foot"><button class="quiet" id="b-skip">0 files found so far. Tap to skip ahead.</button></div>'
+        + '</div>' + FOOT + '</div>';
+    const bar = document.getElementById('scan-bar'), counters = document.getElementById('scan-counters'), grid = document.getElementById('scan-grid'), skip = document.getElementById('b-skip');
+    let done = false;
+    const start = Date.now(), DURATION = 6800;
+    function finish() {
+        if (done) return;
+        done = true; clearTimers(); draw(1);
+        document.getElementById('scan-kicker').textContent = 'Demo · Rescue complete';
+        document.getElementById('scan-foot').innerHTML = '<div class="found">' + CHECK + '<div class="found-title">' + TOTAL + ' files pulled across, every one intact</div><button class="btn" id="b-review">See the rescued files</button></div>';
+        document.getElementById('b-review').onclick = () => go('results');
+    }
+    function draw(p) {
+        const e = ease(p);
+        const c = { photos: Math.floor(TOTALS.photos * e), videos: Math.floor(TOTALS.videos * e), documents: Math.floor(TOTALS.documents * e), voice: Math.floor(TOTALS.voice * e) };
+        const foundN = c.photos + c.videos + c.documents + c.voice;
+        bar.style.width = Math.round(e * 100) + '%';
+        counters.innerHTML = '<span><b>' + c.photos + '</b> photos</span><span><b>' + c.videos + '</b> videos</span><span><b>' + c.documents + '</b> documents</span><span><b>' + c.voice + '</b> voice notes</span>';
+        const tilesShown = Math.min(MEDIA_TILES.length, Math.floor(Math.max(0, e - 0.08) * (MEDIA_TILES.length + 3)));
+        if (grid.children.length < tilesShown) for (let i = grid.children.length; i < tilesShown; i++) grid.insertAdjacentHTML('beforeend', tileHTML(MEDIA_TILES[i], false));
+        if (!done) skip.textContent = foundN + ' files found so far. Tap to skip ahead.';
+    }
+    skip.onclick = finish;
+    every(() => { const p = Math.min(1, (Date.now() - start) / DURATION); if (p >= 1) { finish(); return; } draw(p); }, 60);
+}
+function renderResults() {
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker">Demo &middot; Rescued from the banned line</p><h2 class="h2">Everything Ada thought she lost</h2>'
+        + '<div class="counters counters-flat"><span><b>' + TOTALS.photos + '</b> photos</span><span><b>' + TOTALS.videos + '</b> videos</span><span><b>' + TOTALS.documents + '</b> documents</span><span><b>' + TOTALS.voice + '</b> voice notes</span></div>'
+        + '<div class="grid grid-big">' + MEDIA_TILES.map(t => tileHTML(t, true)).join('') + '<figure class="tile tile-more big"><span>+' + (TOTAL - MEDIA_TILES.length) + '</span><figcaption>more files</figcaption></figure></div>'
+        + '<p class="p">Now move everything somewhere the ban can never reach.</p>'
+        + '<div class="dest"><button class="btn" id="b-drive">Save to Google Drive</button><button class="btn btn-ghost" id="b-phone">Save to this phone</button></div>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-drive').onclick = () => { dest = 'drive'; go('saving'); };
+    document.getElementById('b-phone').onclick = () => { dest = 'files'; go('saving'); };
+}
+function renderSaving() {
+    app.innerHTML = '<div class="stage"><div class="body center">'
+        + '<p class="kicker">Demo &middot; ' + (dest === 'drive' ? 'Saving to Google Drive' : 'Saving to this phone') + '</p>'
+        + '<div class="savenum" id="save-num">0<span> / ' + TOTAL + '</span></div>'
+        + '<div class="bar"><span class="bar-fill" id="save-bar" style="width:0%"></span></div>'
+        + '<p class="fine">files moved to safety</p></div>' + FOOT + '</div>';
+    const num = document.getElementById('save-num'), bar = document.getElementById('save-bar');
+    const start = Date.now(), DURATION = 3400;
+    every(() => {
+        const p = Math.min(1, (Date.now() - start) / DURATION), e = ease(p);
+        num.innerHTML = Math.floor(TOTAL * e) + '<span> / ' + TOTAL + '</span>';
+        bar.style.width = Math.round(e * 100) + '%';
+        if (p >= 1) { clearTimers(); later(() => go('saved'), 500); }
+    }, 60);
+}
+function renderSaved() {
+    app.innerHTML = '<div class="stage"><div class="body center">' + CHECK_BIG
+        + '<h2 class="h2">All ' + TOTAL + ' files are safe.</h2>'
+        + '<p class="p">Ada&rsquo;s whole catalogue, every invoice and every voice note is now ' + (dest === 'drive' ? 'in her Google Drive' : 'on this phone') + '. The ban took the account. It did not take a single photo.</p>'
+        + '<button class="btn" id="b-truth2">What Recova can and can&rsquo;t do</button><button class="quiet" id="b-again">Back to the start</button>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-truth2').onclick = () => go('truth');
+    document.getElementById('b-again').onclick = () => go('welcome');
+}
+function renderTruth() {
+    app.innerHTML = '<div class="stage"><div class="body">'
+        + '<p class="kicker">The honest version</p><h2 class="h2">What Recova can and can&rsquo;t do</h2>'
+        + '<div class="truth-group"><div class="truth-label">1. Where the media really is</div>'
+        + '<p class="p">It was never inside the banned account. WhatsApp and WhatsApp Business save every downloaded photo, video and document in the phone&rsquo;s own storage, under Android &rsaquo; media &rsaquo; com.whatsapp (or com.whatsapp.w4b). A ban locks the account, not that folder. Recova&rsquo;s real mode zips whatever its owner selects; the same files can be copied free in any file manager.</p></div>'
+        + '<div class="truth-group"><div class="truth-label">2. What no app can do</div>'
+        + '<p class="p">Chats and backups stay locked while the number is banned. WhatsApp&rsquo;s own ban page says a backup can only be reached after the number is unbanned, and the only way back is the Request review button in the app. If there is no button, the ban is final. No app can pair with another phone over hotspot and read its folders; that part of the class demo is theatre.</p>'
+        + '<p class="p">Source: <a class="textlink" href="https://faq.whatsapp.com/465883178708358/?locale=en_US" target="_blank" rel="noopener">WhatsApp Help Center, about account bans</a></p></div>'
+        + '<div class="truth-group"><div class="truth-label">3. About that $7</div>'
+        + '<p class="p">The payment screen exists only in the simulated demo. Apps like it really do charge, but paying only ever buys copies of files the owner could copy free &mdash; and anyone who charges to recover chats or unban a number is a scammer.</p>'
+        + '<div class="callout"><b>Never pay for chat recovery</b><span>No app, technician or hacker can pull chats out of a banned account. They take the money, or the verification code, and hijack the account.</span></div></div>'
+        + '<button class="btn" id="b-back">Back to the start</button>'
+        + '</div>' + FOOT + '</div>';
+    document.getElementById('b-back').onclick = () => go('welcome');
+}
+go('welcome');
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+</script>
+</body>
+</html>
