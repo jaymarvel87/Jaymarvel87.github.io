@@ -3,263 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marquee House - Event Centre for Weddings & Receptions in Uyo</title>
+<title>Marquee House - Event Centre for Weddings &amp; Receptions in Uyo</title>
 <meta name="description" content="Marquee House is a fictional demo event centre website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16131a;
-  --muted:#5f5a68;
-  --accent:#2563eb;
-  --accent-dark:#1d4ed8;
-  --paper:#ffffff;
+  --ink:#101828;
+  --muted:#55607a;
+  --accent:#1d4ed8;
+  --line:#e3e8f2;
   --tint:#f4f7fd;
-  --line:#e2e8f4;
-  --radius:22px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:'Archivo',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;background:#fff;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
-.wrap{width:min(1160px,92%);margin:0 auto}
-.kicker{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-h1,h2{font-stretch:125%;font-weight:850;letter-spacing:-.01em;line-height:1.02}
-h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:.9rem 0 1.1rem}
-h2{font-size:clamp(1.9rem,4.4vw,3rem);margin:.7rem 0 .8rem}
-.sub{color:var(--muted);font-size:1.06rem;max-width:34rem}
+.wrap{width:min(1080px,92%);margin:0 auto}
 
-/* demo strip */
-.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
+.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1rem}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-stretch:125%;font-weight:900;font-size:1.35rem;letter-spacing:-.02em;text-decoration:none}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;position:relative;transition:color .25s}
-.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--accent);transition:width .3s}
-.nav-links a:not(.btn):hover{color:var(--ink)}
-.nav-links a:not(.btn):hover::after{width:100%}
-.nav-links .btn{color:#fff;font-weight:700}
-.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;letter-spacing:.02em;font-size:.92rem;border:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
-.btn:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(37,99,235,.28)}
-.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(22,19,26,.18)}
-.btn.sm{padding:9px 20px;font-size:.82rem}
+@media(max-width:520px){.hero-nav nav a:last-child{display:none}}
 
-/* hero */
-.hero{padding:clamp(2.6rem,6vw,4.8rem) 0 clamp(3rem,6vw,4.6rem)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:center}
-.chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;color:var(--ink)}
-.chip i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero-actions{display:flex;gap:.9rem;margin-top:1.7rem;flex-wrap:wrap}
-.hero-meta{display:flex;gap:1.4rem;margin-top:1.9rem;color:var(--muted);font-size:.9rem;flex-wrap:wrap}
-.hero-meta b{color:var(--ink)}
-.hero-visual{position:relative}
-.hero-visual .ph{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(22,19,26,.25)}
-.hero-visual img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.hero-visual img.loaded{transform:scale(1)}
-.badge-card{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.85rem 1.15rem;box-shadow:0 16px 40px -12px rgba(22,19,26,.22);font-size:.85rem}
-.badge-card b{display:block;font-size:.95rem}
-.badge-card .dot{color:var(--accent);font-weight:800}
+/* full-bleed photo hero */
+.hero{position:relative;color:#fff;min-height:88vh;display:flex;flex-direction:column}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,24,.55),rgba(8,12,24,.72))}
+.hero-nav{position:relative;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;gap:12px}
+.hero-nav .name{font-weight:700;font-size:1.05rem;text-decoration:none;letter-spacing:.01em;white-space:nowrap}
+.hero-nav nav a{color:#dbe4ff;text-decoration:none;font-size:.8rem;font-weight:500;margin-left:12px;white-space:nowrap}
+.hero-nav nav a:hover{color:#fff}
+.hero-mid{position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 3rem}
+.hero h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:700;line-height:1.08;max-width:16ch;margin-bottom:.8rem}
+.hero p{color:#cdd8f5;max-width:34rem;margin-bottom:1.4rem}
+.hero-cta{display:inline-block;background:#fff;color:var(--ink);font-weight:700;text-decoration:none;padding:13px 26px;border-radius:6px;font-size:.92rem}
+.hero-cta:hover{background:#dbe4ff}
 
-/* marquee */
-.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:.95rem 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:scroll 24s linear infinite;font-stretch:125%;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.92rem}
-.marquee-track span{margin:0 1.6rem}
-.marquee-track .a{color:var(--accent);filter:brightness(1.6)}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* plain facts strip */
+.facts{border-bottom:1px solid var(--line)}
+.facts-in{display:grid;grid-template-columns:repeat(2,1fr)}
+@media(min-width:700px){.facts-in{grid-template-columns:repeat(4,1fr)}}
+.fact{padding:1.1rem .8rem;text-align:center;border-left:1px solid var(--line)}
+.fact:first-child{border-left:none}
+.fact b{display:block;font-size:1.05rem}
+.fact span{font-size:.78rem;color:var(--muted)}
 
-/* sections */
-section{padding:clamp(3.2rem,7vw,5.5rem) 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;flex-wrap:wrap}
-.tint{background:var(--tint)}
+/* the hall, editorial photos */
+.hall{padding:2.8rem 0}
+h2.sec{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:700;margin-bottom:.4rem}
+.sec-note{color:var(--muted);max-width:36rem;margin-bottom:1.6rem}
+.hall figure{margin-bottom:1.4rem}
+.hall img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px}
+.hall figcaption{font-size:.82rem;color:var(--muted);padding:.5rem 0;border-bottom:1px solid var(--line)}
+.hall-duo{display:grid;gap:1.4rem}
+@media(min-width:700px){.hall-duo{grid-template-columns:1fr 1fr}}
 
-/* services */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .3s,box-shadow .3s,border-color .3s}
-.svc:hover{transform:translateY(-5px);box-shadow:0 22px 44px -18px rgba(22,19,26,.18);border-color:var(--accent)}
-.svc .num{font-stretch:125%;font-weight:900;color:var(--accent);font-size:.95rem;letter-spacing:.08em}
-.svc h3{font-stretch:125%;font-weight:800;font-size:1.18rem}
-.svc p{color:var(--muted);font-size:.92rem;flex:1}
-.svc .row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:.85rem;margin-top:.6rem}
-.svc .price{font-stretch:125%;font-weight:850;font-size:1.15rem}
-.svc .time{color:var(--muted);font-size:.82rem;font-weight:600}
+/* packages as a proper table */
+.packages{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.8rem 0}
+.ptable{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 0 var(--line)}
+.ptable th,.ptable td{text-align:left;padding:.95rem 1rem;border-bottom:1px solid var(--line);vertical-align:top;font-size:.9rem}
+.ptable th{background:var(--ink);color:#fff;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.ptable tr:last-child td{border-bottom:none}
+.ptable .pname{font-weight:700;white-space:nowrap}
+.ptable .pprice{font-weight:700;color:var(--accent);white-space:nowrap}
+.ptable .pprice small{display:block;color:var(--muted);font-weight:400}
+.ptable-wrap{overflow-x:auto}
+@media(max-width:640px){.ptable th:nth-child(2),.ptable td:nth-child(2){display:none}}
+.notes{margin-top:1.4rem;font-size:.88rem;color:var(--muted)}
+.notes li{margin-bottom:.35rem;list-style:none;padding-left:1.2rem;position:relative}
+.notes li::before{content:"-";position:absolute;left:.3rem;color:var(--accent)}
 
-/* gallery */
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-.gal{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/5}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.gal:hover img{transform:scale(1.07)}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;background:linear-gradient(transparent,rgba(22,19,26,.75));color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
-.gal:hover figcaption{opacity:1;transform:translateY(0)}
-
-/* booking */
-.book-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.4rem)}
-.book-points{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
-.book-points li{list-style:none;display:flex;gap:.7rem;color:var(--muted);font-size:.95rem}
-.book-points li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:.45rem}
-form{display:flex;flex-direction:column;gap:.9rem}
-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-input,select{font:inherit;font-size:.98rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s;width:100%}
-input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(37,99,235,.14)}
-.form-note{font-size:.8rem;color:var(--muted)}
+/* enquiry */
+.enquiry{padding:2.8rem 0}
+.enq-grid{display:grid;gap:1.8rem}
+@media(min-width:760px){.enq-grid{grid-template-columns:1fr 1.1fr}}
+.enquiry form{border:1px solid var(--line);border-radius:10px;padding:1.4rem}
+label{display:block;font-size:.8rem;font-weight:700;margin:0 0 .3rem}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:6px;font:inherit;background:#fff;margin-bottom:.9rem}
+input:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+.btn-solid{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:13px 26px;border-radius:6px;border:none;cursor:pointer;font-size:.92rem;width:100%}
+.btn-solid:hover{background:#1e40af}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:.7rem}
+.enq-side p{color:var(--muted);margin-bottom:1rem;max-width:30rem}
+.enq-side .wa{font-weight:700;color:var(--accent);text-decoration:none;font-size:1.05rem}
 
 /* visit */
-.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.vcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}
-.vcard h3{font-stretch:125%;font-weight:800;font-size:1.05rem;margin-bottom:.5rem;color:var(--accent)}
-.vcard p{color:var(--muted);font-size:.93rem}
-.vcard a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+.visit{border-top:1px solid var(--line);padding:2.2rem 0 2.6rem}
+.visit-grid{display:grid;gap:1.2rem}
+@media(min-width:700px){.visit-grid{grid-template-columns:1fr 1fr 1fr}}
+.visit h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.3rem}
+.visit p{font-size:.95rem}
+.visit a{color:var(--accent);font-weight:700}
 
-/* footer */
-footer{border-top:1px solid var(--line);padding:2.2rem 0;background:var(--tint);color:var(--muted);font-size:.85rem;text-align:center}
-footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
-
-/* reveal animation */
-.rv.armed{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.armed.on{opacity:1;transform:none}
-
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:repeat(2,1fr)}
-  .book-card{grid-template-columns:1fr}
-  .badge-card{left:10px}
-}
-@media(max-width:600px){
-  .nav-links a:not(.btn){display:none}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:1fr}
-  .gal{aspect-ratio:4/3}
-  .sec-head{margin-bottom:1.6rem}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;font-size:.8rem;color:var(--muted);text-align:center}
+footer a{color:var(--accent)}
 </style>
 </head>
 <body>
 
-<div class="demo-strip">Demo website · designed as a sample for local businesses</div>
+<div class="demo-strip">Demo website - a sample for local businesses</div>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="logo" href="#top">Marquee<span>.</span></a>
-    <nav class="nav-links">
-      <a href="#services">Packages</a>
-      <a href="#work">Past events</a>
-      <a href="#visit">Visit</a>
-      <a class="btn sm" href="#book">Check a date</a>
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1765947384834-3bdcffcaffff?auto=format&fit=crop&w=1400&q=80" alt="Wedding reception in an elegant hall with guests seated at round tables" fetchpriority="high"></div>
+  <div class="wrap hero-nav">
+    <a class="name" href="#top">Marquee House</a>
+    <nav>
+      <a href="#hall">The hall</a>
+      <a href="#packages">Packages</a>
+      <a href="#enquiry">Check a date</a>
     </nav>
   </div>
-</header>
-
-<main id="top">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="chip rv"><i></i> Uyo · Weddings, receptions &amp; corporate events</span>
-        <h1 class="rv" style="transition-delay:.08s">A hall that makes the day feel <em>as big as it is.</em></h1>
-        <p class="sub rv" style="transition-delay:.16s">Marquee House is a 500-guest event centre in Uyo with in-house decor, cooling, standby power and parking. Check your date on WhatsApp - we confirm availability within the hour.</p>
-        <div class="hero-actions rv" style="transition-delay:.24s">
-          <a class="btn" href="#book">Check your date</a>
-          <a class="btn ghost" href="#services">Packages &amp; rates</a>
-        </div>
-        <div class="hero-meta rv" style="transition-delay:.32s">
-          <span><b>Mon - Sat</b> 9:00 - 18:00 viewings</span>
-          <span><b>Hall capacity</b> 500 guests</span>
-          <span><b>14 Ikot Ekpene Road</b>, Uyo</span>
-        </div>
-      </div>
-      <div class="hero-visual rv" style="transition-delay:.2s">
-        <div class="ph"><img id="heroImg" src="https://images.unsplash.com/photo-1765947384834-3bdcffcaffff?auto=format&fit=crop&w=1200&q=80" alt="Wedding reception in an elegant hall with guests seated at round tables" width="1200" height="900" fetchpriority="high"></div>
-        <div class="badge-card"><span class="dot">●</span> Next open date<b>Sat, Oct 31</b></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track" id="mq"></div>
+  <div class="wrap hero-mid" id="top">
+    <h1>A 500-guest hall in the heart of Uyo.</h1>
+    <p>Weddings, traditional ceremonies, receptions and corporate events - with in-house decor, cooling, standby power and parking handled by our own team.</p>
+    <div><a class="hero-cta" href="#enquiry">Check your date</a></div>
   </div>
+</section>
 
-  <section class="tint" id="services">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Packages &amp; rates</span>
-          <h2 class="rv">One hall, three packages.<br>No hidden charges.</h2>
-        </div>
-        <p class="sub rv">Every package includes chairs, tables, cooling, standby power and security. Decor and catering add on.</p>
-      </div>
-      <div class="svc-grid"><article class="svc rv"><span class="num">01</span><h3>Classic package</h3><p>Hall hire with standard decor, 400 banquet chairs and a changing room.</p><div class="row"><span class="price">₦850,000</span><span class="time">Full day</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">02</span><h3>Premium package</h3><p>Full decor, stage lighting, LED backdrop and an ushering team.</p><div class="row"><span class="price">₦1,400,000</span><span class="time">Full day</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">03</span><h3>Corporate half-day</h3><p>Conference setup, projector, PA system and a tea-break area.</p><div class="row"><span class="price">₦600,000</span><span class="time">5 hrs</span></div></article>
-        <article class="svc rv"><span class="num">04</span><h3>Traditional wedding</h3><p>Double-canopy setup, warm traditional lighting, changing rooms for both families.</p><div class="row"><span class="price">₦1,100,000</span><span class="time">Full day</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">05</span><h3>Decor &amp; florals</h3><p>Fresh florals, balloon work and custom stage design from our in-house team.</p><div class="row"><span class="price">From ₦250,000</span><span class="time">Per event</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">06</span><h3>Catering add-on</h3><p>Local and continental menus for 100 to 500 guests, with a tasting before you book.</p><div class="row"><span class="price">From ₦3,500</span><span class="time">Per plate</span></div></article></div>
+<section class="facts">
+  <div class="wrap facts-in">
+    <div class="fact"><b>500</b><span>guest capacity</span></div>
+    <div class="fact"><b>Standby power</b><span>full-event cover</span></div>
+    <div class="fact"><b>In-house decor</b><span>florals &amp; stage</span></div>
+    <div class="fact"><b>Free viewings</b><span>weekdays 9 - 6</span></div>
+  </div>
+</section>
+
+<section class="hall" id="hall">
+  <div class="wrap">
+    <h2 class="sec">See the hall</h2>
+    <p class="sec-note">Set for a wedding, set for a conference, or empty so you can picture your own setup. Viewings are free every weekday.</p>
+    <figure>
+      <img src="https://images.unsplash.com/photo-1768851142332-75f3d1b47452?auto=format&fit=crop&w=1200&q=80" alt="Banquet hall with round tables set for a reception" loading="lazy">
+      <figcaption>The main hall, banquet setup for 400.</figcaption>
+    </figure>
+    <div class="hall-duo">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?auto=format&fit=crop&w=800&q=80" alt="Couple in traditional Nigerian wedding attire" loading="lazy">
+        <figcaption>Traditional weddings get the double-canopy setup.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1542665952-14513db15293?auto=format&fit=crop&w=800&q=80" alt="Chandeliers lit for an evening event" loading="lazy">
+        <figcaption>Evening receptions under the chandeliers.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1768851142314-c4ebf49ad45b?auto=format&fit=crop&w=800&q=80" alt="Table setting with gold chairs and blue napkins" loading="lazy">
+        <figcaption>Table settings from the in-house decor team.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1763429338698-439aa108e7fb?auto=format&fit=crop&w=800&q=80" alt="Event hall with tall windows and set tables" loading="lazy">
+        <figcaption>Daylight setup for corporate half-days.</figcaption>
+      </figure>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="work">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Past events</span>
-          <h2 class="rv">Recent Saturdays at Marquee.</h2>
-        </div>
-        <p class="sub rv">A look at how the hall dresses up for weddings, receptions and corporate nights.</p>
-      </div>
-      <div class="gal-grid"><figure class="gal rv"><img src="https://images.unsplash.com/photo-1768851142332-75f3d1b47452?auto=format&fit=crop&w=800&q=80" alt="Banquet hall with round tables set for a reception" loading="lazy" width="800" height="1000"><figcaption>Reception setup</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?auto=format&fit=crop&w=800&q=80" alt="Couple in traditional Nigerian wedding attire" loading="lazy" width="800" height="1000"><figcaption>Traditional wedding</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1649525663526-01467119a796?auto=format&fit=crop&w=800&q=80" alt="Bride in a white dress holding a bouquet" loading="lazy" width="800" height="1000"><figcaption>White wedding</figcaption></figure>
-        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1768851142314-c4ebf49ad45b?auto=format&fit=crop&w=800&q=80" alt="Table setting with gold chairs and blue napkins" loading="lazy" width="800" height="1000"><figcaption>Table styling</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1763429338698-439aa108e7fb?auto=format&fit=crop&w=800&q=80" alt="Event hall with tall windows and set tables" loading="lazy" width="800" height="1000"><figcaption>The hall</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1542665952-14513db15293?auto=format&fit=crop&w=800&q=80" alt="Chandeliers lit for an evening event" loading="lazy" width="800" height="1000"><figcaption>Evening events</figcaption></figure></div>
+<section class="packages" id="packages">
+  <div class="wrap">
+    <h2 class="sec">Packages &amp; prices</h2>
+    <p class="sec-note">One price covers the hall, setup and the team on the day. Catering is quoted per plate after a tasting.</p>
+    <div class="ptable-wrap">
+      <table class="ptable">
+        <tr><th>Package</th><th>What you get</th><th>Price</th></tr>
+        <tr><td class="pname">Classic</td><td>Hall hire with standard decor, 400 banquet chairs and a changing room.</td><td class="pprice">₦850,000<small>full day</small></td></tr>
+        <tr><td class="pname">Premium</td><td>Full decor, stage lighting, LED backdrop and an ushering team.</td><td class="pprice">₦1,400,000<small>full day</small></td></tr>
+        <tr><td class="pname">Traditional wedding</td><td>Double-canopy setup, warm traditional lighting, changing rooms for both families.</td><td class="pprice">₦1,100,000<small>full day</small></td></tr>
+        <tr><td class="pname">Corporate half-day</td><td>Conference setup, projector, PA system and a tea-break area.</td><td class="pprice">₦600,000<small>5 hrs</small></td></tr>
+        <tr><td class="pname">Decor &amp; florals</td><td>Fresh florals, balloon work and custom stage design from our in-house team.</td><td class="pprice">from ₦250,000<small>per event</small></td></tr>
+        <tr><td class="pname">Catering add-on</td><td>Local and continental menus for 100 to 500 guests, with a tasting before you book.</td><td class="pprice">from ₦3,500<small>per plate</small></td></tr>
+      </table>
     </div>
-  </section>
+    <ul class="notes">
+      <li>Peak Saturdays (November - January) book out 6 - 8 weeks ahead.</li>
+      <li>₦100,000 holds your date; balance is due 2 weeks before the event.</li>
+      <li>Free viewing appointments every weekday, 9 AM - 6 PM.</li>
+    </ul>
+  </div>
+</section>
 
-  <section class="tint" id="book">
-    <div class="wrap">
-      <div class="book-card rv">
-        <div>
-          <span class="kicker">Check a date</span>
-          <h2>Tell us your date. We confirm availability on WhatsApp.</h2>
-          <ul class="book-points"><li>Peak Saturdays (November - January) book out 6 - 8 weeks ahead.</li><li>₦100,000 holds your date; balance is due 2 weeks before the event.</li><li>Free viewing appointments every weekday, 9 AM - 6 PM.</li></ul>
-        </div>
-        <form id="bookForm">
-          <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" placeholder="e.g. Idara" required></div>
-          <div><label for="f-service">Package</label>
-            <select id="f-service" name="service" required><option value="">Choose one</option><option>Classic package - ₦850,000</option><option>Premium package - ₦1,400,000</option><option>Corporate half-day - ₦600,000</option><option>Traditional wedding - ₦1,100,000</option><option>Decor & florals only</option><option>Catering add-on</option></select>
-          </div>
-          <div><label for="f-when">Event date</label><input id="f-when" name="when" type="text" placeholder="e.g. Saturday, 12 December" required></div>
-          <div><label for="f-phone">Your phone</label><input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required></div>
-          <button class="btn" type="submit">Check availability on WhatsApp</button>
-          <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
-        </form>
-      </div>
+<section class="enquiry" id="enquiry">
+  <div class="wrap enq-grid">
+    <div class="enq-side">
+      <h2 class="sec">Check your date</h2>
+      <p>Tell us the date and the kind of event. We confirm availability within the hour on WhatsApp, then book you in for a free viewing.</p>
+      <p>Prefer to just ask?<br><a class="wa" href="https://wa.me/2347034678518" target="_blank" rel="noopener">WhatsApp 0703 467 8518</a></p>
     </div>
-  </section>
+    <form id="enqForm">
+      <label for="f-name">Your name</label>
+      <input id="f-name" name="name" type="text" placeholder="e.g. Anietie" required>
+      <label for="f-package">Package</label>
+      <select id="f-package" name="package" required>
+        <option value="">Choose one</option>
+        <option>Classic package - ₦850,000</option>
+        <option>Premium package - ₦1,400,000</option>
+        <option>Corporate half-day - ₦600,000</option>
+        <option>Traditional wedding - ₦1,100,000</option>
+        <option>Decor &amp; florals only</option>
+        <option>Catering add-on</option>
+      </select>
+      <label for="f-date">Event date</label>
+      <input id="f-date" name="date" type="text" placeholder="e.g. 14 December 2026" required>
+      <label for="f-phone">Your phone</label>
+      <input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required>
+      <button class="btn-solid" type="submit">Check availability on WhatsApp</button>
+      <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
+    </form>
+  </div>
+</section>
 
-  <section id="visit">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Find us</span>
-          <h2 class="rv">Come see the hall.</h2>
-        </div>
-      </div>
-      <div class="visit-grid"><div class="vcard rv"><h3>Address</h3><p>14 Ikot Ekpene Road, Uyo,<br>Akwa Ibom State</p></div><div class="vcard rv" style="transition-delay:.07s"><h3>WhatsApp</h3><p>Fastest way to reach us - date checks, viewings, package questions.<br><br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></p></div><div class="vcard rv" style="transition-delay:.14s"><h3>Viewings</h3><p>Weekday viewings run 9 AM - 6 PM. See the hall set and empty - no appointment fee.</p></div></div>
+<section class="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <h3>Address</h3>
+      <p>14 Ikot Ekpene Road, Uyo,<br>Akwa Ibom State</p>
     </div>
-  </section>
-
-</main>
+    <div>
+      <h3>Viewings</h3>
+      <p>Weekdays 9 AM - 6 PM. See the hall set and empty. No appointment fee.</p>
+    </div>
+    <div>
+      <h3>WhatsApp</h3>
+      <p><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a><br>Date checks, viewings, package questions.</p>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
@@ -270,42 +240,16 @@ footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px
 </footer>
 
 <script>
-// marquee content (duplicated for seamless loop)
-(function(){
-  var items = ['Weddings','Receptions','Traditional weddings','Corporate events','Birthdays','500 guests','Standby power','Free viewings'];
-  var html = items.map(function(t,i){ return '<span class="'+(i%2?'a':'')+'">'+t+'</span><span>·</span>'; }).join('');
-  document.getElementById('mq').innerHTML = html + html;
-})();
-
-// hero image settle-in
-(function(){
-  var img = document.getElementById('heroImg');
-  var done = function(){ img.classList.add('loaded'); };
-  if (img.complete) done(); else img.addEventListener('load', done);
-})();
-
-// scroll reveal with stagger
-(function(){
-  var els = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window)) { return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
-  }, {threshold:.12});
-  els.forEach(function(e){ e.classList.add('armed'); io.observe(e); });
-})();
-
-// booking -> WhatsApp prefill
-document.getElementById('bookForm').addEventListener('submit', function(ev){
+document.getElementById('enqForm').addEventListener('submit', function(ev){
   ev.preventDefault();
   var f = ev.target;
   var msg = 'Hello Marquee House! I would like to check a date:\n'
     + 'Name: ' + f.name.value + '\n'
-    + 'Package: ' + f.service.value + '\n'
-    + 'Event date: ' + f.when.value + '\n'
+    + 'Package: ' + f.package.value + '\n'
+    + 'Event date: ' + f.date.value + '\n'
     + 'Phone: ' + f.phone.value;
   window.open('https://wa.me/2347034678518?text=' + encodeURIComponent(msg), '_blank');
 });
 </script>
-
 </body>
 </html>
