@@ -7,90 +7,71 @@
 <meta name="description" content="DailyFresh Mart is a fictional demo supermarket website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#1c1214;
-  --muted:#70605f;
-  --accent:#b91c1c;
-  --tint:#fdf4f3;
-  --line:#f0ddda;
-}
+:root{--ink:#1d1a17;--muted:#6d6660;--accent:#48684f;--tint:#f3efe7;--line:#d9d2c6}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:'Barlow Semi Condensed',system-ui,-apple-system,sans-serif;background:#fff;color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:17px}
+body{font-family:'Archivo',system-ui,sans-serif;background:#fbf9f4;color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:16px}
 img{display:block;max-width:100%}
 a{color:inherit}
 .wrap{width:min(1080px,94%);margin:0 auto}
-
-.demo-strip{background:var(--ink);color:#fff;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1rem}
-
-/* red store bar */
-.storebar{background:var(--accent);color:#fff}
-.storebar-in{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0}
-.storename{font-weight:700;font-size:1.35rem;letter-spacing:.01em;text-decoration:none}
-.openpill{font-size:.8rem;font-weight:600;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:6px;white-space:nowrap}
-
-/* list-first hero: the practical action */
-.listblock{padding:2.2rem 0 2rem;border-bottom:1px solid var(--line)}
+h1,h2,.storename{font-family:'Barlow Semi Condensed',sans-serif}
+.demo-strip{background:#181818;color:#cfcfcf;text-align:center;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.45rem 1rem}
+.storebar{background:var(--accent);color:#fff;border-bottom:4px solid var(--ink)}
+.storebar-in{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0}
+.storename{font-weight:700;font-size:1.45rem;letter-spacing:.02em;text-decoration:none;text-transform:uppercase}
+.openpill{font-size:.76rem;font-weight:600;background:transparent;border:1.5px solid rgba(255,255,255,.6);padding:5px 11px;border-radius:0;white-space:nowrap;letter-spacing:.04em}
+.listblock{padding:2.4rem 0 2.2rem;border-bottom:2px solid var(--ink)}
 .listblock-grid{display:grid;gap:1.6rem;align-items:center}
 @media(min-width:760px){.listblock-grid{grid-template-columns:1.1fr 1fr}}
-.listblock h1{font-size:clamp(1.7rem,5vw,2.4rem);font-weight:700;line-height:1.1;margin-bottom:.6rem}
-.listblock p{color:var(--muted);margin-bottom:1rem}
-.listblock .steps{font-size:.95rem;margin-bottom:1.3rem}
-.listblock .steps li{list-style:none;padding:.35rem 0 .35rem 1.7rem;position:relative}
+.listblock h1{font-size:clamp(1.9rem,5.4vw,2.6rem);font-weight:700;line-height:1.05;margin-bottom:.7rem;text-transform:uppercase}
+.listblock p{color:var(--muted);margin-bottom:1.1rem}
+.listblock .steps{font-size:.95rem;margin-bottom:1.4rem}
+.listblock .steps li{list-style:none;padding:.4rem 0 .4rem 1.9rem;position:relative}
 .listblock .steps li b{color:var(--accent)}
-.listblock .steps li::before{content:attr(data-n);position:absolute;left:0;top:.35rem;width:1.15rem;height:1.15rem;background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;text-align:center;line-height:1.15rem;border-radius:50%}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:1rem;padding:14px 30px;border-radius:6px;border:none;cursor:pointer}
-.btn:hover{background:#991b1b}
-.listblock img{border-radius:10px;width:100%;aspect-ratio:16/10;object-fit:cover}
-
-/* the aisles directory */
+.listblock .steps li::before{content:attr(data-n);position:absolute;left:0;top:.4rem;width:1.2rem;height:1.2rem;background:var(--ink);color:#fff;font-size:.78rem;font-weight:700;text-align:center;line-height:1.2rem;border-radius:0}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 30px;border-radius:2px;border:none;cursor:pointer}
+.btn:hover{background:#38543e}
+.listblock img{border-radius:0;width:100%;aspect-ratio:16/10;object-fit:cover;border:2px solid var(--ink)}
 .aisles{padding:2.4rem 0}
-.aisles h2{font-size:1.5rem;font-weight:700;margin-bottom:.2rem}
-.aisles .sub2{color:var(--muted);font-size:.95rem;margin-bottom:1.2rem}
-.aisle{display:flex;justify-content:space-between;gap:1rem;padding:1rem 1.1rem;border-bottom:1px solid var(--line)}
-.aisle:nth-child(odd){background:var(--tint)}
-.aisle .a-name{font-weight:700;font-size:1.05rem}
-.aisle .a-items{color:var(--muted);font-size:.88rem;margin-top:.15rem}
-.aisle .a-price{font-weight:700;white-space:nowrap;text-align:right;color:var(--accent)}
-.aisle .a-price small{display:block;color:var(--muted);font-weight:500;font-size:.75rem}
-
-/* photos */
+.aisles h2{font-size:1.6rem;font-weight:700;margin-bottom:.25rem;text-transform:uppercase}
+.aisles .sub2{color:var(--muted);font-size:.92rem;margin-bottom:1.3rem}
+.aisle{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:2px dashed var(--line)}
+.aisle:nth-child(odd){background:transparent}
+.aisle .a-name{font-weight:700;font-size:1.08rem;font-family:'Barlow Semi Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.aisle .a-items{color:var(--muted);font-size:.86rem;margin-top:.15rem}
+.aisle .a-price small{display:block;font-weight:600;font-size:.72rem;color:var(--muted)}
+.aisle .a-price{font-weight:700;white-space:nowrap;text-align:right;color:var(--accent);border:1.5px dashed var(--accent);padding:3px 10px;border-radius:2px;height:fit-content;background:#fff}
 .photos{padding:0 0 2.4rem}
-.pgrid{display:grid;grid-template-columns:2fr 1fr;gap:8px}
-.pgrid img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.pgrid{display:grid;grid-template-columns:2fr 1fr;gap:6px}
+.pgrid img{width:100%;height:100%;object-fit:cover;border-radius:0;border:2px solid var(--ink)}
 .pgrid .tall{grid-row:span 2}
-.pgrid .stack{display:grid;gap:8px}
-
-/* send your list */
-.send{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.4rem 0}
+.pgrid .stack{display:grid;gap:6px}
+.send{background:var(--tint);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:2.4rem 0}
 .send-grid{display:grid;gap:1.6rem}
 @media(min-width:760px){.send-grid{grid-template-columns:1fr 1.2fr}}
-.send h2{font-size:1.5rem;font-weight:700;margin-bottom:.4rem}
-.send .side p{color:var(--muted);margin-bottom:.8rem}
+.send h2{font-size:1.6rem;font-weight:700;margin-bottom:.45rem;text-transform:uppercase}
+.send .side p{color:var(--muted);margin-bottom:.9rem}
 .send .side ul{list-style:none}
-.send .side li{padding:.4rem 0 .4rem 1.4rem;position:relative;font-size:.95rem}
-.send .side li::before{content:"";position:absolute;left:0;top:.95rem;width:8px;height:8px;background:var(--accent);border-radius:2px}
-.send form{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.4rem}
-label{display:block;font-size:.82rem;font-weight:700;margin:0 0 .3rem}
-input,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff;margin-bottom:.9rem}
+.send .side li{padding:.45rem 0 .45rem 1.5rem;position:relative;font-size:.95rem}
+.send .side li::before{content:"";position:absolute;left:0;top:1rem;width:9px;height:9px;background:var(--accent);border-radius:0}
+.send form{background:#fff;border:2px dashed var(--line);border-radius:0;padding:1.5rem}
+label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .35rem}
+input,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--ink);border-radius:0;font:inherit;background:#fff;margin-bottom:1rem}
 textarea{min-height:120px;resize:vertical}
 input:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
-.radio-row{display:flex;gap:18px;margin-bottom:1rem}
-.radio-row label{display:flex;align-items:center;gap:7px;font-weight:600;font-size:.9rem;margin:0}
+.radio-row{display:flex;gap:18px;margin-bottom:1.1rem}
+.radio-row label{display:flex;align-items:center;gap:7px;font-weight:600;font-size:.9rem;margin:0;text-transform:none;letter-spacing:0}
 .radio-row input{width:auto;margin:0}
-.form-note{font-size:.78rem;color:var(--muted);margin-top:.7rem}
-
-/* store info */
-.info{padding:2rem 0 2.4rem}
-.info-grid{display:grid;gap:1rem}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:.8rem}
+.info{padding:2.2rem 0 2.6rem}
+.info-grid{display:grid;gap:1.1rem}
 @media(min-width:700px){.info-grid{grid-template-columns:repeat(3,1fr)}}
-.info b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.2rem}
-.info p{font-size:.95rem;color:var(--muted)}
+.info b{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.25rem}
+.info p{font-size:.94rem;color:var(--muted)}
 .info a{color:var(--accent);font-weight:700}
-
-footer{border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;font-size:.8rem;color:var(--muted);text-align:center}
+footer{border-top:2px solid var(--ink);padding:1.8rem 0 2.4rem;font-size:.8rem;color:var(--muted);text-align:center}
 footer a{color:var(--accent)}
 </style>
 </head>
