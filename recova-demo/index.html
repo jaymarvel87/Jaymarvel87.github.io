@@ -136,6 +136,7 @@ body{background:#ece7e4;font-family:var(--rc-font-text);color:var(--rc-ink);-web
 <body>
 <div id="app"></div>
 <input type="file" id="picker" class="hidden-input" multiple>
+<input type="file" id="picker-dir" class="hidden-input" webkitdirectory multiple>
 <script>
 'use strict';
 const TOTALS = { photos: 214, videos: 38, documents: 41, voice: 19 };
@@ -167,7 +168,7 @@ const MARK = s => '<span class="mark" style="width:' + s + 'px;height:' + s + 'p
 const FOOT = '<div class="demo-foot">Recova rescues media files only: photos, videos, voice notes and documents already downloaded to a phone. It cannot recover chats or backups, and it cannot unban an account. Only WhatsApp can do that, through the Request review button in the app.</div>';
 function go(stage) {
     clearTimers();
-    const r = { welcome: renderWelcome, paywall: renderPaywall, receipt: renderReceipt, pair: renderPair, scan: renderScan, results: renderResults, saving: renderSaving, saved: renderSaved, truth: renderTruth, real: renderReal, zip: renderZip, zdone: renderZipDone };
+    const r = { welcome: renderWelcome, paywall: renderPaywall, receipt: renderReceipt, pair: renderPair, scan: renderScan, results: renderResults, saving: renderSaving, saved: renderSaved, truth: renderTruth, real: renderReal, dirscan: renderDirScan, zip: renderZip, zdone: renderZipDone };
     (r[stage] || renderWelcome)();
     window.scrollTo(0, 0);
 }
@@ -186,13 +187,34 @@ function renderWelcome() {
     document.getElementById('b-truth').onclick = () => go('truth');
 }
 /* ---- real rescue ---- */
-let picked = [];
+let picked = []; // {file, cat, url, path}
+const FS_DIR = typeof window.showDirectoryPicker === 'function';
+const FS_SAVE = typeof window.showSaveFilePicker === 'function';
+const CATS = ['Images', 'Videos', 'Voice notes', 'Documents'];
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function catOf(f) {
     const t = (f.type || '').toLowerCase();
     if (t.startsWith('image/')) return 'Images';
     if (t.startsWith('video/')) return 'Videos';
     if (t.startsWith('audio/')) return 'Voice notes';
+    const ext = (f.name.split('.').pop() || '').toLowerCase();
+    if ('jpg jpeg png webp gif heic heif bmp'.split(' ').indexOf(ext) >= 0) return 'Images';
+    if ('mp4 3gp mkv mov avi webm'.split(' ').indexOf(ext) >= 0) return 'Videos';
+    if ('opus ogg mp3 m4a aac wav amr'.split(' ').indexOf(ext) >= 0) return 'Voice notes';
     return 'Documents';
+}
+function addFiles(list) {
+    const seen = new Set(picked.map(p => (p.path || p.file.name) + ':' + p.file.size));
+    let added = 0;
+    Array.from(list).forEach(f => {
+        const rel = f.webkitRelativePath || '';
+        const k = (rel || f.name) + ':' + f.size;
+        if (seen.has(k)) return;
+        seen.add(k);
+        picked.push({ file: f, cat: catOf(f), path: rel, url: (picked.length < 60 && f.type && f.type.startsWith('image/')) ? URL.createObjectURL(f) : '' });
+        added++;
+    });
+    return added;
 }
 function renderReal() {
     const totalBytes = picked.reduce((a, p) => a + p.file.size, 0);
@@ -201,121 +223,300 @@ function renderReal() {
     const has = picked.length > 0;
     const previewRows = picked.slice(0, 60).map(p => {
         const ext = (p.file.name.split('.').pop() || 'file').slice(0, 4).toUpperCase();
-        const thumb = p.cat === 'Images' ? '<img class="fthumb" src="' + p.url + '" alt="">' : '<span class="fdoc">' + ext + '</span>';
-        return '<div class="file-row">' + thumb + '<span class="fname">' + p.file.name + '</span><span class="fsize">' + fmtMB(p.file.size) + '</span></div>';
+        const thumb = (p.cat === 'Images' && p.url) ? '<img class="fthumb" src="' + p.url + '" alt="">' : '<span class="fdoc">' + esc(ext) + '</span>';
+        return '<div class="file-row">' + thumb + '<span class="fname">' + esc(p.file.name) + '</span><span class="fsize">' + fmtMB(p.file.size) + '</span></div>';
     }).join('');
+    const catRows = CATS.map(c => {
+        const done = counts[c] > 0;
+        return '<div class="step"><span class="step-n"' + (done ? ' style="background:var(--rc-teal);color:#fff"' : '') + '>' + (done ? counts[c] : '&middot;') + '</span>'
+            + '<span class="step-t"><b>' + c + '</b> &mdash; ' + (done ? 'added' : 'not added yet') + '</span></div>';
+    }).join('');
+    const pickBlock = FS_DIR
+        ? '<button class="btn" id="b-pick-dir">Pick the whole Media folder</button>'
+          + '<p class="fine">Choose a folder, then grant access. Recova collects the files inside it, including subfolders. Choose <b>WhatsApp Business &rsaquo; Media</b> (on some phones it sits inside <b>Android &rsaquo; media &rsaquo; com.whatsapp.w4b &rsaquo; WhatsApp Business</b>).</p>'
+          + '<button class="btn btn-ghost" id="b-pick">' + (has ? 'Add more files yourself' : 'Or select the files yourself') + '</button>'
+        : '<button class="btn" id="b-pick">' + (has ? 'Add more media' : 'Select media') + '</button>'
+          + '<button class="btn btn-ghost" id="b-pick-folder">Try folder selection</button>'
+          + '<p class="fine">Whole-folder access is not available through this browser API. Try the folder button, use file selection below, or update Chrome. Device storage rules can still limit access.</p>';
     app.innerHTML = '<div class="stage"><div class="body">'
         + '<p class="kicker">Real rescue &middot; runs on the affected phone</p>'
         + '<h2 class="h2">Select the media to rescue</h2>'
         + '<div class="steps">'
-        + '<div class="step"><span class="step-n">1</span><span class="step-t"><b>Open this page on the banned phone</b>, in Chrome. Nothing leaves the phone until its owner chooses to share.</span></div>'
-        + '<div class="step"><span class="step-n">2</span><span class="step-t">Tap <b>Select media</b>. In the picker, browse to <b>Internal storage &rsaquo; Android &rsaquo; media &rsaquo; com.whatsapp.w4b &rsaquo; WhatsApp Business &rsaquo; Media</b> (or <b>com.whatsapp &rsaquo; WhatsApp &rsaquo; Media</b> for the regular app).</span></div>'
-        + '<div class="step"><span class="step-n">3</span><span class="step-t">Open a folder like <b>Images</b>, <b>Video</b>, <b>Voice Notes</b> or <b>Documents</b>, tap <b>Select all</b>, then confirm. Come back and add the next folder the same way.</span></div>'
+        + '<div class="step"><span class="step-n">1</span><span class="step-t"><b>Stay on the banned phone</b> and open this page in Chrome. Nothing leaves the phone until its owner chooses to share.</span></div>'
+        + '<div class="step"><span class="step-n">2</span><span class="step-t">Find the WhatsApp Business media folder: <b>Internal storage &rsaquo; WhatsApp Business &rsaquo; Media</b> on many phones, or <b>Internal storage &rsaquo; Android &rsaquo; media &rsaquo; com.whatsapp.w4b &rsaquo; WhatsApp Business &rsaquo; Media</b> on newer ones.</span></div>'
+        + '<div class="step"><span class="step-n">3</span><span class="step-t">' + (FS_DIR
+            ? 'Pick that Media folder in one tap with the button below &mdash; or, to choose files by hand: open a folder like <b>Images</b>, <b>Video</b>, <b>Voice Notes</b> or <b>Documents</b>, long-press a file, tap <b>Select all</b>, confirm, and repeat per folder.'
+            : 'Open one folder (Images, Video, Voice Notes or Documents &mdash; names may start with &ldquo;WhatsApp Business&rdquo;), long-press a file, tap <b>Select all</b>, then confirm. Come back and add the next folder the same way.') + '</span></div>'
         + '</div>'
-        + '<button class="btn" id="b-pick">' + (has ? 'Add more media' : 'Select media') + '</button>'
+        + pickBlock
+        + '<p class="fine">Keep this page open while packing. The zip needs about as much free storage as the selected files. Older browsers may still struggle with huge sets: select smaller groups if needed.</p>'
+        + '<div class="steps">' + catRows + '</div>'
         + (has
             ? '<div class="counters counters-flat"><span><b>' + counts.Images + '</b> photos</span><span><b>' + counts.Videos + '</b> videos</span><span><b>' + counts.Documents + '</b> documents</span><span><b>' + counts['Voice notes'] + '</b> voice notes</span></div>'
               + '<p class="p"><b>' + picked.length + ' files</b> selected &middot; ' + fmtMB(totalBytes) + ' total</p>'
-              + '<div class="file-list">' + previewRows + (picked.length > 60 ? '<div class="file-row"><span class="fname">and ' + (picked.length - 60) + ' more…</span></div>' : '') + '</div>'
+              + '<div class="file-list">' + previewRows + (picked.length > 60 ? '<div class="file-row"><span class="fname">and ' + (picked.length - 60) + ' more&hellip;</span></div>' : '') + '</div>'
               + '<button class="btn" id="b-zip">Organise and zip</button>'
               + '<button class="quiet" id="b-clear">Clear selection</button>'
-            : '<p class="fine">Nothing selected yet. If the picker cannot open the Android/media folder on this device, the same files can be copied free with any file manager &mdash; the path is identical.</p>')
+            : '<p class="fine">Nothing selected yet. Check Sent and other subfolders too. If Android blocks a folder, try the phone&rsquo;s file manager to copy accessible media to Downloads, then select the copies here. Recova cannot bypass Android restrictions.</p>')
         + '</div>' + FOOT + '</div>';
     const picker = document.getElementById('picker');
-    picker.onchange = () => {
-        const seen = new Set(picked.map(p => p.file.name + ':' + p.file.size));
-        Array.from(picker.files).forEach(f => {
-            const k = f.name + ':' + f.size;
-            if (seen.has(k)) return;
-            seen.add(k);
-            picked.push({ file: f, cat: catOf(f), url: f.type && f.type.startsWith('image/') ? URL.createObjectURL(f) : '' });
-        });
-        picker.value = '';
-        go('real');
+    picker.onchange = () => { addFiles(picker.files); picker.value = ''; go('real'); };
+    const bPick = document.getElementById('b-pick');
+    if (bPick) bPick.onclick = () => picker.click();
+    const bFolder = document.getElementById('b-pick-folder');
+    if (bFolder) bFolder.onclick = () => document.getElementById('picker-dir').click();
+    const pickerDir = document.getElementById('picker-dir');
+    if (pickerDir) pickerDir.onchange = () => { addFiles(pickerDir.files); pickerDir.value = ''; go('real'); };
+    const bDir = document.getElementById('b-pick-dir');
+    if (bDir) bDir.onclick = async () => {
+        let dir;
+        try { dir = await window.showDirectoryPicker({ mode: 'read' }); }
+        catch (e) { if (e.name !== 'AbortError') { const warning = document.createElement('p'); warning.className = 'callout'; warning.textContent = 'Folder access failed: ' + e.message + '. Use file selection instead.'; app.querySelector('.body').prepend(warning); } return; }
+        go('dirscan');
+        walkAndCollect(dir);
     };
-    document.getElementById('b-pick').onclick = () => picker.click();
     const bz = document.getElementById('b-zip'); if (bz) bz.onclick = () => go('zip');
     const bc = document.getElementById('b-clear'); if (bc) bc.onclick = () => { picked.forEach(p => p.url && URL.revokeObjectURL(p.url)); picked = []; go('real'); };
 }
+async function walkDir(dirHandle, prefix, onFile) {
+    for await (const entry of dirHandle.values()) {
+        const rel = prefix ? prefix + '/' + entry.name : entry.name;
+        if (entry.kind === 'file') {
+            onFile(await entry.getFile(), rel);
+        } else if (entry.kind === 'directory') {
+            await walkDir(entry, rel, onFile);
+        }
+    }
+}
+async function walkAndCollect(dir) {
+    const seen = new Set(picked.map(p => (p.path || p.file.name) + ':' + p.file.size));
+    let n = 0;
+    const countEl = document.getElementById('dirscan-count');
+    try {
+        await walkDir(dir, dir.name, (f, rel) => {
+            const k = rel + ':' + f.size;
+            if (seen.has(k)) return;
+            seen.add(k);
+            picked.push({ file: f, cat: catOf(f), path: rel, url: (picked.length < 60 && f.type && f.type.startsWith('image/')) ? URL.createObjectURL(f) : '' });
+            n++;
+            if (countEl && n % 10 === 0) countEl.textContent = n + ' files found so far';
+        });
+        go('real');
+    } catch (err) {
+        go('real');
+        const warning = document.createElement('p'); warning.className = 'callout'; warning.textContent = 'Folder reading stopped: ' + err.message + '. The selection may be incomplete. Check before zipping.'; app.querySelector('.body').prepend(warning);
+    }
+}
+function renderDirScan() {
+    app.innerHTML = '<div class="stage"><div class="body center">'
+        + '<p class="kicker">Reading the folder</p>'
+        + '<div class="pair-status" style="justify-content:center"><span class="radar" aria-hidden="true"></span><span id="dirscan-count">Opening&hellip;</span></div>'
+        + '<p class="fine">Collecting every media file inside, subfolders included. Large folders can take a moment.</p>'
+        + '</div>' + FOOT + '</div>';
+}
+/* ---- zip: streaming writer, store method (media does not compress), ZIP64 when needed ---- */
 const CRC_TABLE = (() => {
     const t = new Uint32Array(256);
     for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); t[n] = c >>> 0; }
     return t;
 })();
-function crc32(buf) {
-    let c = 0xFFFFFFFF;
-    for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
-    return (c ^ 0xFFFFFFFF) >>> 0;
+const CRC_TABLES = (() => {
+    const ts = [CRC_TABLE];
+    for (let j = 1; j < 4; j++) {
+        const t = new Uint32Array(256);
+        for (let n = 0; n < 256; n++) t[n] = (ts[j - 1][n] >>> 8) ^ CRC_TABLE[ts[j - 1][n] & 0xFF];
+        ts.push(t);
+    }
+    return ts;
+})();
+function crc32Update(crc, buf) {
+    let i = 0, n = buf.length;
+    while (n >= 4) {
+        crc = CRC_TABLES[3][(crc ^ buf[i]) & 0xFF] ^ CRC_TABLES[2][((crc >>> 8) ^ buf[i + 1]) & 0xFF] ^ CRC_TABLES[1][((crc >>> 16) ^ buf[i + 2]) & 0xFF] ^ CRC_TABLES[0][((crc >>> 24) ^ buf[i + 3]) & 0xFF];
+        i += 4; n -= 4;
+    }
+    while (n > 0) { crc = CRC_TABLE[(crc ^ buf[i]) & 0xFF] ^ (crc >>> 8); i++; n--; }
+    return crc >>> 0;
 }
 function dosDateTime(d) {
     return { time: ((d.getHours() << 11) | (d.getMinutes() << 5) | Math.floor(d.getSeconds() / 2)) & 0xFFFF, date: (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF };
 }
-async function buildZip(entries, onProgress) {
+function setU64(view, at, val) { view.setUint32(at, val % 0x100000000, true); view.setUint32(at + 4, Math.floor(val / 0x100000000), true); }
+async function makeZip(items, sink, onProgress) {
     const enc = new TextEncoder();
-    const parts = [], central = [];
+    const central = [];
+    const CHUNK = 4 * 1024 * 1024;
+    const total = Math.max(1, items.reduce((a, it) => a + it.file.size, 0));
+    const passes = 2; // blob sink references file bytes directly
+    let work = 0;
     let offset = 0;
-    for (let i = 0; i < entries.length; i++) {
-        const e = entries[i];
-        const nameBytes = enc.encode(e.name);
-        const crc = crc32(e.data);
-        const dt = dosDateTime(new Date());
-        const lh = new DataView(new ArrayBuffer(30));
-        lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+    async function emit(u8orBlob) {
+        await sink.write(u8orBlob);
+        offset += u8orBlob.size !== undefined ? u8orBlob.size : u8orBlob.length;
+    }
+    for (let idx = 0; idx < items.length; idx++) {
+        const it = items[idx];
+        const file = it.file;
+        let crc = 0xFFFFFFFF;
+        for (let off = 0; off < file.size; off += CHUNK) {
+            const buf = new Uint8Array(await file.slice(off, Math.min(off + CHUNK, file.size)).arrayBuffer());
+            crc = crc32Update(crc, buf);
+            work += buf.length;
+            if (onProgress) onProgress(work / (total * passes), idx, file.name, 'Checking');
+            await new Promise(r => setTimeout(r, 0));
+        }
+        crc = (crc ^ 0xFFFFFFFF) >>> 0;
+        const nameBytes = enc.encode(it.name);
+        const localOffset = offset;
+        const need64 = file.size >= 0xFFFFFFFF || localOffset >= 0xFFFFFFFF;
+        const dt = dosDateTime(new Date(file.lastModified || Date.now()));
+        const extraLen = need64 ? 28 : 0;
+        const lh = new DataView(new ArrayBuffer(30 + extraLen));
+        lh.setUint32(0, 0x04034b50, true);
+        lh.setUint16(4, need64 ? 45 : 20, true);
+        lh.setUint16(6, 0x0800, true);
+        lh.setUint16(8, 0, true);
         lh.setUint16(10, dt.time, true); lh.setUint16(12, dt.date, true);
-        lh.setUint32(14, crc, true); lh.setUint32(18, e.data.length, true); lh.setUint32(22, e.data.length, true);
-        lh.setUint16(26, nameBytes.length, true); lh.setUint16(28, 0, true);
-        parts.push(new Uint8Array(lh.buffer), nameBytes, e.data);
-        const ch = new DataView(new ArrayBuffer(46));
-        ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true);
-        ch.setUint16(10, 0, true); ch.setUint16(12, dt.time, true); ch.setUint16(14, dt.date, true);
-        ch.setUint32(16, crc, true); ch.setUint32(20, e.data.length, true); ch.setUint32(24, e.data.length, true);
-        ch.setUint16(28, nameBytes.length, true); ch.setUint32(42, offset, true);
-        central.push(new Uint8Array(ch.buffer), nameBytes);
-        offset += 30 + nameBytes.length + e.data.length;
-        if (onProgress) onProgress((i + 1) / entries.length);
-        if (i % 10 === 9) await new Promise(r => setTimeout(r, 0));
+        lh.setUint32(14, crc, true);
+        lh.setUint32(18, need64 ? 0xFFFFFFFF : file.size, true);
+        lh.setUint32(22, need64 ? 0xFFFFFFFF : file.size, true);
+        lh.setUint16(26, nameBytes.length, true);
+        lh.setUint16(28, extraLen, true);
+        if (need64) {
+            lh.setUint16(30, 0x0001, true); lh.setUint16(32, 24, true);
+            setU64(lh, 34, file.size); setU64(lh, 42, file.size); setU64(lh, 50, localOffset);
+        }
+        await emit(new Uint8Array(lh.buffer, 0, 30));
+        await emit(nameBytes);
+        if (extraLen) await emit(new Uint8Array(lh.buffer, 30));
+        if (sink.pushFile) {
+            await sink.pushFile(file);
+            offset += file.size;
+            work += file.size;
+            if (onProgress) onProgress(work / (total * passes), idx, file.name, 'Packing');
+        } else {
+            for (let off = 0; off < file.size; off += CHUNK) {
+                const buf = new Uint8Array(await file.slice(off, Math.min(off + CHUNK, file.size)).arrayBuffer());
+                await emit(buf);
+                work += buf.length;
+                if (onProgress) onProgress(work / (total * passes), idx, file.name, 'Packing');
+                await new Promise(r => setTimeout(r, 0));
+            }
+        }
+        central.push({ nameBytes, crc, size: file.size, localOffset, dt, need64 });
     }
     const cdStart = offset;
-    let cdSize = 0;
-    central.forEach(c => { parts.push(c); cdSize += c.length; offset += c.length; });
+    for (const c of central) {
+        const extraLen = c.need64 ? 28 : 0;
+        const ch = new DataView(new ArrayBuffer(46 + extraLen));
+        ch.setUint32(0, 0x02014b50, true);
+        ch.setUint16(4, c.need64 ? 45 : 20, true);
+        ch.setUint16(6, c.need64 ? 45 : 20, true);
+        ch.setUint16(8, 0x0800, true);
+        ch.setUint16(10, 0, true);
+        ch.setUint16(12, c.dt.time, true); ch.setUint16(14, c.dt.date, true);
+        ch.setUint32(16, c.crc, true);
+        ch.setUint32(20, c.need64 ? 0xFFFFFFFF : c.size, true);
+        ch.setUint32(24, c.need64 ? 0xFFFFFFFF : c.size, true);
+        ch.setUint16(28, c.nameBytes.length, true);
+        ch.setUint16(30, extraLen, true);
+        ch.setUint32(42, c.need64 ? 0xFFFFFFFF : c.localOffset, true);
+        if (c.need64) {
+            ch.setUint16(46, 0x0001, true); ch.setUint16(48, 24, true);
+            setU64(ch, 50, c.size); setU64(ch, 58, c.size); setU64(ch, 66, c.localOffset);
+        }
+        await emit(new Uint8Array(ch.buffer, 0, 46));
+        await emit(c.nameBytes);
+        if (extraLen) await emit(new Uint8Array(ch.buffer, 46));
+    }
+    const cdSize = offset - cdStart;
+    const needEnd64 = central.length >= 0xFFFF || cdStart >= 0xFFFFFFFF || cdSize >= 0xFFFFFFFF;
+    if (needEnd64) {
+        const z64 = new DataView(new ArrayBuffer(56));
+        z64.setUint32(0, 0x06064b50, true);
+        setU64(z64, 4, 44);
+        z64.setUint16(12, 45, true); z64.setUint16(14, 45, true);
+        z64.setUint32(24, central.length, true); z64.setUint32(28, 0, true);
+        z64.setUint32(32, central.length, true); z64.setUint32(36, 0, true);
+        setU64(z64, 40, cdSize); setU64(z64, 48, cdStart);
+        await emit(new Uint8Array(z64.buffer));
+        const zl = new DataView(new ArrayBuffer(20));
+        zl.setUint32(0, 0x07064b50, true);
+        setU64(zl, 8, cdStart + cdSize);
+        zl.setUint32(16, 1, true);
+        await emit(new Uint8Array(zl.buffer));
+    }
     const eo = new DataView(new ArrayBuffer(22));
     eo.setUint32(0, 0x06054b50, true);
-    eo.setUint16(8, entries.length, true); eo.setUint16(10, entries.length, true);
-    eo.setUint32(12, cdSize, true); eo.setUint32(16, cdStart, true);
-    parts.push(new Uint8Array(eo.buffer));
-    return new Blob(parts, { type: 'application/zip' });
+    eo.setUint16(8, needEnd64 ? 0xFFFF : central.length, true);
+    eo.setUint16(10, needEnd64 ? 0xFFFF : central.length, true);
+    eo.setUint32(12, needEnd64 ? 0xFFFFFFFF : cdSize, true);
+    eo.setUint32(16, needEnd64 ? 0xFFFFFFFF : cdStart, true);
+    await emit(new Uint8Array(eo.buffer));
+    await sink.close();
 }
-let zipBlob = null, zipName = 'recova-media.zip';
+function BlobSink() {
+    const parts = [];
+    return {
+        write: async u8 => { parts.push(u8); },
+        pushFile: async f => { parts.push(f); },
+        close: async () => {},
+        blob: () => new Blob(parts, { type: 'application/zip' })
+    };
+}
+function StreamSink(writable) {
+    return {
+        write: async part => { await writable.write(part); },
+        close: async () => { await writable.close(); }
+    };
+}
+let zipResult = null; // {kind:'blob', blob, name} or {kind:'fs', name}
+let zipName = 'recova-media.zip';
 function renderZip() {
     app.innerHTML = '<div class="stage"><div class="body center">'
         + '<p class="kicker">Organising and zipping</p>'
-        + '<div class="savenum" id="zip-num">0<span> / ' + picked.length + '</span></div>'
+        + '<div class="savenum" id="zip-pct">0<span>%</span></div>'
         + '<div class="bar"><span class="bar-fill" id="zip-bar" style="width:0%"></span></div>'
-        + '<p class="fine" id="zip-note">Reading files on this phone…</p>'
+        + '<p class="fine" id="zip-note">Preparing&hellip;</p>'
         + '</div>' + FOOT + '</div>';
-    const num = document.getElementById('zip-num'), bar = document.getElementById('zip-bar'), note = document.getElementById('zip-note');
+    const pct = document.getElementById('zip-pct'), bar = document.getElementById('zip-bar'), note = document.getElementById('zip-note');
     (async () => {
         try {
             const used = new Set();
-            const entries = [];
-            for (const p of picked) {
+            const items = picked.map(p => {
                 let base = p.file.name.replace(/[\\/:*?"<>|]/g, '_');
                 let name = 'Recova/' + p.cat + '/' + base;
                 let n = 2;
                 while (used.has(name)) { name = 'Recova/' + p.cat + '/' + base.replace(/(\.[^.]+)?$/, ' (' + n + ')$1'); n++; }
                 used.add(name);
-                const data = new Uint8Array(await p.file.arrayBuffer());
-                entries.push({ name, data });
-                note.textContent = 'Reading ' + p.file.name;
-            }
-            zipName = 'recova-media-' + new Date().toISOString().slice(0, 10) + '.zip';
-            zipBlob = await buildZip(entries, pr => {
-                num.innerHTML = Math.round(pr * entries.length) + '<span> / ' + entries.length + '</span>';
-                bar.style.width = Math.round(pr * 100) + '%';
-                note.textContent = 'Packing the zip…';
+                return { name, file: p.file };
             });
+            zipName = 'recova-media-' + new Date().toISOString().slice(0, 10) + '.zip';
+            let sink, fsSave = false;
+            if (FS_SAVE) {
+                note.textContent = 'Choose where to save the zip on this phone.';
+                let handle;
+                try {
+                    handle = await window.showSaveFilePicker({ suggestedName: zipName, types: [{ description: 'Zip archive', accept: { 'application/zip': ['.zip'] } }] });
+                } catch (e) { go('real'); return; } // owner cancelled the save picker
+                sink = StreamSink(await handle.createWritable());
+                fsSave = true;
+            } else {
+                sink = BlobSink();
+            }
+            await makeZip(items, sink, (pr, idx, fname, phase) => {
+                const p100 = Math.min(99, Math.round(pr * 100));
+                pct.innerHTML = p100 + '<span>%</span>';
+                bar.style.width = p100 + '%';
+                note.textContent = phase + ' file ' + (idx + 1) + ' of ' + items.length + ': ' + fname;
+            });
+            pct.innerHTML = '100<span>%</span>';
+            bar.style.width = '100%';
+            if (fsSave) { zipResult = { kind: 'fs', name: zipName }; }
+            else { zipResult = { kind: 'blob', blob: sink.blob(), name: zipName }; }
             later(() => go('zdone'), 400);
         } catch (err) {
+            const back = document.createElement('button'); back.className = 'btn'; back.textContent = 'Back to selection'; back.onclick = () => go('real'); note.after(back);
             note.textContent = 'Something went wrong while packing: ' + (err && err.message ? err.message : err);
         }
     })();
@@ -323,29 +524,42 @@ function renderZip() {
 function renderZipDone() {
     const counts = { Images: 0, Videos: 0, 'Voice notes': 0, Documents: 0 };
     picked.forEach(p => counts[p.cat]++);
-    app.innerHTML = '<div class="stage"><div class="body center">'
-        + CHECK_BIG
-        + '<h2 class="h2">' + picked.length + ' files, zipped and organised.</h2>'
-        + '<p class="p">' + zipName + ' &middot; ' + fmtMB(zipBlob.size) + '. Inside: ' + counts.Images + ' photos, ' + counts.Videos + ' videos, ' + counts.Documents + ' documents and ' + counts['Voice notes'] + ' voice notes, each in its own folder.</p>'
-        + '<button class="btn" id="b-share">Send to the other phone</button>'
-        + '<button class="btn btn-ghost" id="b-dl">Download the zip here</button>'
-        + '<p class="fine">Send uses this phone&rsquo;s share sheet: Nearby Share, Bluetooth, WhatsApp on another line, Gmail or Drive. Nearby Share needs no internet &mdash; just the hotspot both phones are already on.</p>'
+    const totalBytes = picked.reduce((a, p) => a + p.file.size, 0);
+    const inside = 'Inside: ' + counts.Images + ' photos, ' + counts.Videos + ' videos, ' + counts.Documents + ' documents and ' + counts['Voice notes'] + ' voice notes, each in its own folder.';
+    let bodyHtml;
+    if (zipResult && zipResult.kind === 'fs') {
+        bodyHtml = CHECK_BIG
+            + '<h2 class="h2">' + picked.length + ' files, zipped and saved.</h2>'
+            + '<p class="p">' + zipResult.name + ' &middot; ' + fmtMB(totalBytes) + ' &middot; saved where you chose on this phone. ' + inside + '</p>'
+            + '<p class="fine">Move it to the other phone with Nearby Share, Bluetooth or any file manager &mdash; the zip is already in your storage. Nearby Share needs no internet, follow the sharing app&rsquo;s own connection steps.</p>';
+    } else {
+        bodyHtml = CHECK_BIG
+            + '<h2 class="h2">' + picked.length + ' files, zipped and organised.</h2>'
+            + '<p class="p">' + zipResult.name + ' &middot; ' + fmtMB(zipResult.blob.size) + '. ' + inside + '</p>'
+            + '<button class="btn" id="b-share">Send to the other phone</button>'
+            + '<button class="btn btn-ghost" id="b-dl">Download the zip here</button>'
+            + '<p class="fine">Send uses this phone&rsquo;s share sheet: Nearby Share, Bluetooth, WhatsApp on another line, Gmail or Drive. Nearby Share needs no internet &mdash; follow the sharing app&rsquo;s own connection steps.</p>';
+    }
+    app.innerHTML = '<div class="stage"><div class="body center">' + bodyHtml
         + '<button class="quiet" id="b-again3">Start another rescue</button>'
         + '</div>' + FOOT + '</div>';
-    document.getElementById('b-share').onclick = async () => {
-        const f = new File([zipBlob], zipName, { type: 'application/zip' });
+    const bShare = document.getElementById('b-share');
+    if (bShare) bShare.onclick = async () => {
+        const f = new File([zipResult.blob], zipResult.name, { type: 'application/zip' });
         if (navigator.canShare && navigator.canShare({ files: [f] })) {
             try { await navigator.share({ files: [f], title: 'Rescued media' }); } catch (e) {}
         } else { document.getElementById('b-dl').click(); }
     };
-    document.getElementById('b-dl').onclick = () => {
+    const bDl = document.getElementById('b-dl');
+    if (bDl) bDl.onclick = () => {
         const a = document.createElement('a');
-        a.href = URL.createObjectURL(zipBlob);
-        a.download = zipName;
+        a.href = URL.createObjectURL(zipResult.blob);
+        a.download = zipResult.name;
         a.click();
     };
-    document.getElementById('b-again3').onclick = () => { picked.forEach(p => p.url && URL.revokeObjectURL(p.url)); picked = []; zipBlob = null; go('real'); };
+    document.getElementById('b-again3').onclick = () => { picked.forEach(p => p.url && URL.revokeObjectURL(p.url)); picked = []; zipResult = null; go('real'); };
 }
+
 /* ---- simulated class demo ---- */
 function tileHTML(t, big) {
     if (t.kind === 'doc') return '<figure class="tile tile-doc' + (big ? ' big' : '') + '"><span class="doc-ext">' + t.ext + '</span><figcaption>' + t.label + '</figcaption></figure>';
@@ -485,7 +699,7 @@ function renderTruth() {
     app.innerHTML = '<div class="stage"><div class="body">'
         + '<p class="kicker">The honest version</p><h2 class="h2">What Recova can and can&rsquo;t do</h2>'
         + '<div class="truth-group"><div class="truth-label">1. Where the media really is</div>'
-        + '<p class="p">It was never inside the banned account. WhatsApp and WhatsApp Business save every downloaded photo, video and document in the phone&rsquo;s own storage, under Android &rsaquo; media &rsaquo; com.whatsapp (or com.whatsapp.w4b). A ban locks the account, not that folder. Recova&rsquo;s real mode zips whatever its owner selects; the same files can be copied free in any file manager.</p></div>'
+        + '<p class="p">It was never inside the banned account. WhatsApp and WhatsApp Business save every downloaded photo, video and document in the phone&rsquo;s own storage: under Internal storage &rsaquo; WhatsApp Business &rsaquo; Media on many phones, or Android &rsaquo; media &rsaquo; com.whatsapp.w4b (com.whatsapp for the regular app) on newer ones. A ban locks the account, not that folder. Where the browser and Android allow folder access, Recova can collect that folder recursively; on an older one, the owner adds each folder&rsquo;s files. The same files can always be copied free in any file manager.</p></div>'
         + '<div class="truth-group"><div class="truth-label">2. What no app can do</div>'
         + '<p class="p">Chats and backups stay locked while the number is banned. WhatsApp&rsquo;s own ban page says a backup can only be reached after the number is unbanned, and the only way back is the Request review button in the app. If there is no button, the ban is final. No app can pair with another phone over hotspot and read its folders; that part of the class demo is theatre.</p>'
         + '<p class="p">Source: <a class="textlink" href="https://faq.whatsapp.com/465883178708358/?locale=en_US" target="_blank" rel="noopener">WhatsApp Help Center, about account bans</a></p></div>'
