@@ -7,91 +7,69 @@
 <meta name="description" content="Ember & Crust is a fictional demo restaurant website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#241a12;
-  --muted:#7a6a58;
-  --accent:#c2410c;
-  --accent-hot:#ea580c;
-  --cream:#fdf6ee;
-  --line:#ecdfd0;
-}
+:root{--ink:#2e241a;--muted:#7a6a58;--accent:#8a4a33;--accent-hot:#a65c40;--cream:#f6efe3;--line:#ddd0bd}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:'Karla',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
-h1,h2,h3,.slab{font-family:'Zilla Slab',Georgia,serif}
-
-.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1rem}
-
+h1,h2,h3,.slab{font-family:'Kalam',cursive;font-weight:700}
+.demo-strip{background:#181818;color:#cfcfcf;text-align:center;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.45rem 1rem}
 .wrap{width:min(1080px,92%);margin:0 auto}
-
-/* top bar */
-.topbar{background:var(--cream);border-bottom:1px solid var(--line)}
+.topbar{background:transparent;border-bottom:2px dashed var(--line)}
 .topbar-in{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0}
-.brand{font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1.3rem;text-decoration:none}
+.brand{font-family:'Kalam',cursive;font-weight:700;font-size:1.45rem;text-decoration:none}
 .brand em{font-style:normal;color:var(--accent-hot)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:11px 22px;border-radius:8px;border:none;cursor:pointer;transition:background .2s}
-.btn:hover{background:#9a3412}
-
-/* short hero */
-.hero{background:var(--cream);padding:1.6rem 0 2rem;border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;gap:1.4rem;align-items:center}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;padding:11px 22px;border-radius:4px;border:none;cursor:pointer;box-shadow:2px 3px 0 rgba(46,36,26,.25);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.hero{padding:2rem 0 2.4rem}
+.hero-grid{display:grid;gap:1.6rem;align-items:center}
 @media(min-width:760px){.hero-grid{grid-template-columns:1fr 1fr}}
-.hero h1{font-size:2rem;font-weight:700;line-height:1.15;margin-bottom:.5rem}
-.hero p{color:var(--muted);margin-bottom:.9rem}
-.hero .open{font-size:.88rem;font-weight:600}
+.hero h1{font-size:2.3rem;line-height:1.15;margin-bottom:.6rem}
+.hero p{color:var(--muted);margin-bottom:.9rem;font-size:1rem}
+.hero .open{font-size:.9rem;font-weight:600}
 .hero .open b{color:var(--accent)}
-.hero img{border-radius:12px;width:100%;aspect-ratio:16/10;object-fit:cover}
-
-/* the menu */
-.menu{padding:2.6rem 0}
+.hero img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#fff;padding:9px 9px 30px;border-radius:2px;box-shadow:0 6px 18px rgba(46,36,26,.22);transform:rotate(1.2deg)}
+.menu{padding:2.4rem 0}
 .menu-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
-.menu h2{font-size:1.7rem}
+.menu h2{font-size:2rem}
 .menu-head span{font-size:.85rem;color:var(--muted)}
-.mcat{margin-top:1.8rem}
-.mcat h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:.15rem;margin-bottom:.4rem}
+.mcat{margin-top:1.9rem}
+.mcat h3{font-size:1.3rem;color:var(--accent);border-bottom:2px dashed var(--accent);display:inline-block;padding-bottom:.1rem;margin-bottom:.5rem}
 .mitem{padding:.85rem 0;border-bottom:1px dashed var(--line)}
 .mitem .row{display:flex;align-items:baseline;gap:.6rem}
-.mitem .name{font-family:'Zilla Slab',Georgia,serif;font-weight:600;font-size:1.12rem}
+.mitem .name{font-family:'Kalam',cursive;font-weight:700;font-size:1.15rem}
 .mitem .fill{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
-.mitem .price{font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1.12rem;white-space:nowrap}
-.mitem .price small{display:block;text-align:right;font-size:.72rem;color:var(--muted);font-family:system-ui,sans-serif;font-weight:500}
+.mitem .price{font-family:'Kalam',cursive;font-weight:700;font-size:1.12rem;white-space:nowrap}
+.mitem .price small{display:block;text-align:right;font-size:.72rem;color:var(--muted);font-family:'Karla',sans-serif;font-weight:600}
 .mitem .desc{color:var(--muted);font-size:.88rem;margin-top:.15rem;max-width:34rem}
-
-/* kitchen photo strip */
-.strip{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2rem 0}
-.strip h2{font-size:1.3rem;margin-bottom:1rem}
-.scroller{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;-webkit-overflow-scrolling:touch}
-.scroller img{flex:0 0 72%;max-width:340px;aspect-ratio:4/3;object-fit:cover;border-radius:12px;scroll-snap-align:start}
-.scroller::-webkit-scrollbar{height:6px}
-.scroller::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
-
-/* order */
+.strip{border-top:2px dashed var(--line);border-bottom:2px dashed var(--line);padding:2.2rem 0}
+.strip h2{font-size:1.6rem;margin-bottom:1.2rem}
+.scroller{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem .2rem 1rem;-webkit-overflow-scrolling:touch}
+.scroller img{flex:0 0 72%;max-width:330px;aspect-ratio:4/3;object-fit:cover;scroll-snap-align:start;background:#fff;padding:8px 8px 26px;border-radius:2px;box-shadow:0 5px 14px rgba(46,36,26,.2)}
+.scroller img:nth-child(odd){transform:rotate(-1.4deg)}
+.scroller img:nth-child(even){transform:rotate(1.1deg)}
 .order{padding:2.6rem 0}
 .order-grid{display:grid;gap:1.8rem}
 @media(min-width:760px){.order-grid{grid-template-columns:1fr 1fr}}
-.order h2{font-size:1.7rem;margin-bottom:.5rem}
+.order h2{font-size:2rem;margin-bottom:.5rem}
 .order .how{list-style:none;margin-top:1rem}
-.order .how li{padding:.6rem 0 .6rem 1.6rem;position:relative;font-size:.92rem;color:#4d3f30;border-bottom:1px solid var(--line)}
-.order .how li::before{content:"";position:absolute;left:0;top:1.05rem;width:8px;height:8px;background:var(--accent-hot);border-radius:2px}
-.order form{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:1.4rem}
+.order .how li{padding:.65rem 0 .65rem 1.7rem;position:relative;font-size:.95rem;color:#4d3f30;border-bottom:1px dashed var(--line)}
+.order .how li::before{content:"";position:absolute;left:0;top:1.1rem;width:9px;height:9px;background:var(--accent-hot);border-radius:2px;transform:rotate(8deg)}
+.order form{background:#fffdf6;border:2px dashed var(--line);border-radius:4px;padding:1.5rem}
 label{display:block;font-size:.8rem;font-weight:700;margin:0 0 .3rem}
-input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:#fff;margin-bottom:.9rem}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:4px;font:inherit;background:#fff;margin-bottom:.9rem}
 input:focus,select:focus{outline:2px solid var(--accent-hot);border-color:transparent}
 .form-note{font-size:.78rem;color:var(--muted);margin-top:.7rem}
-
-/* info */
-.info{border-top:1px solid var(--line);padding:2rem 0 2.4rem}
+.info{border-top:2px dashed var(--line);padding:2.2rem 0 2.6rem}
 .info dl{display:grid;gap:.9rem}
 @media(min-width:700px){.info dl{grid-template-columns:1fr 1fr 1fr}}
-.info dt{font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1rem}
+.info dt{font-family:'Kalam',cursive;font-weight:700;font-size:1.08rem}
 .info dd{color:var(--muted);font-size:.9rem}
-.info a{color:var(--accent);font-weight:600}
-
-footer{background:var(--cream);border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;font-size:.8rem;color:var(--muted);text-align:center}
+.info a{color:var(--accent);font-weight:700}
+footer{border-top:2px dashed var(--line);padding:1.8rem 0 2.4rem;font-size:.8rem;color:var(--muted);text-align:center}
 footer a{color:var(--accent)}
 </style>
 </head>
