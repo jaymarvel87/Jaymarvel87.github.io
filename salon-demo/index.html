@@ -7,282 +7,216 @@
 <meta name="description" content="Aurelle Beauty Studio is a fictional demo salon website designed as a sample for local businesses in Uyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16131a;
-  --muted:#5f5a68;
+  --ink:#1c1524;
+  --muted:#6b6375;
   --accent:#7c3aed;
-  --accent-dark:#6d28d9;
-  --paper:#ffffff;
-  --tint:#f6f4fa;
-  --line:#e8e5ef;
-  --radius:22px;
+  --accent-deep:#5b21b6;
+  --tint:#f7f4fc;
+  --line:#e9e4f2;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:'Archivo',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
-.wrap{width:min(1160px,92%);margin:0 auto}
-.kicker{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-h1,h2{font-stretch:125%;font-weight:850;letter-spacing:-.01em;line-height:1.02}
-h1{font-size:clamp(2.5rem,6vw,4.4rem);margin:.9rem 0 1.1rem}
-h2{font-size:clamp(1.9rem,4.4vw,3rem);margin:.7rem 0 .8rem}
-.sub{color:var(--muted);font-size:1.06rem;max-width:34rem}
+.serif{font-family:'Fraunces',Georgia,serif}
 
-/* demo strip */
-.demo-strip{background:var(--accent);color:#fff;text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
+.demo-strip{background:var(--ink);color:#fff;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1rem}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-stretch:125%;font-weight:900;font-size:1.35rem;letter-spacing:-.02em;text-decoration:none}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;position:relative;transition:color .25s}
-.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--accent);transition:width .3s}
-.nav-links a:not(.btn):hover{color:var(--ink)}
-.nav-links a:not(.btn):hover::after{width:100%}
-.nav-links .btn{color:#fff;font-weight:700}
-.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;padding:13px 28px;border-radius:999px;text-decoration:none;letter-spacing:.02em;font-size:.92rem;border:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
-.btn:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(124,58,237,.28)}
-.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(22,19,26,.18)}
-.btn.sm{padding:9px 20px;font-size:.82rem}
+.page{max-width:660px;margin:0 auto;padding:0 22px}
+
+/* masthead: centered, like the salon's own card */
+.masthead{text-align:center;padding:2.6rem 0 1.4rem;border-bottom:1px solid var(--line)}
+.wordmark{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:2.5rem;letter-spacing:-.01em}
+.wordmark i{font-style:italic;color:var(--accent)}
+.masthead p{color:var(--muted);font-size:.95rem;margin-top:.2rem}
+.topnav{margin-top:1.1rem;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;font-size:.86rem;font-weight:600}
+.topnav a{text-decoration:none;color:var(--ink);padding:.3rem .55rem;border-radius:999px}
+.topnav a:hover{background:var(--tint);color:var(--accent-deep)}
+.topnav span{color:var(--line)}
 
 /* hero */
-.hero{padding:clamp(2.6rem,6vw,4.8rem) 0 clamp(3rem,6vw,4.6rem)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4.5vw,4rem);align-items:center}
-.chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;color:var(--ink)}
-.chip i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero-actions{display:flex;gap:.9rem;margin-top:1.7rem;flex-wrap:wrap}
-.hero-meta{display:flex;gap:1.4rem;margin-top:1.9rem;color:var(--muted);font-size:.9rem;flex-wrap:wrap}
-.hero-meta b{color:var(--ink)}
-.hero-visual{position:relative}
-.hero-visual .ph{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(22,19,26,.25)}
-.hero-visual img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.hero-visual img.loaded{transform:scale(1)}
-.badge-card{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.85rem 1.15rem;box-shadow:0 16px 40px -12px rgba(22,19,26,.22);font-size:.85rem}
-.badge-card b{display:block;font-size:.95rem}
-.badge-card .dot{color:var(--accent);font-weight:800}
+.hero{text-align:center;padding:2.2rem 0 2.4rem}
+.arch{width:min(300px,78vw);margin:0 auto 1.6rem;border-radius:999px 999px 18px 18px;overflow:hidden;background:var(--tint)}
+.arch img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.hero h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.9rem;line-height:1.25;margin:0 0 .8rem}
+.hero .lede{color:var(--muted);max-width:30rem;margin:0 auto 1.4rem}
+.hours-line{font-size:.9rem;margin-bottom:1.6rem}
+.hours-line b{font-weight:700}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;padding:14px 34px;border-radius:999px;border:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--accent-deep)}
+.textlink{display:inline-block;margin-top:.9rem;font-size:.9rem;font-weight:600;color:var(--accent-deep)}
 
-/* marquee */
-.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:.95rem 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:scroll 24s linear infinite;font-stretch:125%;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.92rem}
-.marquee-track span{margin:0 1.6rem}
-.marquee-track .a{color:var(--accent);filter:brightness(1.6)}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* price list, like the printed list at the desk */
+.prices{padding:2.2rem 0 2.4rem;border-top:1px solid var(--line)}
+.sec-title{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.5rem;margin-bottom:.3rem}
+.sec-note{color:var(--muted);font-size:.92rem;margin-bottom:1.4rem}
+.plist{list-style:none}
+.plist li{padding:1rem 0;border-bottom:1px solid var(--line)}
+.plist .top{display:flex;align-items:baseline;gap:.6rem}
+.plist .name{font-weight:700}
+.plist .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.plist .price{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.1rem;white-space:nowrap}
+.plist .desc{color:var(--muted);font-size:.88rem;margin-top:.25rem}
+.plist .desc .time{color:var(--accent-deep);font-weight:600}
 
-/* sections */
-section{padding:clamp(3.2rem,7vw,5.5rem) 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;flex-wrap:wrap}
-.tint{background:var(--tint)}
-
-/* services */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;transition:transform .3s,box-shadow .3s,border-color .3s}
-.svc:hover{transform:translateY(-5px);box-shadow:0 22px 44px -18px rgba(22,19,26,.18);border-color:var(--accent)}
-.svc .num{font-stretch:125%;font-weight:900;color:var(--accent);font-size:.95rem;letter-spacing:.08em}
-.svc h3{font-stretch:125%;font-weight:800;font-size:1.18rem}
-.svc p{color:var(--muted);font-size:.92rem;flex:1}
-.svc .row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:.85rem;margin-top:.6rem}
-.svc .price{font-stretch:125%;font-weight:850;font-size:1.15rem}
-.svc .time{color:var(--muted);font-size:.82rem;font-weight:600}
-
-/* gallery */
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-.gal{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/5}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.gal:hover img{transform:scale(1.07)}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;background:linear-gradient(transparent,rgba(22,19,26,.75));color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
-.gal:hover figcaption{opacity:1;transform:translateY(0)}
+/* photo grid, square like her feed */
+.photos{padding:2.2rem 0}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pgrid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
 
 /* booking */
-.book-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.4rem)}
-.book-points{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
-.book-points li{list-style:none;display:flex;gap:.7rem;color:var(--muted);font-size:.95rem}
-.book-points li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:.45rem}
-form{display:flex;flex-direction:column;gap:.9rem}
-label{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-input,select{font:inherit;font-size:.98rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s;width:100%}
-input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,58,237,.14)}
-.form-note{font-size:.8rem;color:var(--muted)}
+.book{background:var(--tint);border-radius:20px;padding:1.8rem 1.4rem;margin:0 0 2.4rem}
+.book h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.4rem;margin-bottom:.4rem}
+.book>p{color:var(--muted);font-size:.9rem;margin-bottom:1.2rem}
+.book ul{list-style:none;margin:0 0 1.4rem}
+.book li{font-size:.88rem;padding:.45rem 0 .45rem 1.4rem;position:relative;color:#3d3550}
+.book li::before{content:"";position:absolute;left:0;top:1rem;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+label{display:block;font-size:.8rem;font-weight:700;margin:0 0 .3rem}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;background:#fff;margin-bottom:.9rem}
+input:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:.7rem}
 
 /* visit */
-.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.vcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem}
-.vcard h3{font-stretch:125%;font-weight:800;font-size:1.05rem;margin-bottom:.5rem;color:var(--accent)}
-.vcard p{color:var(--muted);font-size:.93rem}
-.vcard a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+.visit{padding:0 0 2.6rem}
+.visit-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.visit h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.05rem;margin-bottom:.3rem}
+.visit p{font-size:.9rem;color:var(--muted)}
+.visit a{color:var(--accent-deep);font-weight:600}
+@media (max-width:480px){.visit-cols{grid-template-columns:1fr}}
 
-/* footer */
-footer{border-top:1px solid var(--line);padding:2.2rem 0;background:var(--tint);color:var(--muted);font-size:.85rem;text-align:center}
-footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
-
-/* reveal animation */
-.rv.armed{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.armed.on{opacity:1;transform:none}
-
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:repeat(2,1fr)}
-  .book-card{grid-template-columns:1fr}
-  .badge-card{left:10px}
-}
-@media(max-width:600px){
-  .nav-links a:not(.btn){display:none}
-  .svc-grid,.gal-grid,.visit-grid{grid-template-columns:1fr}
-  .gal{aspect-ratio:4/3}
-  .sec-head{margin-bottom:1.6rem}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;font-size:.8rem;color:var(--muted);text-align:center}
+footer a{color:var(--accent-deep)}
 </style>
 </head>
 <body>
 
-<div class="demo-strip">Demo website · designed as a sample for local businesses</div>
+<div class="demo-strip">Demo website - a sample for local businesses</div>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="logo" href="#top">Aurelle<span>.</span></a>
-    <nav class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#work">Recent work</a>
-      <a href="#visit">Visit</a>
-      <a class="btn sm" href="#book">Book now</a>
+<div class="page">
+
+  <header class="masthead">
+    <div class="wordmark">Aurelle<i>.</i></div>
+    <p>Braids, nails, lashes &amp; spa - Uyo</p>
+    <nav class="topnav">
+      <a href="#prices">Price list</a><span>·</span>
+      <a href="#photos">Photos</a><span>·</span>
+      <a href="#book">Book</a><span>·</span>
+      <a href="#visit">Find us</a>
     </nav>
-  </div>
-</header>
-
-<main id="top">
+  </header>
 
   <section class="hero">
-    <div class="wrap hero-grid">
+    <div class="arch"><img src="https://images.unsplash.com/photo-1744722151780-6027e2124821?auto=format&fit=crop&w=900&q=80" alt="Client with freshly finished long braids smiling in a bright studio" fetchpriority="high"></div>
+    <h1>Walk in with an idea.<br>Walk out finished.</h1>
+    <p class="lede">Aurelle is a small beauty studio on Oron Road. Pick a style, send us a time, and your chair is confirmed on WhatsApp the same day.</p>
+    <p class="hours-line"><b>Mon - Sat</b> 8:00 - 20:00 &nbsp;·&nbsp; <b>Sun</b> 12:00 - 18:00</p>
+    <a class="btn" href="#book">Book on WhatsApp</a><br>
+    <a class="textlink" href="#prices">See the price list</a>
+  </section>
+
+  <section class="prices" id="prices">
+    <h2 class="sec-title">Price list</h2>
+    <p class="sec-note">The price we quote is the price you pay. Every appointment starts with a quick consultation.</p>
+    <ul class="plist">
+      <li>
+        <div class="top"><span class="name">Knotless braids</span><span class="dots"></span><span class="price">₦20,000</span></div>
+        <p class="desc">Lightweight, tension-free braids in any length. Hair included. <span class="time">3 - 4 hrs</span></p>
+      </li>
+      <li>
+        <div class="top"><span class="name">Box braids</span><span class="dots"></span><span class="price">₦15,000</span></div>
+        <p class="desc">Classic neat sections, small to jumbo. Edge finish included. <span class="time">3 - 4 hrs</span></p>
+      </li>
+      <li>
+        <div class="top"><span class="name">Gel nails</span><span class="dots"></span><span class="price">₦8,000</span></div>
+        <p class="desc">Gel overlay or full set with tips, shaped and sealed to last three weeks. <span class="time">60 - 90 min</span></p>
+      </li>
+      <li>
+        <div class="top"><span class="name">Lash extensions</span><span class="dots"></span><span class="price">₦12,000</span></div>
+        <p class="desc">Classic or volume sets, mapped to your eye shape. Refills within two weeks. <span class="time">90 min</span></p>
+      </li>
+      <li>
+        <div class="top"><span class="name">Wig install</span><span class="dots"></span><span class="price">₦10,000</span></div>
+        <p class="desc">Lace melt, styling and cut. Bring your unit or choose from the shelf. <span class="time">60 min</span></p>
+      </li>
+      <li>
+        <div class="top"><span class="name">Spa facial</span><span class="dots"></span><span class="price">₦9,000</span></div>
+        <p class="desc">Deep cleanse, steam, extraction and mask. Leaves skin calm, not stripped. <span class="time">50 min</span></p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="photos" id="photos">
+    <h2 class="sec-title">Recent work</h2>
+    <p class="sec-note">Straight out of the chair. New sets every week.</p>
+    <div class="pgrid">
+      <img src="https://images.unsplash.com/photo-1763048208932-cbe149724374?auto=format&fit=crop&w=600&q=80" alt="Stylist braiding a client's hair in the salon chair" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1757866332764-9237464b2ef8?auto=format&fit=crop&w=600&q=80" alt="Knotless braids being sectioned with a pink comb" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1655720348723-c16f0519249d?auto=format&fit=crop&w=600&q=80" alt="Fresh pink gel manicure on a client's hands" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1672888560227-aaf9b90d480a?auto=format&fit=crop&w=600&q=80" alt="Detailed lash and nail finish, close up" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" alt="Clean black and white salon interior with styling chairs" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1758613653823-5baa7dd8073e?auto=format&fit=crop&w=600&q=80" alt="Makeup artist finishing a client's look in the studio" loading="lazy">
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <h2>Book a chair</h2>
+    <p>Fill this in and it opens WhatsApp with your booking typed out. We confirm within the hour.</p>
+    <ul>
+      <li>Same-day slots most days - message before 4 PM.</li>
+      <li>No deposit for standard services. Braids over ₦15,000 take a ₦3,000 holding deposit.</li>
+      <li>Running late? Your chair is held for 20 minutes.</li>
+    </ul>
+    <form id="bookForm">
+      <label for="f-name">Your name</label>
+      <input id="f-name" name="name" type="text" placeholder="e.g. Idara" required>
+      <label for="f-service">Service</label>
+      <select id="f-service" name="service" required>
+        <option value="">Choose a service</option>
+        <option>Knotless braids - ₦20,000</option>
+        <option>Box braids - ₦15,000</option>
+        <option>Gel nails - ₦8,000</option>
+        <option>Lash extensions - ₦12,000</option>
+        <option>Wig install - ₦10,000</option>
+        <option>Spa facial - ₦9,000</option>
+      </select>
+      <label for="f-when">Day &amp; time</label>
+      <input id="f-when" name="when" type="text" placeholder="e.g. Saturday, 10 AM" required>
+      <label for="f-phone">Your phone</label>
+      <input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required>
+      <button class="btn" type="submit" style="width:100%">Send booking on WhatsApp</button>
+      <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
+    </form>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="visit-cols">
       <div>
-        <span class="chip rv"><i></i> Uyo · Braids, nails, lashes &amp; spa</span>
-        <h1 class="rv" style="transition-delay:.08s">Braids, nails and lashes. Done properly, <em>booked in minutes.</em></h1>
-        <p class="sub rv" style="transition-delay:.16s">Aurelle is a walk-in friendly beauty studio in Uyo. Pick a service, pick a time, and we confirm your chair on WhatsApp the same day.</p>
-        <div class="hero-actions rv" style="transition-delay:.24s">
-          <a class="btn" href="#book">Book on WhatsApp</a>
-          <a class="btn ghost" href="#services">Services &amp; prices</a>
-        </div>
-        <div class="hero-meta rv" style="transition-delay:.32s">
-          <span><b>Mon - Sat</b> 8:00 - 20:00</span>
-          <span><b>Sun</b> 12:00 - 18:00</span>
-          <span><b>24 Oron Road</b>, Uyo</span>
-        </div>
+        <h3>The studio</h3>
+        <p>24 Oron Road, Uyo,<br>Akwa Ibom State</p>
       </div>
-      <div class="hero-visual rv" style="transition-delay:.2s">
-        <div class="ph"><img id="heroImg" src="https://images.unsplash.com/photo-1744722151780-6027e2124821?auto=format&fit=crop&w=1200&q=80" alt="Client with freshly finished long braids smiling in a bright studio" width="1200" height="900" fetchpriority="high"></div>
-        <div class="badge-card"><span class="dot">●</span> Open today<b>8:00 AM - 8:00 PM</b></div>
+      <div>
+        <h3>Talk to us</h3>
+        <p>WhatsApp is fastest - bookings, questions, price checks.<br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></p>
+      </div>
+      <div>
+        <h3>Walk-ins</h3>
+        <p>Welcome when chairs are free. Booked clients go first.</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <p>Mon - Sat, 8:00 - 20:00<br>Sun, 12:00 - 18:00</p>
       </div>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track" id="mq"></div>
-  </div>
-
-  <section class="tint" id="services">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Services &amp; prices</span>
-          <h2 class="rv">Straightforward pricing,<br>confirmed before we start.</h2>
-        </div>
-        <p class="sub rv">Every appointment starts with a quick consultation. The price we quote is the price you pay.</p>
-      </div>
-      <div class="svc-grid">
-        <article class="svc rv"><span class="num">01</span><h3>Knotless braids</h3><p>Lightweight, tension-free braids in any length. Hair included in the price.</p><div class="row"><span class="price">₦20,000</span><span class="time">3 - 4 hrs</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">02</span><h3>Box braids</h3><p>Classic neat sections, small to jumbo. Edge finish included.</p><div class="row"><span class="price">₦15,000</span><span class="time">3 - 4 hrs</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">03</span><h3>Gel nails</h3><p>Gel overlay or full set with tips, shaped and sealed to last three weeks.</p><div class="row"><span class="price">₦8,000</span><span class="time">60 - 90 min</span></div></article>
-        <article class="svc rv"><span class="num">04</span><h3>Lash extensions</h3><p>Classic or volume sets, mapped to your eye shape. Refills within two weeks.</p><div class="row"><span class="price">₦12,000</span><span class="time">90 min</span></div></article>
-        <article class="svc rv" style="transition-delay:.07s"><span class="num">05</span><h3>Wig install</h3><p>Lace melt, styling and cut. Bring your unit or choose from the shelf.</p><div class="row"><span class="price">₦10,000</span><span class="time">60 min</span></div></article>
-        <article class="svc rv" style="transition-delay:.14s"><span class="num">06</span><h3>Spa facial</h3><p>Deep cleanse, steam, extraction and mask. Leaves skin calm, not stripped.</p><div class="row"><span class="price">₦9,000</span><span class="time">50 min</span></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Recent work</span>
-          <h2 class="rv">Straight out of the chair.</h2>
-        </div>
-        <p class="sub rv">A sample of what clients walk out with. New sets and styles every week.</p>
-      </div>
-      <div class="gal-grid">
-        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1763048208932-cbe149724374?auto=format&fit=crop&w=800&q=80" alt="Stylist braiding a client's hair in the salon chair" loading="lazy" width="800" height="1000"><figcaption>In the chair</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1757866332764-9237464b2ef8?auto=format&fit=crop&w=800&q=80" alt="Knotless braids being sectioned with a pink comb" loading="lazy" width="800" height="1000"><figcaption>Knotless in progress</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1655720348723-c16f0519249d?auto=format&fit=crop&w=800&q=80" alt="Fresh pink gel manicure on a client's hands" loading="lazy" width="800" height="1000"><figcaption>Gel nails</figcaption></figure>
-        <figure class="gal rv"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Clean black and white salon interior with styling chairs" loading="lazy" width="800" height="1000"><figcaption>The studio</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.07s"><img src="https://images.unsplash.com/photo-1672888560227-aaf9b90d480a?auto=format&fit=crop&w=800&q=80" alt="Detailed lash and nail finish, close up" loading="lazy" width="800" height="1000"><figcaption>Lashes &amp; nails</figcaption></figure>
-        <figure class="gal rv" style="transition-delay:.14s"><img src="https://images.unsplash.com/photo-1758613653823-5baa7dd8073e?auto=format&fit=crop&w=800&q=80" alt="Makeup artist finishing a client's look in the studio" loading="lazy" width="800" height="1000"><figcaption>Makeup</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="tint" id="book">
-    <div class="wrap">
-      <div class="book-card rv">
-        <div>
-          <span class="kicker">Book a chair</span>
-          <h2>Send your booking. We confirm on WhatsApp.</h2>
-          <ul class="book-points">
-            <li>Same-day slots available most days - message before 4 PM.</li>
-            <li>No deposit for standard services. Braids over ₦15,000 take a ₦3,000 holding deposit.</li>
-            <li>Running late? Your chair is held for 20 minutes.</li>
-          </ul>
-        </div>
-        <form id="bookForm">
-          <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" placeholder="e.g. Idara" required></div>
-          <div><label for="f-service">Service</label>
-            <select id="f-service" name="service" required>
-              <option value="">Choose a service</option>
-              <option>Knotless braids - ₦20,000</option>
-              <option>Box braids - ₦15,000</option>
-              <option>Gel nails - ₦8,000</option>
-              <option>Lash extensions - ₦12,000</option>
-              <option>Wig install - ₦10,000</option>
-              <option>Spa facial - ₦9,000</option>
-            </select>
-          </div>
-          <div><label for="f-when">Preferred day &amp; time</label><input id="f-when" name="when" type="text" placeholder="e.g. Saturday, 10 AM" required></div>
-          <div><label for="f-phone">Your phone</label><input id="f-phone" name="phone" type="tel" placeholder="e.g. 0803 000 0000" required></div>
-          <button class="btn" type="submit">Send booking on WhatsApp</button>
-          <p class="form-note">Demo form - it opens WhatsApp with a pre-filled message. Nothing is sent until you tap send in WhatsApp.</p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section id="visit">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="kicker">Find us</span>
-          <h2 class="rv">Visit the studio.</h2>
-        </div>
-      </div>
-      <div class="visit-grid">
-        <div class="vcard rv"><h3>Address</h3><p>24 Oron Road, Uyo,<br>Akwa Ibom State</p></div>
-        <div class="vcard rv" style="transition-delay:.07s"><h3>WhatsApp</h3><p>Fastest way to reach us - bookings, questions, price checks.<br><br><a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a></p></div>
-        <div class="vcard rv" style="transition-delay:.14s"><h3>Walk-ins</h3><p>Welcome when chairs are free - but booked clients always go first.</p></div>
-      </div>
-    </div>
-  </section>
-
-</main>
+</div>
 
 <footer>
-  <div class="wrap">
+  <div class="page">
     Aurelle Beauty Studio is a fictional demo. Website designed by
     <a href="https://excellus-solutionz.netlify.app/" target="_blank" rel="noopener">Excellus Tech Solutionz</a>, Uyo ·
     WhatsApp <a href="https://wa.me/2347034678518" target="_blank" rel="noopener">0703 467 8518</a>
@@ -290,31 +224,6 @@ footer a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2px
 </footer>
 
 <script>
-// marquee content (duplicated for seamless loop)
-(function(){
-  var items = ['Box braids','Knotless','Gel nails','Lash extensions','Wig installs','Spa facials','Makeup','Same-day slots'];
-  var html = items.map(function(t,i){ return '<span class="'+(i%2?'a':'')+'">'+t+'</span><span>·</span>'; }).join('');
-  document.getElementById('mq').innerHTML = html + html;
-})();
-
-// hero image settle-in
-(function(){
-  var img = document.getElementById('heroImg');
-  var done = function(){ img.classList.add('loaded'); };
-  if (img.complete) done(); else img.addEventListener('load', done);
-})();
-
-// scroll reveal with stagger
-(function(){
-  var els = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window)) { return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
-  }, {threshold:.12});
-  els.forEach(function(e){ e.classList.add('armed'); io.observe(e); });
-})();
-
-// booking -> WhatsApp prefill
 document.getElementById('bookForm').addEventListener('submit', function(ev){
   ev.preventDefault();
   var f = ev.target;
@@ -326,6 +235,5 @@ document.getElementById('bookForm').addEventListener('submit', function(ev){
   window.open('https://wa.me/2347034678518?text=' + encodeURIComponent(msg), '_blank');
 });
 </script>
-
 </body>
 </html>
